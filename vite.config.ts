@@ -12,7 +12,7 @@ export default defineConfig({
       formats: ['es', 'cjs']
     },
     rollupOptions: {
-      external: ['vue', 'vue-router', 'pinia', 'axios', 'zod'],
+      external: ['vue', 'vue-router', 'pinia', 'axios', 'zod', 'fs', 'path', 'node:fs', 'node:path'],
       output: {
         globals: {
           vue: 'Vue',
