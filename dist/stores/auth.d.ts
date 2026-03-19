@@ -1,0 +1,144 @@
+import type { ApiClient } from '../api/ApiClient';
+export interface AuthUser {
+    id: string;
+    email: string;
+    name?: string;
+    roles: string[];
+    permissions?: string[];
+}
+export interface AuthState {
+    user: AuthUser | null;
+    token: string | null;
+    refreshToken: string | null;
+    error: string | null;
+    loading: boolean;
+}
+export interface LoginCredentials {
+    email: string;
+    password: string;
+}
+export interface LoginResponse {
+    token: string;
+    refresh_token?: string;
+    user: AuthUser;
+}
+export interface AuthStoreConfig {
+    storageKey: string;
+    refreshStorageKey?: string;
+    apiClient: ApiClient;
+    loginEndpoint?: string;
+    logoutEndpoint?: string;
+    refreshEndpoint?: string;
+    profileEndpoint?: string;
+}
+/**
+ * Configure the auth store before use.
+ * Must be called in app's main.ts before using useAuthStore().
+ */
+export declare function configureAuthStore(config: AuthStoreConfig): void;
+/**
+ * Auth store definition
+ */
+export declare const useAuthStore: import("pinia").StoreDefinition<"auth", AuthState, {
+    isAuthenticated: (state: {
+        user: {
+            id: string;
+            email: string;
+            name?: string | undefined;
+            roles: string[];
+            permissions?: string[] | undefined;
+        } | null;
+        token: string | null;
+        refreshToken: string | null;
+        error: string | null;
+        loading: boolean;
+    } & import("pinia").PiniaCustomStateProperties<AuthState>) => boolean;
+    isAdmin: (state: {
+        user: {
+            id: string;
+            email: string;
+            name?: string | undefined;
+            roles: string[];
+            permissions?: string[] | undefined;
+        } | null;
+        token: string | null;
+        refreshToken: string | null;
+        error: string | null;
+        loading: boolean;
+    } & import("pinia").PiniaCustomStateProperties<AuthState>) => boolean;
+    hasRole: (state: {
+        user: {
+            id: string;
+            email: string;
+            name?: string | undefined;
+            roles: string[];
+            permissions?: string[] | undefined;
+        } | null;
+        token: string | null;
+        refreshToken: string | null;
+        error: string | null;
+        loading: boolean;
+    } & import("pinia").PiniaCustomStateProperties<AuthState>) => (role: string) => boolean;
+    hasAnyRole: (state: {
+        user: {
+            id: string;
+            email: string;
+            name?: string | undefined;
+            roles: string[];
+            permissions?: string[] | undefined;
+        } | null;
+        token: string | null;
+        refreshToken: string | null;
+        error: string | null;
+        loading: boolean;
+    } & import("pinia").PiniaCustomStateProperties<AuthState>) => (roles: string[]) => boolean;
+    hasPermission: (state: {
+        user: {
+            id: string;
+            email: string;
+            name?: string | undefined;
+            roles: string[];
+            permissions?: string[] | undefined;
+        } | null;
+        token: string | null;
+        refreshToken: string | null;
+        error: string | null;
+        loading: boolean;
+    } & import("pinia").PiniaCustomStateProperties<AuthState>) => (permission: string) => boolean;
+}, {
+    /**
+     * Initialize auth state from localStorage.
+     * Call this on app startup.
+     */
+    initAuth(): void;
+    /**
+     * Login with credentials.
+     */
+    login(credentials: LoginCredentials): Promise<LoginResponse>;
+    /**
+     * Logout and clear all auth state.
+     */
+    logout(): Promise<void>;
+    /**
+     * Refresh the access token.
+     */
+    refreshAccessToken(): Promise<string>;
+    /**
+     * Fetch current user profile.
+     */
+    fetchProfile(): Promise<AuthUser>;
+    /**
+     * Set user manually (for cases where login response includes user).
+     */
+    setUser(user: AuthUser | null): void;
+    /**
+     * Set token manually.
+     */
+    setToken(token: string | null): void;
+    /**
+     * Clear error state.
+     */
+    clearError(): void;
+}>;
+export type AuthStore = ReturnType<typeof useAuthStore>;
+//# sourceMappingURL=auth.d.ts.map
