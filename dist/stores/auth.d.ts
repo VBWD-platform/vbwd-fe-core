@@ -1,9 +1,16 @@
 import type { ApiClient } from '../api/ApiClient';
+export interface AccessLevel {
+    id: string;
+    slug: string;
+    name: string;
+}
 export interface AuthUser {
     id: string;
     email: string;
     name?: string;
-    roles: string[];
+    role?: string;
+    is_admin?: boolean;
+    access_levels?: AccessLevel[];
     permissions?: string[];
 }
 export interface AuthState {
@@ -45,7 +52,13 @@ export declare const useAuthStore: import("pinia").StoreDefinition<"auth", AuthS
             id: string;
             email: string;
             name?: string | undefined;
-            roles: string[];
+            role?: string | undefined;
+            is_admin?: boolean | undefined;
+            access_levels?: {
+                id: string;
+                slug: string;
+                name: string;
+            }[] | undefined;
             permissions?: string[] | undefined;
         } | null;
         token: string | null;
@@ -58,7 +71,32 @@ export declare const useAuthStore: import("pinia").StoreDefinition<"auth", AuthS
             id: string;
             email: string;
             name?: string | undefined;
-            roles: string[];
+            role?: string | undefined;
+            is_admin?: boolean | undefined;
+            access_levels?: {
+                id: string;
+                slug: string;
+                name: string;
+            }[] | undefined;
+            permissions?: string[] | undefined;
+        } | null;
+        token: string | null;
+        refreshToken: string | null;
+        error: string | null;
+        loading: boolean;
+    } & import("pinia").PiniaCustomStateProperties<AuthState>) => boolean;
+    isSuperAdmin: (state: {
+        user: {
+            id: string;
+            email: string;
+            name?: string | undefined;
+            role?: string | undefined;
+            is_admin?: boolean | undefined;
+            access_levels?: {
+                id: string;
+                slug: string;
+                name: string;
+            }[] | undefined;
             permissions?: string[] | undefined;
         } | null;
         token: string | null;
@@ -71,7 +109,13 @@ export declare const useAuthStore: import("pinia").StoreDefinition<"auth", AuthS
             id: string;
             email: string;
             name?: string | undefined;
-            roles: string[];
+            role?: string | undefined;
+            is_admin?: boolean | undefined;
+            access_levels?: {
+                id: string;
+                slug: string;
+                name: string;
+            }[] | undefined;
             permissions?: string[] | undefined;
         } | null;
         token: string | null;
@@ -84,7 +128,13 @@ export declare const useAuthStore: import("pinia").StoreDefinition<"auth", AuthS
             id: string;
             email: string;
             name?: string | undefined;
-            roles: string[];
+            role?: string | undefined;
+            is_admin?: boolean | undefined;
+            access_levels?: {
+                id: string;
+                slug: string;
+                name: string;
+            }[] | undefined;
             permissions?: string[] | undefined;
         } | null;
         token: string | null;
@@ -97,7 +147,13 @@ export declare const useAuthStore: import("pinia").StoreDefinition<"auth", AuthS
             id: string;
             email: string;
             name?: string | undefined;
-            roles: string[];
+            role?: string | undefined;
+            is_admin?: boolean | undefined;
+            access_levels?: {
+                id: string;
+                slug: string;
+                name: string;
+            }[] | undefined;
             permissions?: string[] | undefined;
         } | null;
         token: string | null;
@@ -105,6 +161,25 @@ export declare const useAuthStore: import("pinia").StoreDefinition<"auth", AuthS
         error: string | null;
         loading: boolean;
     } & import("pinia").PiniaCustomStateProperties<AuthState>) => (permission: string) => boolean;
+    hasAnyPermission: (state: {
+        user: {
+            id: string;
+            email: string;
+            name?: string | undefined;
+            role?: string | undefined;
+            is_admin?: boolean | undefined;
+            access_levels?: {
+                id: string;
+                slug: string;
+                name: string;
+            }[] | undefined;
+            permissions?: string[] | undefined;
+        } | null;
+        token: string | null;
+        refreshToken: string | null;
+        error: string | null;
+        loading: boolean;
+    } & import("pinia").PiniaCustomStateProperties<AuthState>) => (permissions: string[]) => boolean;
 }, {
     /**
      * Initialize auth state from localStorage.

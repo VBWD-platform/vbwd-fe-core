@@ -2762,25 +2762,46 @@ const useAuthStore = pinia.defineStore("auth", {
     isAuthenticated: (state) => !!state.token && !!state.user,
     isAdmin: (state) => {
       var _a2, _b;
-      return ((_b = (_a2 = state.user) == null ? void 0 : _a2.roles) == null ? void 0 : _b.includes("ADMIN")) ?? false;
+      const role = (_a2 = state.user) == null ? void 0 : _a2.role;
+      if (role) {
+        return role === "SUPER_ADMIN" || role === "ADMIN";
+      }
+      return !!((_b = state.user) == null ? void 0 : _b.is_admin);
+    },
+    isSuperAdmin: (state) => {
+      var _a2;
+      return ((_a2 = state.user) == null ? void 0 : _a2.role) === "SUPER_ADMIN";
     },
     hasRole: (state) => {
       return (role) => {
-        var _a2, _b;
-        return ((_b = (_a2 = state.user) == null ? void 0 : _a2.roles) == null ? void 0 : _b.includes(role)) ?? false;
+        var _a2;
+        return ((_a2 = state.user) == null ? void 0 : _a2.role) === role;
       };
     },
     hasAnyRole: (state) => {
       return (roles) => {
         var _a2;
-        if (!((_a2 = state.user) == null ? void 0 : _a2.roles)) return false;
-        return roles.some((role) => state.user.roles.includes(role));
+        return roles.includes(((_a2 = state.user) == null ? void 0 : _a2.role) || "");
       };
     },
     hasPermission: (state) => {
       return (permission) => {
-        var _a2, _b;
-        return ((_b = (_a2 = state.user) == null ? void 0 : _a2.permissions) == null ? void 0 : _b.includes(permission)) ?? false;
+        var _a2;
+        const perms = ((_a2 = state.user) == null ? void 0 : _a2.permissions) ?? [];
+        if (perms.includes("*")) return true;
+        if (perms.includes(permission)) return true;
+        return perms.some((p) => p.endsWith(".*") && permission.startsWith(p.slice(0, -1)));
+      };
+    },
+    hasAnyPermission: (state) => {
+      return (permissions) => {
+        var _a2;
+        const perms = ((_a2 = state.user) == null ? void 0 : _a2.permissions) ?? [];
+        if (perms.includes("*")) return true;
+        return permissions.some((p) => {
+          if (perms.includes(p)) return true;
+          return perms.some((up) => up.endsWith(".*") && p.startsWith(up.slice(0, -1)));
+        });
       };
     }
   },
@@ -2797,6 +2818,13 @@ const useAuthStore = pinia.defineStore("auth", {
         this.token = token;
         this.refreshToken = refreshToken;
         config.apiClient.setToken(token);
+        const userJson = localStorage.getItem(`${config.storageKey}_user`);
+        if (userJson) {
+          try {
+            this.user = JSON.parse(userJson);
+          } catch {
+          }
+        }
       }
     },
     /**
@@ -2820,13 +2848,16 @@ const useAuthStore = pinia.defineStore("auth", {
           window.__AUTH_DEBUG__ = {
             responseUser: response.user,
             stateUser: this.user,
-            stateUserRoles: (_a2 = this.user) == null ? void 0 : _a2.roles,
+            stateUserRole: (_a2 = this.user) == null ? void 0 : _a2.role,
             timestamp: (/* @__PURE__ */ new Date()).toISOString()
           };
         }
         if (this.token) {
           config.apiClient.setToken(this.token);
           localStorage.setItem(config.storageKey, this.token);
+          if (this.user) {
+            localStorage.setItem(`${config.storageKey}_user`, JSON.stringify(this.user));
+          }
         }
         if (this.refreshToken) {
           localStorage.setItem(config.refreshStorageKey, this.refreshToken);
@@ -2865,6 +2896,7 @@ const useAuthStore = pinia.defineStore("auth", {
         config.apiClient.clearToken();
         localStorage.removeItem(config.storageKey);
         localStorage.removeItem(config.refreshStorageKey);
+        localStorage.removeItem(`${config.storageKey}_user`);
       }
     },
     /**

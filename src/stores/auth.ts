@@ -7,11 +7,19 @@
 import { defineStore } from 'pinia';
 import type { ApiClient } from '../api/ApiClient';
 
+export interface AccessLevel {
+  id: string;
+  slug: string;
+  name: string;
+}
+
 export interface AuthUser {
   id: string;
   email: string;
   name?: string;
-  roles: string[];
+  role?: string;
+  is_admin?: boolean;
+  access_levels?: AccessLevel[];
   permissions?: string[];
 }
 
@@ -90,22 +98,48 @@ export const useAuthStore = defineStore('auth', {
   getters: {
     isAuthenticated: (state): boolean => !!state.token && !!state.user,
 
-    isAdmin: (state): boolean => state.user?.roles?.includes('ADMIN') ?? false,
+    isAdmin: (state): boolean => {
+      const role = state.user?.role;
+      if (role) {
+        return role === 'SUPER_ADMIN' || role === 'ADMIN';
+      }
+      return !!state.user?.is_admin;
+    },
+
+    isSuperAdmin: (state): boolean => {
+      return state.user?.role === 'SUPER_ADMIN';
+    },
 
     hasRole: (state) => {
-      return (role: string): boolean => state.user?.roles?.includes(role) ?? false;
+      return (role: string): boolean => {
+        return state.user?.role === role;
+      };
     },
 
     hasAnyRole: (state) => {
       return (roles: string[]): boolean => {
-        if (!state.user?.roles) return false;
-        return roles.some(role => state.user!.roles.includes(role));
+        return roles.includes(state.user?.role || '');
       };
     },
 
     hasPermission: (state) => {
       return (permission: string): boolean => {
-        return state.user?.permissions?.includes(permission) ?? false;
+        const perms = state.user?.permissions ?? [];
+        if (perms.includes('*')) return true;
+        if (perms.includes(permission)) return true;
+        // Wildcard: "shop.*" matches "shop.products.view"
+        return perms.some(p => p.endsWith('.*') && permission.startsWith(p.slice(0, -1)));
+      };
+    },
+
+    hasAnyPermission: (state) => {
+      return (permissions: string[]): boolean => {
+        const perms = state.user?.permissions ?? [];
+        if (perms.includes('*')) return true;
+        return permissions.some(p => {
+          if (perms.includes(p)) return true;
+          return perms.some(up => up.endsWith('.*') && p.startsWith(up.slice(0, -1)));
+        });
       };
     },
   },
@@ -124,6 +158,16 @@ export const useAuthStore = defineStore('auth', {
         this.token = token;
         this.refreshToken = refreshToken;
         config.apiClient.setToken(token);
+
+        // Restore user data from localStorage
+        const userJson = localStorage.getItem(`${config.storageKey}_user`);
+        if (userJson) {
+          try {
+            this.user = JSON.parse(userJson);
+          } catch {
+            // Corrupted data — will be refreshed on next login
+          }
+        }
       }
     },
 
@@ -155,7 +199,7 @@ export const useAuthStore = defineStore('auth', {
           (window as any).__AUTH_DEBUG__ = {
             responseUser: response.user,
             stateUser: this.user,
-            stateUserRoles: this.user?.roles,
+            stateUserRole: this.user?.role,
             timestamp: new Date().toISOString(),
           };
         }
@@ -166,6 +210,11 @@ export const useAuthStore = defineStore('auth', {
 
           // Persist to localStorage
           localStorage.setItem(config.storageKey, this.token);
+
+          // Persist user data (roles + permissions) for page refresh
+          if (this.user) {
+            localStorage.setItem(`${config.storageKey}_user`, JSON.stringify(this.user));
+          }
         }
         if (this.refreshToken) {
           localStorage.setItem(config.refreshStorageKey!, this.refreshToken);
@@ -215,6 +264,7 @@ export const useAuthStore = defineStore('auth', {
         // Clear localStorage
         localStorage.removeItem(config.storageKey);
         localStorage.removeItem(config.refreshStorageKey!);
+        localStorage.removeItem(`${config.storageKey}_user`);
       }
     },
 
