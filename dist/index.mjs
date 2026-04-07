@@ -2783,6 +2783,33 @@ const useAuthStore = defineStore("auth", {
           return perms.some((up) => up.endsWith(".*") && p.startsWith(up.slice(0, -1)));
         });
       };
+    },
+    /**
+     * Check if user has a specific user-facing permission.
+     * User permissions come from user access levels (fe-user).
+     */
+    hasUserPermission: (state) => {
+      return (permission) => {
+        var _a2;
+        const perms = ((_a2 = state.user) == null ? void 0 : _a2.user_permissions) ?? [];
+        if (perms.includes("*")) return true;
+        if (perms.includes(permission)) return true;
+        return perms.some((p) => p.endsWith(".*") && permission.startsWith(p.slice(0, -1)));
+      };
+    },
+    /**
+     * Check if user has any of the specified user-facing permissions.
+     */
+    hasAnyUserPermission: (state) => {
+      return (permissions) => {
+        var _a2;
+        const perms = ((_a2 = state.user) == null ? void 0 : _a2.user_permissions) ?? [];
+        if (perms.includes("*")) return true;
+        return permissions.some((p) => {
+          if (perms.includes(p)) return true;
+          return perms.some((up) => up.endsWith(".*") && p.startsWith(up.slice(0, -1)));
+        });
+      };
     }
   },
   actions: {

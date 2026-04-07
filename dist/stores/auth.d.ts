@@ -4,6 +4,11 @@ export interface AccessLevel {
     slug: string;
     name: string;
 }
+export interface UserAccessLevel {
+    id: string;
+    slug: string;
+    name: string;
+}
 export interface AuthUser {
     id: string;
     email: string;
@@ -12,6 +17,8 @@ export interface AuthUser {
     is_admin?: boolean;
     access_levels?: AccessLevel[];
     permissions?: string[];
+    user_access_levels?: UserAccessLevel[];
+    user_permissions?: string[];
 }
 export interface AuthState {
     user: AuthUser | null;
@@ -60,6 +67,12 @@ export declare const useAuthStore: import("pinia").StoreDefinition<"auth", AuthS
                 name: string;
             }[] | undefined;
             permissions?: string[] | undefined;
+            user_access_levels?: {
+                id: string;
+                slug: string;
+                name: string;
+            }[] | undefined;
+            user_permissions?: string[] | undefined;
         } | null;
         token: string | null;
         refreshToken: string | null;
@@ -79,6 +92,12 @@ export declare const useAuthStore: import("pinia").StoreDefinition<"auth", AuthS
                 name: string;
             }[] | undefined;
             permissions?: string[] | undefined;
+            user_access_levels?: {
+                id: string;
+                slug: string;
+                name: string;
+            }[] | undefined;
+            user_permissions?: string[] | undefined;
         } | null;
         token: string | null;
         refreshToken: string | null;
@@ -98,6 +117,12 @@ export declare const useAuthStore: import("pinia").StoreDefinition<"auth", AuthS
                 name: string;
             }[] | undefined;
             permissions?: string[] | undefined;
+            user_access_levels?: {
+                id: string;
+                slug: string;
+                name: string;
+            }[] | undefined;
+            user_permissions?: string[] | undefined;
         } | null;
         token: string | null;
         refreshToken: string | null;
@@ -117,6 +142,12 @@ export declare const useAuthStore: import("pinia").StoreDefinition<"auth", AuthS
                 name: string;
             }[] | undefined;
             permissions?: string[] | undefined;
+            user_access_levels?: {
+                id: string;
+                slug: string;
+                name: string;
+            }[] | undefined;
+            user_permissions?: string[] | undefined;
         } | null;
         token: string | null;
         refreshToken: string | null;
@@ -136,6 +167,12 @@ export declare const useAuthStore: import("pinia").StoreDefinition<"auth", AuthS
                 name: string;
             }[] | undefined;
             permissions?: string[] | undefined;
+            user_access_levels?: {
+                id: string;
+                slug: string;
+                name: string;
+            }[] | undefined;
+            user_permissions?: string[] | undefined;
         } | null;
         token: string | null;
         refreshToken: string | null;
@@ -155,6 +192,12 @@ export declare const useAuthStore: import("pinia").StoreDefinition<"auth", AuthS
                 name: string;
             }[] | undefined;
             permissions?: string[] | undefined;
+            user_access_levels?: {
+                id: string;
+                slug: string;
+                name: string;
+            }[] | undefined;
+            user_permissions?: string[] | undefined;
         } | null;
         token: string | null;
         refreshToken: string | null;
@@ -174,6 +217,69 @@ export declare const useAuthStore: import("pinia").StoreDefinition<"auth", AuthS
                 name: string;
             }[] | undefined;
             permissions?: string[] | undefined;
+            user_access_levels?: {
+                id: string;
+                slug: string;
+                name: string;
+            }[] | undefined;
+            user_permissions?: string[] | undefined;
+        } | null;
+        token: string | null;
+        refreshToken: string | null;
+        error: string | null;
+        loading: boolean;
+    } & import("pinia").PiniaCustomStateProperties<AuthState>) => (permissions: string[]) => boolean;
+    /**
+     * Check if user has a specific user-facing permission.
+     * User permissions come from user access levels (fe-user).
+     */
+    hasUserPermission: (state: {
+        user: {
+            id: string;
+            email: string;
+            name?: string | undefined;
+            role?: string | undefined;
+            is_admin?: boolean | undefined;
+            access_levels?: {
+                id: string;
+                slug: string;
+                name: string;
+            }[] | undefined;
+            permissions?: string[] | undefined;
+            user_access_levels?: {
+                id: string;
+                slug: string;
+                name: string;
+            }[] | undefined;
+            user_permissions?: string[] | undefined;
+        } | null;
+        token: string | null;
+        refreshToken: string | null;
+        error: string | null;
+        loading: boolean;
+    } & import("pinia").PiniaCustomStateProperties<AuthState>) => (permission: string) => boolean;
+    /**
+     * Check if user has any of the specified user-facing permissions.
+     */
+    hasAnyUserPermission: (state: {
+        user: {
+            id: string;
+            email: string;
+            name?: string | undefined;
+            role?: string | undefined;
+            is_admin?: boolean | undefined;
+            access_levels?: {
+                id: string;
+                slug: string;
+                name: string;
+            }[] | undefined;
+            permissions?: string[] | undefined;
+            user_access_levels?: {
+                id: string;
+                slug: string;
+                name: string;
+            }[] | undefined;
+            user_permissions?: string[] | undefined;
         } | null;
         token: string | null;
         refreshToken: string | null;

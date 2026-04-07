@@ -13,6 +13,12 @@ export interface AccessLevel {
   name: string;
 }
 
+export interface UserAccessLevel {
+  id: string;
+  slug: string;
+  name: string;
+}
+
 export interface AuthUser {
   id: string;
   email: string;
@@ -21,6 +27,8 @@ export interface AuthUser {
   is_admin?: boolean;
   access_levels?: AccessLevel[];
   permissions?: string[];
+  user_access_levels?: UserAccessLevel[];
+  user_permissions?: string[];
 }
 
 export interface AuthState {
@@ -135,6 +143,33 @@ export const useAuthStore = defineStore('auth', {
     hasAnyPermission: (state) => {
       return (permissions: string[]): boolean => {
         const perms = state.user?.permissions ?? [];
+        if (perms.includes('*')) return true;
+        return permissions.some(p => {
+          if (perms.includes(p)) return true;
+          return perms.some(up => up.endsWith('.*') && p.startsWith(up.slice(0, -1)));
+        });
+      };
+    },
+
+    /**
+     * Check if user has a specific user-facing permission.
+     * User permissions come from user access levels (fe-user).
+     */
+    hasUserPermission: (state) => {
+      return (permission: string): boolean => {
+        const perms = state.user?.user_permissions ?? [];
+        if (perms.includes('*')) return true;
+        if (perms.includes(permission)) return true;
+        return perms.some(p => p.endsWith('.*') && permission.startsWith(p.slice(0, -1)));
+      };
+    },
+
+    /**
+     * Check if user has any of the specified user-facing permissions.
+     */
+    hasAnyUserPermission: (state) => {
+      return (permissions: string[]): boolean => {
+        const perms = state.user?.user_permissions ?? [];
         if (perms.includes('*')) return true;
         return permissions.some(p => {
           if (perms.includes(p)) return true;
