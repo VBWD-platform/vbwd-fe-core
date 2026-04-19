@@ -147,6 +147,24 @@ export interface IPluginRegistry {
   uninstall(name: string): Promise<void>;
 }
 
+/**
+ * Plugin manifest entry — describes a plugin's registration state.
+ * Used in plugins.json to control which plugins are activated at runtime.
+ */
+export interface PluginManifestEntry {
+  enabled: boolean;
+  version: string;
+  installedAt?: string;
+  source: string;
+}
+
+/**
+ * Plugin manifest — the top-level plugins.json structure.
+ */
+export interface PluginManifest {
+  plugins: Record<string, PluginManifestEntry>;
+}
+
 // Placeholder types for Sprint 2+ features
 // These will be properly typed in their respective sprints
 

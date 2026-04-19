@@ -384,6 +384,37 @@ class PlatformSDK {
     return { ...this.translations };
   }
 }
+const DEFAULT_MANIFEST_PATH = "/plugins.json";
+const DEFAULT_CONFIG_PATH = "/config.json";
+async function fetchPluginManifest(path2 = DEFAULT_MANIFEST_PATH, fallback) {
+  try {
+    const response = await fetch(path2);
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}`);
+    }
+    const data = await response.json();
+    if (!data || typeof data !== "object" || !data.plugins) {
+      throw new Error('Invalid manifest: missing "plugins" key');
+    }
+    return data;
+  } catch (error) {
+    console.warn(
+      `[PluginManifest] Failed to fetch ${path2}, using fallback:`,
+      error
+    );
+    if (fallback) return fallback;
+    return { plugins: {} };
+  }
+}
+async function fetchPluginConfigs(path2 = DEFAULT_CONFIG_PATH) {
+  try {
+    const response = await fetch(path2);
+    if (!response.ok) return {};
+    return await response.json();
+  } catch {
+    return {};
+  }
+}
 class ApiError extends Error {
   constructor(message, status = 500) {
     super(message);
@@ -3524,6 +3555,8 @@ export {
   createCartStore,
   createRoleGuard,
   eventBus,
+  fetchPluginConfigs,
+  fetchPluginManifest,
   isValidSemver,
   loadPluginConfig,
   name,
