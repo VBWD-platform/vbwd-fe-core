@@ -170,7 +170,11 @@ export class ApiClient {
       const response = await this.axiosInstance.delete<T>(url, {
         params: config?.params,
         headers: config?.headers,
-        timeout: config?.timeout
+        timeout: config?.timeout,
+        // Forward the request body so callers like deleteUser(id, { force })
+        // actually send `{ force: true }` for cascade deletes. Without this
+        // the body was silently dropped and force-delete never worked.
+        data: config?.data
       });
       return response.data;
     } catch (error) {
