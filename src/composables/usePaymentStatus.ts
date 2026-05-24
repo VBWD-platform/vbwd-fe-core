@@ -52,8 +52,12 @@ export function usePaymentStatus(
     try {
       const data = await api.get(`${apiPrefix}/session-status/${id}`) as Record<string, unknown>;
       statusData.value = data;
-      const status = data?.status;
-      if (status === 'complete' || status === 'PAID') {
+      // Providers report completion with different casing/terms — Stripe's
+      // session-status returns payment_status "paid", others "complete" or
+      // "succeeded". Normalise so we stop on the FIRST success response instead
+      // of polling until timeout (which left a "Verifying…" spinner ~30s).
+      const status = String(data?.status ?? '').toLowerCase();
+      if (status === 'complete' || status === 'paid' || status === 'succeeded') {
         confirmed.value = true;
         stopPolling();
         return true;

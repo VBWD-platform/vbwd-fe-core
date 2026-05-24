@@ -70,6 +70,25 @@ describe('usePaymentStatus', () => {
     expect(confirmed.value).toBe(true);
   });
 
+  // Regression: Stripe session-status returns payment_status "paid" (lowercase).
+  // It must confirm on the FIRST response, not poll until timeout.
+  it.each(['paid', 'PAID', 'Complete', 'succeeded'])(
+    'should confirm on the first "%s" response (single poll, no loop)',
+    async (statusValue) => {
+      window.location.search = '?session_id=cs_paid';
+      mockApi.get.mockResolvedValue({ status: statusValue });
+
+      const { readSessionFromQuery, startPolling, confirmed, polling } =
+        usePaymentStatus('/api/v1/plugins/stripe', mockApi);
+      readSessionFromQuery();
+      await startPolling();
+
+      expect(confirmed.value).toBe(true);
+      expect(polling.value).toBe(false);
+      expect(mockApi.get).toHaveBeenCalledTimes(1);
+    }
+  );
+
   it('should timeout after max attempts', async () => {
     window.location.search = '?session_id=cs_slow';
     mockApi.get.mockResolvedValue({ status: 'open' });

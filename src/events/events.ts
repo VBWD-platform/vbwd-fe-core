@@ -19,14 +19,6 @@ export const AppEvents = {
   USER_UPDATED: 'user:updated',
   USER_DELETED: 'user:deleted',
 
-  // Subscription events
-  SUBSCRIPTION_CREATED: 'subscription:created',
-  SUBSCRIPTION_ACTIVATED: 'subscription:activated',
-  SUBSCRIPTION_UPGRADED: 'subscription:upgraded',
-  SUBSCRIPTION_DOWNGRADED: 'subscription:downgraded',
-  SUBSCRIPTION_CANCELLED: 'subscription:cancelled',
-  SUBSCRIPTION_EXPIRED: 'subscription:expired',
-
   // Payment events
   PAYMENT_INITIATED: 'payment:initiated',
   PAYMENT_SUCCEEDED: 'payment:succeeded',
@@ -93,17 +85,6 @@ export interface UserRegisteredPayload {
 export interface UserUpdatedPayload {
   userId: string;
   changes: Record<string, unknown>;
-}
-
-/**
- * Subscription event payload
- */
-export interface SubscriptionPayload {
-  subscriptionId: string;
-  planId: string;
-  planName: string;
-  status?: string;
-  expiresAt?: string;
 }
 
 /**
@@ -178,12 +159,6 @@ export interface EventPayloadMap {
   [AppEvents.USER_REGISTERED]: UserRegisteredPayload;
   [AppEvents.USER_UPDATED]: UserUpdatedPayload;
   [AppEvents.USER_DELETED]: { userId: string };
-  [AppEvents.SUBSCRIPTION_CREATED]: SubscriptionPayload;
-  [AppEvents.SUBSCRIPTION_ACTIVATED]: SubscriptionPayload;
-  [AppEvents.SUBSCRIPTION_UPGRADED]: SubscriptionPayload;
-  [AppEvents.SUBSCRIPTION_DOWNGRADED]: SubscriptionPayload;
-  [AppEvents.SUBSCRIPTION_CANCELLED]: SubscriptionPayload;
-  [AppEvents.SUBSCRIPTION_EXPIRED]: SubscriptionPayload;
   [AppEvents.PAYMENT_INITIATED]: PaymentPayload;
   [AppEvents.PAYMENT_SUCCEEDED]: PaymentPayload;
   [AppEvents.PAYMENT_FAILED]: PaymentPayload;

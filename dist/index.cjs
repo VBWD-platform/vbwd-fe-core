@@ -627,7 +627,11 @@ class ApiClient {
       const response = await this.axiosInstance.delete(url, {
         params: config == null ? void 0 : config.params,
         headers: config == null ? void 0 : config.headers,
-        timeout: config == null ? void 0 : config.timeout
+        timeout: config == null ? void 0 : config.timeout,
+        // Forward the request body so callers like deleteUser(id, { force })
+        // actually send `{ force: true }` for cascade deletes. Without this
+        // the body was silently dropped and force-delete never worked.
+        data: config == null ? void 0 : config.data
       });
       return response.data;
     } catch (error) {
@@ -991,13 +995,6 @@ const AppEvents = {
   USER_REGISTERED: "user:registered",
   USER_UPDATED: "user:updated",
   USER_DELETED: "user:deleted",
-  // Subscription events
-  SUBSCRIPTION_CREATED: "subscription:created",
-  SUBSCRIPTION_ACTIVATED: "subscription:activated",
-  SUBSCRIPTION_UPGRADED: "subscription:upgraded",
-  SUBSCRIPTION_DOWNGRADED: "subscription:downgraded",
-  SUBSCRIPTION_CANCELLED: "subscription:cancelled",
-  SUBSCRIPTION_EXPIRED: "subscription:expired",
   // Payment events
   PAYMENT_INITIATED: "payment:initiated",
   PAYMENT_SUCCEEDED: "payment:succeeded",
@@ -1021,14 +1018,14 @@ const AppEvents = {
   PLUGIN_ERROR: "plugin:error",
   PLUGIN_STOPPED: "plugin:stopped"
 };
-const _hoisted_1$h = { class: "vbwd-alert-icon" };
-const _hoisted_2$g = { class: "vbwd-alert-content" };
-const _hoisted_3$b = {
+const _hoisted_1$f = { class: "vbwd-alert-icon" };
+const _hoisted_2$e = { class: "vbwd-alert-content" };
+const _hoisted_3$a = {
   key: 0,
   class: "vbwd-alert-title"
 };
-const _hoisted_4$a = { class: "vbwd-alert-message" };
-const _sfc_main$n = /* @__PURE__ */ vue.defineComponent({
+const _hoisted_4$9 = { class: "vbwd-alert-message" };
+const _sfc_main$l = /* @__PURE__ */ vue.defineComponent({
   __name: "Alert",
   props: {
     variant: { default: "info" },
@@ -1066,14 +1063,14 @@ const _sfc_main$n = /* @__PURE__ */ vue.defineComponent({
         class: vue.normalizeClass(["vbwd-alert", `vbwd-alert-${__props.variant}`]),
         role: "alert"
       }, [
-        vue.createElementVNode("div", _hoisted_1$h, [
+        vue.createElementVNode("div", _hoisted_1$f, [
           vue.renderSlot(_ctx.$slots, "icon", {}, () => [
             (vue.openBlock(), vue.createBlock(vue.resolveDynamicComponent(iconComponent.value)))
           ], true)
         ]),
-        vue.createElementVNode("div", _hoisted_2$g, [
-          __props.title ? (vue.openBlock(), vue.createElementBlock("h4", _hoisted_3$b, vue.toDisplayString(__props.title), 1)) : vue.createCommentVNode("", true),
-          vue.createElementVNode("p", _hoisted_4$a, [
+        vue.createElementVNode("div", _hoisted_2$e, [
+          __props.title ? (vue.openBlock(), vue.createElementBlock("h4", _hoisted_3$a, vue.toDisplayString(__props.title), 1)) : vue.createCommentVNode("", true),
+          vue.createElementVNode("p", _hoisted_4$9, [
             vue.renderSlot(_ctx.$slots, "default", {}, () => [
               vue.createTextVNode(vue.toDisplayString(__props.message), 1)
             ], true)
@@ -1109,8 +1106,8 @@ const _export_sfc = (sfc, props) => {
   }
   return target;
 };
-const Alert = /* @__PURE__ */ _export_sfc(_sfc_main$n, [["__scopeId", "data-v-64c3ffe7"]]);
-const _sfc_main$m = /* @__PURE__ */ vue.defineComponent({
+const Alert = /* @__PURE__ */ _export_sfc(_sfc_main$l, [["__scopeId", "data-v-64c3ffe7"]]);
+const _sfc_main$k = /* @__PURE__ */ vue.defineComponent({
   __name: "Badge",
   props: {
     label: {},
@@ -1129,8 +1126,8 @@ const _sfc_main$m = /* @__PURE__ */ vue.defineComponent({
     };
   }
 });
-const Badge = /* @__PURE__ */ _export_sfc(_sfc_main$m, [["__scopeId", "data-v-4df2bf4f"]]);
-const _sfc_main$l = /* @__PURE__ */ vue.defineComponent({
+const Badge = /* @__PURE__ */ _export_sfc(_sfc_main$k, [["__scopeId", "data-v-4df2bf4f"]]);
+const _sfc_main$j = /* @__PURE__ */ vue.defineComponent({
   __name: "Spinner",
   props: {
     size: { default: "md" }
@@ -1160,9 +1157,9 @@ const _sfc_main$l = /* @__PURE__ */ vue.defineComponent({
     };
   }
 });
-const Spinner = /* @__PURE__ */ _export_sfc(_sfc_main$l, [["__scopeId", "data-v-3dad9f75"]]);
-const _hoisted_1$g = ["type", "disabled"];
-const _sfc_main$k = /* @__PURE__ */ vue.defineComponent({
+const Spinner = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["__scopeId", "data-v-3dad9f75"]]);
+const _hoisted_1$e = ["type", "disabled"];
+const _sfc_main$i = /* @__PURE__ */ vue.defineComponent({
   __name: "Button",
   props: {
     type: { default: "button" },
@@ -1197,30 +1194,30 @@ const _sfc_main$k = /* @__PURE__ */ vue.defineComponent({
           class: "vbwd-btn-spinner"
         })) : vue.createCommentVNode("", true),
         vue.renderSlot(_ctx.$slots, "default", {}, void 0, true)
-      ], 10, _hoisted_1$g);
+      ], 10, _hoisted_1$e);
     };
   }
 });
-const Button = /* @__PURE__ */ _export_sfc(_sfc_main$k, [["__scopeId", "data-v-496cc81d"]]);
-const _hoisted_1$f = {
+const Button = /* @__PURE__ */ _export_sfc(_sfc_main$i, [["__scopeId", "data-v-496cc81d"]]);
+const _hoisted_1$d = {
   key: 0,
   class: "vbwd-card-header"
 };
-const _hoisted_2$f = { class: "vbwd-card-title" };
-const _hoisted_3$a = {
+const _hoisted_2$d = { class: "vbwd-card-title" };
+const _hoisted_3$9 = {
   key: 0,
   class: "vbwd-card-subtitle"
 };
-const _hoisted_4$9 = {
+const _hoisted_4$8 = {
   key: 0,
   class: "vbwd-card-actions"
 };
-const _hoisted_5$6 = { class: "vbwd-card-body" };
-const _hoisted_6$5 = {
+const _hoisted_5$5 = { class: "vbwd-card-body" };
+const _hoisted_6$4 = {
   key: 1,
   class: "vbwd-card-footer"
 };
-const _sfc_main$j = /* @__PURE__ */ vue.defineComponent({
+const _sfc_main$h = /* @__PURE__ */ vue.defineComponent({
   __name: "Card",
   props: {
     title: {},
@@ -1232,33 +1229,33 @@ const _sfc_main$j = /* @__PURE__ */ vue.defineComponent({
       return vue.openBlock(), vue.createElementBlock("div", {
         class: vue.normalizeClass(["vbwd-card", { "vbwd-card-hoverable": __props.hoverable }])
       }, [
-        __props.title || _ctx.$slots.header ? (vue.openBlock(), vue.createElementBlock("header", _hoisted_1$f, [
+        __props.title || _ctx.$slots.header ? (vue.openBlock(), vue.createElementBlock("header", _hoisted_1$d, [
           vue.renderSlot(_ctx.$slots, "header", {}, () => [
-            vue.createElementVNode("h3", _hoisted_2$f, vue.toDisplayString(__props.title), 1),
-            __props.subtitle ? (vue.openBlock(), vue.createElementBlock("p", _hoisted_3$a, vue.toDisplayString(__props.subtitle), 1)) : vue.createCommentVNode("", true)
+            vue.createElementVNode("h3", _hoisted_2$d, vue.toDisplayString(__props.title), 1),
+            __props.subtitle ? (vue.openBlock(), vue.createElementBlock("p", _hoisted_3$9, vue.toDisplayString(__props.subtitle), 1)) : vue.createCommentVNode("", true)
           ], true),
-          _ctx.$slots.actions ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_4$9, [
+          _ctx.$slots.actions ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_4$8, [
             vue.renderSlot(_ctx.$slots, "actions", {}, void 0, true)
           ])) : vue.createCommentVNode("", true)
         ])) : vue.createCommentVNode("", true),
-        vue.createElementVNode("div", _hoisted_5$6, [
+        vue.createElementVNode("div", _hoisted_5$5, [
           vue.renderSlot(_ctx.$slots, "default", {}, void 0, true)
         ]),
-        _ctx.$slots.footer ? (vue.openBlock(), vue.createElementBlock("footer", _hoisted_6$5, [
+        _ctx.$slots.footer ? (vue.openBlock(), vue.createElementBlock("footer", _hoisted_6$4, [
           vue.renderSlot(_ctx.$slots, "footer", {}, void 0, true)
         ])) : vue.createCommentVNode("", true)
       ], 2);
     };
   }
 });
-const Card = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["__scopeId", "data-v-3c45206a"]]);
-const _hoisted_1$e = { class: "vbwd-detail-field" };
-const _hoisted_2$e = { class: "vbwd-detail-field-label" };
-const _hoisted_3$9 = {
+const Card = /* @__PURE__ */ _export_sfc(_sfc_main$h, [["__scopeId", "data-v-3c45206a"]]);
+const _hoisted_1$c = { class: "vbwd-detail-field" };
+const _hoisted_2$c = { class: "vbwd-detail-field-label" };
+const _hoisted_3$8 = {
   key: 1,
   class: "vbwd-detail-field-value"
 };
-const _sfc_main$i = /* @__PURE__ */ vue.defineComponent({
+const _sfc_main$g = /* @__PURE__ */ vue.defineComponent({
   __name: "DetailField",
   props: {
     label: {},
@@ -1275,8 +1272,8 @@ const _sfc_main$i = /* @__PURE__ */ vue.defineComponent({
       return String(props.value);
     });
     return (_ctx, _cache) => {
-      return vue.openBlock(), vue.createElementBlock("div", _hoisted_1$e, [
-        vue.createElementVNode("span", _hoisted_2$e, vue.toDisplayString(__props.label), 1),
+      return vue.openBlock(), vue.createElementBlock("div", _hoisted_1$c, [
+        vue.createElementVNode("span", _hoisted_2$c, vue.toDisplayString(__props.label), 1),
         __props.badge ? (vue.openBlock(), vue.createBlock(Badge, {
           key: 0,
           variant: __props.badgeVariant,
@@ -1286,13 +1283,13 @@ const _sfc_main$i = /* @__PURE__ */ vue.defineComponent({
             vue.createTextVNode(vue.toDisplayString(displayValue.value), 1)
           ]),
           _: 1
-        }, 8, ["variant"])) : (vue.openBlock(), vue.createElementBlock("span", _hoisted_3$9, vue.toDisplayString(displayValue.value), 1))
+        }, 8, ["variant"])) : (vue.openBlock(), vue.createElementBlock("span", _hoisted_3$8, vue.toDisplayString(displayValue.value), 1))
       ]);
     };
   }
 });
-const DetailField = /* @__PURE__ */ _export_sfc(_sfc_main$i, [["__scopeId", "data-v-aae1356f"]]);
-const _sfc_main$h = /* @__PURE__ */ vue.defineComponent({
+const DetailField = /* @__PURE__ */ _export_sfc(_sfc_main$g, [["__scopeId", "data-v-aae1356f"]]);
+const _sfc_main$f = /* @__PURE__ */ vue.defineComponent({
   __name: "DetailGrid",
   props: {
     columns: { default: 2 }
@@ -1312,13 +1309,13 @@ const _sfc_main$h = /* @__PURE__ */ vue.defineComponent({
     };
   }
 });
-const DetailGrid = /* @__PURE__ */ _export_sfc(_sfc_main$h, [["__scopeId", "data-v-d3e81837"]]);
-const _hoisted_1$d = {
+const DetailGrid = /* @__PURE__ */ _export_sfc(_sfc_main$f, [["__scopeId", "data-v-d3e81837"]]);
+const _hoisted_1$b = {
   type: "button",
   class: "vbwd-dropdown-btn"
 };
-const _hoisted_2$d = ["onClick"];
-const _sfc_main$g = /* @__PURE__ */ vue.defineComponent({
+const _hoisted_2$b = ["onClick"];
+const _sfc_main$e = /* @__PURE__ */ vue.defineComponent({
   __name: "Dropdown",
   props: {
     label: { default: "Select" },
@@ -1369,7 +1366,7 @@ const _sfc_main$g = /* @__PURE__ */ vue.defineComponent({
           onClick: toggle
         }, [
           vue.renderSlot(_ctx.$slots, "trigger", {}, () => [
-            vue.createElementVNode("button", _hoisted_1$d, [
+            vue.createElementVNode("button", _hoisted_1$b, [
               vue.createTextVNode(vue.toDisplayString(__props.label) + " ", 1),
               (vue.openBlock(), vue.createElementBlock("svg", {
                 class: vue.normalizeClass(["vbwd-dropdown-arrow", { "vbwd-dropdown-arrow-open": isOpen.value }]),
@@ -1402,7 +1399,7 @@ const _sfc_main$g = /* @__PURE__ */ vue.defineComponent({
                       { "vbwd-dropdown-item-disabled": item.disabled }
                     ]),
                     onClick: ($event) => !item.disabled && selectItem(item)
-                  }, vue.toDisplayString(item.label), 11, _hoisted_2$d);
+                  }, vue.toDisplayString(item.label), 11, _hoisted_2$b);
                 }), 128))
               ], true)
             ], 2)) : vue.createCommentVNode("", true)
@@ -1413,22 +1410,22 @@ const _sfc_main$g = /* @__PURE__ */ vue.defineComponent({
     };
   }
 });
-const Dropdown = /* @__PURE__ */ _export_sfc(_sfc_main$g, [["__scopeId", "data-v-ab6a622e"]]);
-const _hoisted_1$c = {
+const Dropdown = /* @__PURE__ */ _export_sfc(_sfc_main$e, [["__scopeId", "data-v-ab6a622e"]]);
+const _hoisted_1$a = {
   key: 0,
   class: "vbwd-input-required"
 };
-const _hoisted_2$c = { class: "vbwd-input-container" };
-const _hoisted_3$8 = {
+const _hoisted_2$a = { class: "vbwd-input-container" };
+const _hoisted_3$7 = {
   key: 0,
   class: "vbwd-input-prefix"
 };
-const _hoisted_4$8 = ["value", "type", "placeholder", "disabled", "readonly"];
-const _hoisted_5$5 = {
+const _hoisted_4$7 = ["value", "type", "placeholder", "disabled", "readonly"];
+const _hoisted_5$4 = {
   key: 1,
   class: "vbwd-input-suffix"
 };
-const _hoisted_6$4 = {
+const _hoisted_6$3 = {
   key: 1,
   class: "vbwd-input-error-text"
 };
@@ -1436,7 +1433,7 @@ const _hoisted_7$3 = {
   key: 2,
   class: "vbwd-input-hint"
 };
-const _sfc_main$f = /* @__PURE__ */ vue.defineComponent({
+const _sfc_main$d = /* @__PURE__ */ vue.defineComponent({
   __name: "Input",
   props: {
     modelValue: { default: "" },
@@ -1473,10 +1470,10 @@ const _sfc_main$f = /* @__PURE__ */ vue.defineComponent({
           class: "vbwd-input-label"
         }, [
           vue.createTextVNode(vue.toDisplayString(__props.label) + " ", 1),
-          __props.required ? (vue.openBlock(), vue.createElementBlock("span", _hoisted_1$c, "*")) : vue.createCommentVNode("", true)
+          __props.required ? (vue.openBlock(), vue.createElementBlock("span", _hoisted_1$a, "*")) : vue.createCommentVNode("", true)
         ])) : vue.createCommentVNode("", true),
-        vue.createElementVNode("div", _hoisted_2$c, [
-          _ctx.$slots.prefix ? (vue.openBlock(), vue.createElementBlock("span", _hoisted_3$8, [
+        vue.createElementVNode("div", _hoisted_2$a, [
+          _ctx.$slots.prefix ? (vue.openBlock(), vue.createElementBlock("span", _hoisted_3$7, [
             vue.renderSlot(_ctx.$slots, "prefix", {}, void 0, true)
           ])) : vue.createCommentVNode("", true),
           vue.createElementVNode("input", {
@@ -1490,28 +1487,28 @@ const _sfc_main$f = /* @__PURE__ */ vue.defineComponent({
             onInput: _cache[0] || (_cache[0] = ($event) => _ctx.$emit("update:modelValue", $event.target.value)),
             onBlur: _cache[1] || (_cache[1] = ($event) => _ctx.$emit("blur", $event)),
             onFocus: _cache[2] || (_cache[2] = ($event) => _ctx.$emit("focus", $event))
-          }, null, 42, _hoisted_4$8),
-          _ctx.$slots.suffix ? (vue.openBlock(), vue.createElementBlock("span", _hoisted_5$5, [
+          }, null, 42, _hoisted_4$7),
+          _ctx.$slots.suffix ? (vue.openBlock(), vue.createElementBlock("span", _hoisted_5$4, [
             vue.renderSlot(_ctx.$slots, "suffix", {}, void 0, true)
           ])) : vue.createCommentVNode("", true)
         ]),
-        __props.error ? (vue.openBlock(), vue.createElementBlock("p", _hoisted_6$4, vue.toDisplayString(__props.error), 1)) : __props.hint ? (vue.openBlock(), vue.createElementBlock("p", _hoisted_7$3, vue.toDisplayString(__props.hint), 1)) : vue.createCommentVNode("", true)
+        __props.error ? (vue.openBlock(), vue.createElementBlock("p", _hoisted_6$3, vue.toDisplayString(__props.error), 1)) : __props.hint ? (vue.openBlock(), vue.createElementBlock("p", _hoisted_7$3, vue.toDisplayString(__props.hint), 1)) : vue.createCommentVNode("", true)
       ], 2);
     };
   }
 });
-const Input = /* @__PURE__ */ _export_sfc(_sfc_main$f, [["__scopeId", "data-v-bf22b843"]]);
-const _hoisted_1$b = ["aria-labelledby"];
-const _hoisted_2$b = {
+const Input = /* @__PURE__ */ _export_sfc(_sfc_main$d, [["__scopeId", "data-v-bf22b843"]]);
+const _hoisted_1$9 = ["aria-labelledby"];
+const _hoisted_2$9 = {
   key: 0,
   class: "vbwd-modal-header"
 };
-const _hoisted_3$7 = { class: "vbwd-modal-body" };
-const _hoisted_4$7 = {
+const _hoisted_3$6 = { class: "vbwd-modal-body" };
+const _hoisted_4$6 = {
   key: 1,
   class: "vbwd-modal-footer"
 };
-const _sfc_main$e = /* @__PURE__ */ vue.defineComponent({
+const _sfc_main$c = /* @__PURE__ */ vue.defineComponent({
   __name: "Modal",
   props: {
     modelValue: { type: Boolean },
@@ -1565,7 +1562,7 @@ const _sfc_main$e = /* @__PURE__ */ vue.defineComponent({
                 "aria-modal": "true",
                 "aria-labelledby": __props.title ? modalTitleId : void 0
               }, [
-                __props.title || _ctx.$slots.header ? (vue.openBlock(), vue.createElementBlock("header", _hoisted_2$b, [
+                __props.title || _ctx.$slots.header ? (vue.openBlock(), vue.createElementBlock("header", _hoisted_2$9, [
                   vue.renderSlot(_ctx.$slots, "header", {}, () => [
                     vue.createElementVNode("h3", {
                       id: modalTitleId,
@@ -1592,13 +1589,13 @@ const _sfc_main$e = /* @__PURE__ */ vue.defineComponent({
                     ], -1)
                   ])])) : vue.createCommentVNode("", true)
                 ])) : vue.createCommentVNode("", true),
-                vue.createElementVNode("div", _hoisted_3$7, [
+                vue.createElementVNode("div", _hoisted_3$6, [
                   vue.renderSlot(_ctx.$slots, "default", {}, void 0, true)
                 ]),
-                _ctx.$slots.footer ? (vue.openBlock(), vue.createElementBlock("footer", _hoisted_4$7, [
+                _ctx.$slots.footer ? (vue.openBlock(), vue.createElementBlock("footer", _hoisted_4$6, [
                   vue.renderSlot(_ctx.$slots, "footer", {}, void 0, true)
                 ])) : vue.createCommentVNode("", true)
-              ], 10, _hoisted_1$b)
+              ], 10, _hoisted_1$9)
             ])) : vue.createCommentVNode("", true)
           ]),
           _: 3
@@ -1607,20 +1604,20 @@ const _sfc_main$e = /* @__PURE__ */ vue.defineComponent({
     };
   }
 });
-const Modal = /* @__PURE__ */ _export_sfc(_sfc_main$e, [["__scopeId", "data-v-a9346ee5"]]);
-const _hoisted_1$a = {
+const Modal = /* @__PURE__ */ _export_sfc(_sfc_main$c, [["__scopeId", "data-v-a9346ee5"]]);
+const _hoisted_1$8 = {
   class: "vbwd-pagination",
   role: "navigation",
   "aria-label": "Pagination"
 };
-const _hoisted_2$a = ["disabled"];
-const _hoisted_3$6 = {
+const _hoisted_2$8 = ["disabled"];
+const _hoisted_3$5 = {
   key: 0,
   class: "vbwd-pagination-ellipsis"
 };
-const _hoisted_4$6 = ["aria-current", "onClick"];
-const _hoisted_5$4 = ["disabled"];
-const _sfc_main$d = /* @__PURE__ */ vue.defineComponent({
+const _hoisted_4$5 = ["aria-current", "onClick"];
+const _hoisted_5$3 = ["disabled"];
+const _sfc_main$b = /* @__PURE__ */ vue.defineComponent({
   __name: "Pagination",
   props: {
     currentPage: {},
@@ -1661,7 +1658,7 @@ const _sfc_main$d = /* @__PURE__ */ vue.defineComponent({
       }
     };
     return (_ctx, _cache) => {
-      return vue.openBlock(), vue.createElementBlock("nav", _hoisted_1$a, [
+      return vue.openBlock(), vue.createElementBlock("nav", _hoisted_1$8, [
         vue.createElementVNode("button", {
           class: "vbwd-pagination-btn vbwd-pagination-prev",
           disabled: __props.currentPage <= 1,
@@ -1680,15 +1677,15 @@ const _sfc_main$d = /* @__PURE__ */ vue.defineComponent({
               "clip-rule": "evenodd"
             })
           ], -1)
-        ])], 8, _hoisted_2$a),
+        ])], 8, _hoisted_2$8),
         (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(visiblePages.value, (page) => {
           return vue.openBlock(), vue.createElementBlock(vue.Fragment, { key: page }, [
-            page === "..." ? (vue.openBlock(), vue.createElementBlock("span", _hoisted_3$6, "...")) : (vue.openBlock(), vue.createElementBlock("button", {
+            page === "..." ? (vue.openBlock(), vue.createElementBlock("span", _hoisted_3$5, "...")) : (vue.openBlock(), vue.createElementBlock("button", {
               key: 1,
               class: vue.normalizeClass(["vbwd-pagination-btn", "vbwd-pagination-page", { "vbwd-pagination-active": page === __props.currentPage }]),
               "aria-current": page === __props.currentPage ? "page" : void 0,
               onClick: ($event) => goToPage(page)
-            }, vue.toDisplayString(page), 11, _hoisted_4$6))
+            }, vue.toDisplayString(page), 11, _hoisted_4$5))
           ], 64);
         }), 128)),
         vue.createElementVNode("button", {
@@ -1709,21 +1706,21 @@ const _sfc_main$d = /* @__PURE__ */ vue.defineComponent({
               "clip-rule": "evenodd"
             })
           ], -1)
-        ])], 8, _hoisted_5$4)
+        ])], 8, _hoisted_5$3)
       ]);
     };
   }
 });
-const Pagination = /* @__PURE__ */ _export_sfc(_sfc_main$d, [["__scopeId", "data-v-939ce8f2"]]);
-const _hoisted_1$9 = { class: "vbwd-table-wrapper" };
-const _hoisted_2$9 = { key: 0 };
-const _hoisted_3$5 = ["onClick"];
-const _hoisted_4$5 = { class: "vbwd-table-th-content" };
-const _hoisted_5$3 = {
+const Pagination = /* @__PURE__ */ _export_sfc(_sfc_main$b, [["__scopeId", "data-v-939ce8f2"]]);
+const _hoisted_1$7 = { class: "vbwd-table-wrapper" };
+const _hoisted_2$7 = { key: 0 };
+const _hoisted_3$4 = ["onClick"];
+const _hoisted_4$4 = { class: "vbwd-table-th-content" };
+const _hoisted_5$2 = {
   key: 0,
   class: "vbwd-table-sort-icon"
 };
-const _hoisted_6$3 = {
+const _hoisted_6$2 = {
   key: 0,
   width: "12",
   height: "12",
@@ -1750,7 +1747,7 @@ const _hoisted_10 = { key: 0 };
 const _hoisted_11 = ["colspan"];
 const _hoisted_12 = { key: 1 };
 const _hoisted_13 = ["colspan"];
-const _sfc_main$c = /* @__PURE__ */ vue.defineComponent({
+const _sfc_main$a = /* @__PURE__ */ vue.defineComponent({
   __name: "Table",
   props: {
     columns: { default: () => [] },
@@ -1775,11 +1772,11 @@ const _sfc_main$c = /* @__PURE__ */ vue.defineComponent({
       emit("sort", key, sortOrder.value);
     };
     return (_ctx, _cache) => {
-      return vue.openBlock(), vue.createElementBlock("div", _hoisted_1$9, [
+      return vue.openBlock(), vue.createElementBlock("div", _hoisted_1$7, [
         vue.createElementVNode("table", {
           class: vue.normalizeClass(["vbwd-table", { "vbwd-table-striped": __props.striped, "vbwd-table-hoverable": __props.hoverable }])
         }, [
-          __props.columns.length ? (vue.openBlock(), vue.createElementBlock("thead", _hoisted_2$9, [
+          __props.columns.length ? (vue.openBlock(), vue.createElementBlock("thead", _hoisted_2$7, [
             vue.createElementVNode("tr", null, [
               (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(__props.columns, (col) => {
                 return vue.openBlock(), vue.createElementBlock("th", {
@@ -1792,17 +1789,17 @@ const _sfc_main$c = /* @__PURE__ */ vue.defineComponent({
                   style: vue.normalizeStyle(col.width ? { width: col.width } : {}),
                   onClick: ($event) => col.sortable && handleSort(col.key)
                 }, [
-                  vue.createElementVNode("span", _hoisted_4$5, [
+                  vue.createElementVNode("span", _hoisted_4$4, [
                     vue.createTextVNode(vue.toDisplayString(col.label) + " ", 1),
-                    col.sortable ? (vue.openBlock(), vue.createElementBlock("span", _hoisted_5$3, [
-                      sortKey.value === col.key ? (vue.openBlock(), vue.createElementBlock("svg", _hoisted_6$3, [
+                    col.sortable ? (vue.openBlock(), vue.createElementBlock("span", _hoisted_5$2, [
+                      sortKey.value === col.key ? (vue.openBlock(), vue.createElementBlock("svg", _hoisted_6$2, [
                         sortOrder.value === "asc" ? (vue.openBlock(), vue.createElementBlock("path", _hoisted_7$2)) : (vue.openBlock(), vue.createElementBlock("path", _hoisted_8$1))
                       ])) : (vue.openBlock(), vue.createElementBlock("svg", _hoisted_9$1, [..._cache[0] || (_cache[0] = [
                         vue.createElementVNode("path", { d: "M6 2L10 6H2L6 2ZM6 10L2 6H10L6 10Z" }, null, -1)
                       ])]))
                     ])) : vue.createCommentVNode("", true)
                   ])
-                ], 14, _hoisted_3$5);
+                ], 14, _hoisted_3$4);
               }), 128))
             ])
           ])) : vue.createCommentVNode("", true),
@@ -1851,21 +1848,21 @@ const _sfc_main$c = /* @__PURE__ */ vue.defineComponent({
     };
   }
 });
-const Table = /* @__PURE__ */ _export_sfc(_sfc_main$c, [["__scopeId", "data-v-aa02112d"]]);
-const _hoisted_1$8 = {
+const Table = /* @__PURE__ */ _export_sfc(_sfc_main$a, [["__scopeId", "data-v-aa02112d"]]);
+const _hoisted_1$6 = {
   key: 0,
   class: "vbwd-form-field-asterisk"
 };
-const _hoisted_2$8 = { class: "vbwd-form-field-control" };
-const _hoisted_3$4 = {
+const _hoisted_2$6 = { class: "vbwd-form-field-control" };
+const _hoisted_3$3 = {
   key: 1,
   class: "vbwd-form-field-error-text"
 };
-const _hoisted_4$4 = {
+const _hoisted_4$3 = {
   key: 2,
   class: "vbwd-form-field-hint"
 };
-const _sfc_main$b = /* @__PURE__ */ vue.defineComponent({
+const _sfc_main$9 = /* @__PURE__ */ vue.defineComponent({
   __name: "FormField",
   props: {
     label: {},
@@ -1886,29 +1883,29 @@ const _sfc_main$b = /* @__PURE__ */ vue.defineComponent({
           class: "vbwd-form-field-label"
         }, [
           vue.createTextVNode(vue.toDisplayString(__props.label) + " ", 1),
-          __props.required ? (vue.openBlock(), vue.createElementBlock("span", _hoisted_1$8, "*")) : vue.createCommentVNode("", true)
+          __props.required ? (vue.openBlock(), vue.createElementBlock("span", _hoisted_1$6, "*")) : vue.createCommentVNode("", true)
         ])) : vue.createCommentVNode("", true),
-        vue.createElementVNode("div", _hoisted_2$8, [
+        vue.createElementVNode("div", _hoisted_2$6, [
           vue.renderSlot(_ctx.$slots, "default", {
             id: fieldId,
             error: __props.error
           }, void 0, true)
         ]),
-        __props.error ? (vue.openBlock(), vue.createElementBlock("p", _hoisted_3$4, vue.toDisplayString(__props.error), 1)) : __props.hint ? (vue.openBlock(), vue.createElementBlock("p", _hoisted_4$4, vue.toDisplayString(__props.hint), 1)) : vue.createCommentVNode("", true)
+        __props.error ? (vue.openBlock(), vue.createElementBlock("p", _hoisted_3$3, vue.toDisplayString(__props.error), 1)) : __props.hint ? (vue.openBlock(), vue.createElementBlock("p", _hoisted_4$3, vue.toDisplayString(__props.hint), 1)) : vue.createCommentVNode("", true)
       ], 2);
     };
   }
 });
-const FormField = /* @__PURE__ */ _export_sfc(_sfc_main$b, [["__scopeId", "data-v-65b44107"]]);
-const _hoisted_1$7 = {
+const FormField = /* @__PURE__ */ _export_sfc(_sfc_main$9, [["__scopeId", "data-v-65b44107"]]);
+const _hoisted_1$5 = {
   key: 0,
   class: "vbwd-form-group-title"
 };
-const _hoisted_2$7 = {
+const _hoisted_2$5 = {
   key: 1,
   class: "vbwd-form-group-description"
 };
-const _sfc_main$a = /* @__PURE__ */ vue.defineComponent({
+const _sfc_main$8 = /* @__PURE__ */ vue.defineComponent({
   __name: "FormGroup",
   props: {
     title: {},
@@ -1921,8 +1918,8 @@ const _sfc_main$a = /* @__PURE__ */ vue.defineComponent({
       return vue.openBlock(), vue.createElementBlock("fieldset", {
         class: vue.normalizeClass(["vbwd-form-group", { "vbwd-form-group-bordered": __props.bordered }])
       }, [
-        __props.title ? (vue.openBlock(), vue.createElementBlock("legend", _hoisted_1$7, vue.toDisplayString(__props.title), 1)) : vue.createCommentVNode("", true),
-        __props.description ? (vue.openBlock(), vue.createElementBlock("p", _hoisted_2$7, vue.toDisplayString(__props.description), 1)) : vue.createCommentVNode("", true),
+        __props.title ? (vue.openBlock(), vue.createElementBlock("legend", _hoisted_1$5, vue.toDisplayString(__props.title), 1)) : vue.createCommentVNode("", true),
+        __props.description ? (vue.openBlock(), vue.createElementBlock("p", _hoisted_2$5, vue.toDisplayString(__props.description), 1)) : vue.createCommentVNode("", true),
         vue.createElementVNode("div", {
           class: vue.normalizeClass(["vbwd-form-group-fields", `vbwd-form-group-${__props.layout}`])
         }, [
@@ -1932,18 +1929,18 @@ const _sfc_main$a = /* @__PURE__ */ vue.defineComponent({
     };
   }
 });
-const FormGroup = /* @__PURE__ */ _export_sfc(_sfc_main$a, [["__scopeId", "data-v-b15a233a"]]);
-const _hoisted_1$6 = {
+const FormGroup = /* @__PURE__ */ _export_sfc(_sfc_main$8, [["__scopeId", "data-v-b15a233a"]]);
+const _hoisted_1$4 = {
   key: 0,
   class: "vbwd-form-error"
 };
-const _hoisted_2$6 = { class: "vbwd-form-error-content" };
-const _hoisted_3$3 = {
+const _hoisted_2$4 = { class: "vbwd-form-error-content" };
+const _hoisted_3$2 = {
   key: 0,
   class: "vbwd-form-error-title"
 };
-const _hoisted_4$3 = { class: "vbwd-form-error-list" };
-const _sfc_main$9 = /* @__PURE__ */ vue.defineComponent({
+const _hoisted_4$2 = { class: "vbwd-form-error-list" };
+const _sfc_main$7 = /* @__PURE__ */ vue.defineComponent({
   __name: "FormError",
   props: {
     errors: { default: () => [] },
@@ -1951,7 +1948,7 @@ const _sfc_main$9 = /* @__PURE__ */ vue.defineComponent({
   },
   setup(__props) {
     return (_ctx, _cache) => {
-      return __props.errors.length ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_1$6, [
+      return __props.errors.length ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_1$4, [
         _cache[0] || (_cache[0] = vue.createElementVNode("div", { class: "vbwd-form-error-icon" }, [
           vue.createElementVNode("svg", {
             width: "20",
@@ -1966,9 +1963,9 @@ const _sfc_main$9 = /* @__PURE__ */ vue.defineComponent({
             })
           ])
         ], -1)),
-        vue.createElementVNode("div", _hoisted_2$6, [
-          __props.title ? (vue.openBlock(), vue.createElementBlock("h4", _hoisted_3$3, vue.toDisplayString(__props.title), 1)) : vue.createCommentVNode("", true),
-          vue.createElementVNode("ul", _hoisted_4$3, [
+        vue.createElementVNode("div", _hoisted_2$4, [
+          __props.title ? (vue.openBlock(), vue.createElementBlock("h4", _hoisted_3$2, vue.toDisplayString(__props.title), 1)) : vue.createCommentVNode("", true),
+          vue.createElementVNode("ul", _hoisted_4$2, [
             (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(__props.errors, (error, index) => {
               return vue.openBlock(), vue.createElementBlock("li", { key: index }, vue.toDisplayString(error), 1);
             }), 128))
@@ -1978,8 +1975,8 @@ const _sfc_main$9 = /* @__PURE__ */ vue.defineComponent({
     };
   }
 });
-const FormError = /* @__PURE__ */ _export_sfc(_sfc_main$9, [["__scopeId", "data-v-7e76f4e4"]]);
-const _sfc_main$8 = /* @__PURE__ */ vue.defineComponent({
+const FormError = /* @__PURE__ */ _export_sfc(_sfc_main$7, [["__scopeId", "data-v-7e76f4e4"]]);
+const _sfc_main$6 = /* @__PURE__ */ vue.defineComponent({
   __name: "Container",
   props: {
     fluid: { type: Boolean, default: false }
@@ -1994,8 +1991,8 @@ const _sfc_main$8 = /* @__PURE__ */ vue.defineComponent({
     };
   }
 });
-const Container = /* @__PURE__ */ _export_sfc(_sfc_main$8, [["__scopeId", "data-v-282e6973"]]);
-const _sfc_main$7 = /* @__PURE__ */ vue.defineComponent({
+const Container = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["__scopeId", "data-v-282e6973"]]);
+const _sfc_main$5 = /* @__PURE__ */ vue.defineComponent({
   __name: "Row",
   props: {
     gap: { default: "1rem" },
@@ -2024,8 +2021,8 @@ const _sfc_main$7 = /* @__PURE__ */ vue.defineComponent({
     };
   }
 });
-const Row = /* @__PURE__ */ _export_sfc(_sfc_main$7, [["__scopeId", "data-v-f82a9ba1"]]);
-const _sfc_main$6 = /* @__PURE__ */ vue.defineComponent({
+const Row = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["__scopeId", "data-v-f82a9ba1"]]);
+const _sfc_main$4 = /* @__PURE__ */ vue.defineComponent({
   __name: "Col",
   props: {
     span: { default: "auto" },
@@ -2071,198 +2068,7 @@ const _sfc_main$6 = /* @__PURE__ */ vue.defineComponent({
     };
   }
 });
-const Col = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["__scopeId", "data-v-2bedd799"]]);
-const planName = vue.ref(null);
-const features = vue.ref([]);
-const usage = vue.ref({});
-const isActive = vue.ref(false);
-function useSubscriptionStore() {
-  const hasFeature = (featureName) => {
-    return features.value.includes(featureName);
-  };
-  const getUsage = (featureName) => {
-    return usage.value[featureName] || null;
-  };
-  const isWithinLimit = (featureName, amount = 1) => {
-    const featureUsage = usage.value[featureName];
-    if (!featureUsage) return true;
-    return featureUsage.remaining >= amount;
-  };
-  const setSubscription = (data) => {
-    if (data.planName !== void 0) planName.value = data.planName;
-    if (data.features !== void 0) features.value = data.features;
-    if (data.usage !== void 0) usage.value = data.usage;
-    if (data.isActive !== void 0) isActive.value = data.isActive;
-  };
-  const updateUsage = (featureName, newUsage) => {
-    usage.value = {
-      ...usage.value,
-      [featureName]: newUsage
-    };
-  };
-  const clearSubscription = () => {
-    planName.value = null;
-    features.value = [];
-    usage.value = {};
-    isActive.value = false;
-  };
-  return {
-    // State
-    planName: vue.computed(() => planName.value),
-    features: vue.computed(() => features.value),
-    usage: vue.computed(() => usage.value),
-    isActive: vue.computed(() => isActive.value),
-    // Getters
-    hasFeature,
-    getUsage,
-    isWithinLimit,
-    // Actions
-    setSubscription,
-    updateUsage,
-    clearSubscription
-  };
-}
-function useFeatureAccess() {
-  const subscription = useSubscriptionStore();
-  const canAccess = (featureName) => {
-    return subscription.hasFeature(featureName);
-  };
-  const getUsage = (featureName) => {
-    return subscription.getUsage(featureName) || {
-      limit: 0,
-      used: 0,
-      remaining: 0
-    };
-  };
-  const isWithinLimit = (featureName, amount = 1) => {
-    return subscription.isWithinLimit(featureName, amount);
-  };
-  const hasActiveSubscription = vue.computed(() => subscription.isActive.value);
-  const planName2 = vue.computed(() => subscription.planName.value);
-  return {
-    // Methods
-    canAccess,
-    getUsage,
-    isWithinLimit,
-    // Computed
-    features: vue.computed(() => subscription.features.value),
-    usage: vue.computed(() => subscription.usage.value),
-    hasActiveSubscription,
-    planName: planName2
-  };
-}
-const _hoisted_1$5 = { class: "vbwd-feature-locked" };
-const _hoisted_2$5 = { class: "vbwd-feature-locked-text" };
-const _sfc_main$5 = /* @__PURE__ */ vue.defineComponent({
-  __name: "FeatureGate",
-  props: {
-    feature: {},
-    requiredPlan: {},
-    showUpgradeButton: { type: Boolean, default: true }
-  },
-  emits: ["upgrade"],
-  setup(__props) {
-    const props = __props;
-    const { canAccess } = useFeatureAccess();
-    const hasAccess = vue.computed(() => canAccess(props.feature));
-    return (_ctx, _cache) => {
-      return hasAccess.value ? vue.renderSlot(_ctx.$slots, "default", { key: 0 }, void 0, true) : vue.renderSlot(_ctx.$slots, "fallback", { key: 1 }, () => [
-        vue.createElementVNode("div", _hoisted_1$5, [
-          _cache[1] || (_cache[1] = vue.createElementVNode("div", { class: "vbwd-feature-locked-icon" }, [
-            vue.createElementVNode("svg", {
-              width: "24",
-              height: "24",
-              viewBox: "0 0 24 24",
-              fill: "none",
-              stroke: "currentColor",
-              "stroke-width": "2"
-            }, [
-              vue.createElementVNode("rect", {
-                x: "3",
-                y: "11",
-                width: "18",
-                height: "11",
-                rx: "2",
-                ry: "2"
-              }),
-              vue.createElementVNode("path", { d: "M7 11V7a5 5 0 0 1 10 0v4" })
-            ])
-          ], -1)),
-          vue.createElementVNode("p", _hoisted_2$5, " This feature requires " + vue.toDisplayString(__props.requiredPlan || "an upgraded") + " plan ", 1),
-          __props.showUpgradeButton ? (vue.openBlock(), vue.createElementBlock("button", {
-            key: 0,
-            class: "vbwd-btn vbwd-btn-primary",
-            onClick: _cache[0] || (_cache[0] = ($event) => _ctx.$emit("upgrade"))
-          }, " Upgrade Now ")) : vue.createCommentVNode("", true)
-        ])
-      ], true);
-    };
-  }
-});
-const FeatureGate = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["__scopeId", "data-v-9e1bc63d"]]);
-const _hoisted_1$4 = { class: "vbwd-usage-header" };
-const _hoisted_2$4 = { class: "vbwd-usage-label" };
-const _hoisted_3$2 = { class: "vbwd-usage-count" };
-const _hoisted_4$2 = {
-  key: 0,
-  class: "vbwd-usage-bar"
-};
-const _hoisted_5$2 = {
-  key: 1,
-  class: "vbwd-usage-exceeded-text"
-};
-const _hoisted_6$2 = {
-  key: 2,
-  class: "vbwd-usage-warning-text"
-};
-const _sfc_main$4 = /* @__PURE__ */ vue.defineComponent({
-  __name: "UsageLimit",
-  props: {
-    feature: {},
-    label: {},
-    warningThreshold: { default: 0.8 },
-    warningMessage: {},
-    exceededMessage: {}
-  },
-  setup(__props) {
-    const props = __props;
-    const { getUsage } = useFeatureAccess();
-    const usage2 = vue.computed(() => getUsage(props.feature));
-    const used = vue.computed(() => usage2.value.used);
-    const limit = vue.computed(() => usage2.value.limit);
-    vue.computed(() => usage2.value.remaining);
-    const percentage = vue.computed(() => {
-      if (limit.value === 0) return 0;
-      return Math.min(100, used.value / limit.value * 100);
-    });
-    const isNearLimit = vue.computed(() => {
-      if (limit.value === 0) return false;
-      return percentage.value >= props.warningThreshold * 100 && percentage.value < 100;
-    });
-    const isExceeded = vue.computed(() => {
-      if (limit.value === 0) return false;
-      return percentage.value >= 100;
-    });
-    return (_ctx, _cache) => {
-      return vue.openBlock(), vue.createElementBlock("div", {
-        class: vue.normalizeClass(["vbwd-usage-limit", { "vbwd-usage-warning": isNearLimit.value, "vbwd-usage-exceeded": isExceeded.value }])
-      }, [
-        vue.createElementVNode("div", _hoisted_1$4, [
-          vue.createElementVNode("span", _hoisted_2$4, vue.toDisplayString(__props.label || __props.feature), 1),
-          vue.createElementVNode("span", _hoisted_3$2, vue.toDisplayString(used.value) + " / " + vue.toDisplayString(limit.value === 0 ? "∞" : limit.value), 1)
-        ]),
-        limit.value > 0 ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_4$2, [
-          vue.createElementVNode("div", {
-            class: "vbwd-usage-progress",
-            style: vue.normalizeStyle({ width: percentage.value + "%" })
-          }, null, 4)
-        ])) : vue.createCommentVNode("", true),
-        isExceeded.value ? (vue.openBlock(), vue.createElementBlock("p", _hoisted_5$2, vue.toDisplayString(__props.exceededMessage || "Limit exceeded"), 1)) : isNearLimit.value ? (vue.openBlock(), vue.createElementBlock("p", _hoisted_6$2, vue.toDisplayString(__props.warningMessage || "Approaching limit"), 1)) : vue.createCommentVNode("", true)
-      ], 2);
-    };
-  }
-});
-const UsageLimit = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["__scopeId", "data-v-29d8f39c"]]);
+const Col = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["__scopeId", "data-v-2bedd799"]]);
 const _hoisted_1$3 = ["aria-label"];
 const _hoisted_2$3 = {
   key: 0,
@@ -3139,8 +2945,8 @@ function usePaymentStatus(apiPrefix, api, options = {}) {
     try {
       const data = await api.get(`${apiPrefix}/session-status/${id}`);
       statusData.value = data;
-      const status = data == null ? void 0 : data.status;
-      if (status === "complete" || status === "PAID") {
+      const status = String((data == null ? void 0 : data.status) ?? "").toLowerCase();
+      if (status === "complete" || status === "paid" || status === "succeeded") {
         confirmed.value = true;
         stopPolling();
         return true;
@@ -3550,7 +3356,6 @@ exports.DetailField = DetailField;
 exports.DetailGrid = DetailGrid;
 exports.Dropdown = Dropdown;
 exports.EventBus = EventBus;
-exports.FeatureGate = FeatureGate;
 exports.FormError = FormError;
 exports.FormField = FormField;
 exports.FormGroup = FormGroup;
@@ -3565,7 +3370,6 @@ exports.PluginStatus = PluginStatus;
 exports.Row = Row;
 exports.Spinner = Spinner;
 exports.Table = Table;
-exports.UsageLimit = UsageLimit;
 exports.ValidationError = ValidationError;
 exports.authGuard = authGuard;
 exports.configureAuthStore = configureAuthStore;
@@ -3584,9 +3388,7 @@ exports.satisfiesVersion = satisfiesVersion;
 exports.savePluginConfig = savePluginConfig;
 exports.useAuthStore = useAuthStore;
 exports.useCartStore = useCartStore;
-exports.useFeatureAccess = useFeatureAccess;
 exports.usePaymentRedirect = usePaymentRedirect;
 exports.usePaymentStatus = usePaymentStatus;
-exports.useSubscriptionStore = useSubscriptionStore;
 exports.version = version;
 //# sourceMappingURL=index.cjs.map

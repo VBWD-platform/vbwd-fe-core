@@ -1,8 +1,10 @@
 /**
- * Cart item types following Liskov Substitution Principle
- * Any item type can be substituted without breaking cart behavior
+ * Cart item type is an open string — the shared library is domain-agnostic
+ * and must not enumerate feature-specific item kinds (e.g. subscription
+ * 'PLAN'/'ADD_ON'). Consuming apps/plugins pass whatever discriminator they
+ * use; existing string literals remain valid (backward compatible).
  */
-export type CartItemType = 'PLAN' | 'TOKEN_BUNDLE' | 'ADD_ON';
+export type CartItemType = string;
 /**
  * Interface for cart items - extensible via metadata
  */

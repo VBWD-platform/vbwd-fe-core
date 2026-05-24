@@ -13,7 +13,6 @@ export {
   type AuthLogoutPayload,
   type UserRegisteredPayload,
   type UserUpdatedPayload,
-  type SubscriptionPayload,
   type PaymentPayload,
   type NotificationPayload,
   type ModalPayload,
