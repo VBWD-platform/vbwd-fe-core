@@ -3139,8 +3139,8 @@ function usePaymentStatus(apiPrefix, api, options = {}) {
     try {
       const data = await api.get(`${apiPrefix}/session-status/${id}`);
       statusData.value = data;
-      const status = data == null ? void 0 : data.status;
-      if (status === "complete" || status === "PAID") {
+      const status = String((data == null ? void 0 : data.status) ?? "").toLowerCase();
+      if (status === "complete" || status === "paid" || status === "succeeded") {
         confirmed.value = true;
         stopPolling();
         return true;
