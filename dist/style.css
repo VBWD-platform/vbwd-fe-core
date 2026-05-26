@@ -1211,3 +1211,101 @@ to {
   opacity: 0;
   transform: translateY(-0.25rem);
 }
+
+/* The wrapper renders transparently so its children inherit the host's
+   block-level rhythm (the parent ``.invoice-info``/``.info-grid``).
+   ``display: contents`` keeps the host's layout untouched while still
+   anchoring the scoped CSS data-v attribute on the children. */
+.vbwd-payment-data[data-v-6e610b22] {
+  display: contents;
+}
+
+/* 1-for-1 copy of the host's ``.detail-row`` layout so plugin-contributed
+   rows are visually indistinguishable from "Currency / Payment Method / …"
+   above. Same colour palette, no extra padding, value pushed right by
+   ``justify-content: space-between``. */
+.vbwd-payment-data__row[data-v-6e610b22] {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.vbwd-payment-data__label[data-v-6e610b22] {
+  color: #666;
+}
+.vbwd-payment-data__value[data-v-6e610b22] {
+  color: #2c3e50;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  word-break: break-word;
+}
+.vbwd-payment-data__link[data-v-6e610b22] {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--vbwd-color-primary, #2563eb);
+  text-decoration: none;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+.vbwd-payment-data__link[data-v-6e610b22]:hover {
+  text-decoration: underline;
+}
+.vbwd-payment-data__link-icon[data-v-6e610b22] {
+  opacity: 0.65;
+}
+
+/* Matches the host "Invoice Information" section card on fe-admin: white
+   surface (provided by the surrounding ``.info-section``), simple
+   borderless table, label/value rhythm consistent with the rest of the
+   admin invoice-detail screen. */
+.vbwd-payment-information[data-v-26480a51] {
+  background: #ffffff;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 20px;
+}
+.vbwd-payment-information__heading[data-v-26480a51] {
+  margin: 0 0 15px 0;
+  color: #2c3e50;
+  font-size: 1rem;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+.vbwd-payment-information__table[data-v-26480a51] {
+  width: 100%;
+  border-collapse: collapse;
+}
+.vbwd-payment-information__table th[data-v-26480a51],
+.vbwd-payment-information__table td[data-v-26480a51] {
+  padding: 10px 0;
+  border-bottom: 1px solid #f0f0f0;
+  vertical-align: middle;
+}
+.vbwd-payment-information__table tr:last-child th[data-v-26480a51],
+.vbwd-payment-information__table tr:last-child td[data-v-26480a51] {
+  border-bottom: 0;
+}
+.vbwd-payment-information__label[data-v-26480a51] {
+  text-align: left;
+  font-size: 0.8rem;
+  color: #666;
+  font-weight: 500;
+  width: 40%;
+  white-space: nowrap;
+}
+.vbwd-payment-information__value[data-v-26480a51] {
+  text-align: right;
+  color: #2c3e50;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  word-break: break-word;
+}
+.vbwd-payment-information__link[data-v-26480a51] {
+  color: var(--vbwd-color-primary, #2563eb);
+  text-decoration: none;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.9rem;
+}
+.vbwd-payment-information__link[data-v-26480a51]:hover {
+  text-decoration: underline;
+}

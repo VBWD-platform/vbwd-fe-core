@@ -998,14 +998,14 @@ const AppEvents = {
   PLUGIN_ERROR: "plugin:error",
   PLUGIN_STOPPED: "plugin:stopped"
 };
-const _hoisted_1$f = { class: "vbwd-alert-icon" };
-const _hoisted_2$e = { class: "vbwd-alert-content" };
-const _hoisted_3$a = {
+const _hoisted_1$h = { class: "vbwd-alert-icon" };
+const _hoisted_2$g = { class: "vbwd-alert-content" };
+const _hoisted_3$c = {
   key: 0,
   class: "vbwd-alert-title"
 };
-const _hoisted_4$9 = { class: "vbwd-alert-message" };
-const _sfc_main$l = /* @__PURE__ */ defineComponent({
+const _hoisted_4$b = { class: "vbwd-alert-message" };
+const _sfc_main$n = /* @__PURE__ */ defineComponent({
   __name: "Alert",
   props: {
     variant: { default: "info" },
@@ -1043,14 +1043,14 @@ const _sfc_main$l = /* @__PURE__ */ defineComponent({
         class: normalizeClass(["vbwd-alert", `vbwd-alert-${__props.variant}`]),
         role: "alert"
       }, [
-        createElementVNode("div", _hoisted_1$f, [
+        createElementVNode("div", _hoisted_1$h, [
           renderSlot(_ctx.$slots, "icon", {}, () => [
             (openBlock(), createBlock(resolveDynamicComponent(iconComponent.value)))
           ], true)
         ]),
-        createElementVNode("div", _hoisted_2$e, [
-          __props.title ? (openBlock(), createElementBlock("h4", _hoisted_3$a, toDisplayString(__props.title), 1)) : createCommentVNode("", true),
-          createElementVNode("p", _hoisted_4$9, [
+        createElementVNode("div", _hoisted_2$g, [
+          __props.title ? (openBlock(), createElementBlock("h4", _hoisted_3$c, toDisplayString(__props.title), 1)) : createCommentVNode("", true),
+          createElementVNode("p", _hoisted_4$b, [
             renderSlot(_ctx.$slots, "default", {}, () => [
               createTextVNode(toDisplayString(__props.message), 1)
             ], true)
@@ -1086,8 +1086,8 @@ const _export_sfc = (sfc, props) => {
   }
   return target;
 };
-const Alert = /* @__PURE__ */ _export_sfc(_sfc_main$l, [["__scopeId", "data-v-64c3ffe7"]]);
-const _sfc_main$k = /* @__PURE__ */ defineComponent({
+const Alert = /* @__PURE__ */ _export_sfc(_sfc_main$n, [["__scopeId", "data-v-64c3ffe7"]]);
+const _sfc_main$m = /* @__PURE__ */ defineComponent({
   __name: "Badge",
   props: {
     label: {},
@@ -1106,8 +1106,8 @@ const _sfc_main$k = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const Badge = /* @__PURE__ */ _export_sfc(_sfc_main$k, [["__scopeId", "data-v-4df2bf4f"]]);
-const _sfc_main$j = /* @__PURE__ */ defineComponent({
+const Badge = /* @__PURE__ */ _export_sfc(_sfc_main$m, [["__scopeId", "data-v-4df2bf4f"]]);
+const _sfc_main$l = /* @__PURE__ */ defineComponent({
   __name: "Spinner",
   props: {
     size: { default: "md" }
@@ -1137,9 +1137,9 @@ const _sfc_main$j = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const Spinner = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["__scopeId", "data-v-3dad9f75"]]);
-const _hoisted_1$e = ["type", "disabled"];
-const _sfc_main$i = /* @__PURE__ */ defineComponent({
+const Spinner = /* @__PURE__ */ _export_sfc(_sfc_main$l, [["__scopeId", "data-v-3dad9f75"]]);
+const _hoisted_1$g = ["type", "disabled"];
+const _sfc_main$k = /* @__PURE__ */ defineComponent({
   __name: "Button",
   props: {
     type: { default: "button" },
@@ -1174,30 +1174,30 @@ const _sfc_main$i = /* @__PURE__ */ defineComponent({
           class: "vbwd-btn-spinner"
         })) : createCommentVNode("", true),
         renderSlot(_ctx.$slots, "default", {}, void 0, true)
-      ], 10, _hoisted_1$e);
+      ], 10, _hoisted_1$g);
     };
   }
 });
-const Button = /* @__PURE__ */ _export_sfc(_sfc_main$i, [["__scopeId", "data-v-496cc81d"]]);
-const _hoisted_1$d = {
+const Button = /* @__PURE__ */ _export_sfc(_sfc_main$k, [["__scopeId", "data-v-496cc81d"]]);
+const _hoisted_1$f = {
   key: 0,
   class: "vbwd-card-header"
 };
-const _hoisted_2$d = { class: "vbwd-card-title" };
-const _hoisted_3$9 = {
+const _hoisted_2$f = { class: "vbwd-card-title" };
+const _hoisted_3$b = {
   key: 0,
   class: "vbwd-card-subtitle"
 };
-const _hoisted_4$8 = {
+const _hoisted_4$a = {
   key: 0,
   class: "vbwd-card-actions"
 };
-const _hoisted_5$5 = { class: "vbwd-card-body" };
-const _hoisted_6$4 = {
+const _hoisted_5$7 = { class: "vbwd-card-body" };
+const _hoisted_6$5 = {
   key: 1,
   class: "vbwd-card-footer"
 };
-const _sfc_main$h = /* @__PURE__ */ defineComponent({
+const _sfc_main$j = /* @__PURE__ */ defineComponent({
   __name: "Card",
   props: {
     title: {},
@@ -1209,33 +1209,33 @@ const _sfc_main$h = /* @__PURE__ */ defineComponent({
       return openBlock(), createElementBlock("div", {
         class: normalizeClass(["vbwd-card", { "vbwd-card-hoverable": __props.hoverable }])
       }, [
-        __props.title || _ctx.$slots.header ? (openBlock(), createElementBlock("header", _hoisted_1$d, [
+        __props.title || _ctx.$slots.header ? (openBlock(), createElementBlock("header", _hoisted_1$f, [
           renderSlot(_ctx.$slots, "header", {}, () => [
-            createElementVNode("h3", _hoisted_2$d, toDisplayString(__props.title), 1),
-            __props.subtitle ? (openBlock(), createElementBlock("p", _hoisted_3$9, toDisplayString(__props.subtitle), 1)) : createCommentVNode("", true)
+            createElementVNode("h3", _hoisted_2$f, toDisplayString(__props.title), 1),
+            __props.subtitle ? (openBlock(), createElementBlock("p", _hoisted_3$b, toDisplayString(__props.subtitle), 1)) : createCommentVNode("", true)
           ], true),
-          _ctx.$slots.actions ? (openBlock(), createElementBlock("div", _hoisted_4$8, [
+          _ctx.$slots.actions ? (openBlock(), createElementBlock("div", _hoisted_4$a, [
             renderSlot(_ctx.$slots, "actions", {}, void 0, true)
           ])) : createCommentVNode("", true)
         ])) : createCommentVNode("", true),
-        createElementVNode("div", _hoisted_5$5, [
+        createElementVNode("div", _hoisted_5$7, [
           renderSlot(_ctx.$slots, "default", {}, void 0, true)
         ]),
-        _ctx.$slots.footer ? (openBlock(), createElementBlock("footer", _hoisted_6$4, [
+        _ctx.$slots.footer ? (openBlock(), createElementBlock("footer", _hoisted_6$5, [
           renderSlot(_ctx.$slots, "footer", {}, void 0, true)
         ])) : createCommentVNode("", true)
       ], 2);
     };
   }
 });
-const Card = /* @__PURE__ */ _export_sfc(_sfc_main$h, [["__scopeId", "data-v-3c45206a"]]);
-const _hoisted_1$c = { class: "vbwd-detail-field" };
-const _hoisted_2$c = { class: "vbwd-detail-field-label" };
-const _hoisted_3$8 = {
+const Card = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["__scopeId", "data-v-3c45206a"]]);
+const _hoisted_1$e = { class: "vbwd-detail-field" };
+const _hoisted_2$e = { class: "vbwd-detail-field-label" };
+const _hoisted_3$a = {
   key: 1,
   class: "vbwd-detail-field-value"
 };
-const _sfc_main$g = /* @__PURE__ */ defineComponent({
+const _sfc_main$i = /* @__PURE__ */ defineComponent({
   __name: "DetailField",
   props: {
     label: {},
@@ -1252,8 +1252,8 @@ const _sfc_main$g = /* @__PURE__ */ defineComponent({
       return String(props.value);
     });
     return (_ctx, _cache) => {
-      return openBlock(), createElementBlock("div", _hoisted_1$c, [
-        createElementVNode("span", _hoisted_2$c, toDisplayString(__props.label), 1),
+      return openBlock(), createElementBlock("div", _hoisted_1$e, [
+        createElementVNode("span", _hoisted_2$e, toDisplayString(__props.label), 1),
         __props.badge ? (openBlock(), createBlock(Badge, {
           key: 0,
           variant: __props.badgeVariant,
@@ -1263,13 +1263,13 @@ const _sfc_main$g = /* @__PURE__ */ defineComponent({
             createTextVNode(toDisplayString(displayValue.value), 1)
           ]),
           _: 1
-        }, 8, ["variant"])) : (openBlock(), createElementBlock("span", _hoisted_3$8, toDisplayString(displayValue.value), 1))
+        }, 8, ["variant"])) : (openBlock(), createElementBlock("span", _hoisted_3$a, toDisplayString(displayValue.value), 1))
       ]);
     };
   }
 });
-const DetailField = /* @__PURE__ */ _export_sfc(_sfc_main$g, [["__scopeId", "data-v-aae1356f"]]);
-const _sfc_main$f = /* @__PURE__ */ defineComponent({
+const DetailField = /* @__PURE__ */ _export_sfc(_sfc_main$i, [["__scopeId", "data-v-aae1356f"]]);
+const _sfc_main$h = /* @__PURE__ */ defineComponent({
   __name: "DetailGrid",
   props: {
     columns: { default: 2 }
@@ -1289,13 +1289,13 @@ const _sfc_main$f = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const DetailGrid = /* @__PURE__ */ _export_sfc(_sfc_main$f, [["__scopeId", "data-v-d3e81837"]]);
-const _hoisted_1$b = {
+const DetailGrid = /* @__PURE__ */ _export_sfc(_sfc_main$h, [["__scopeId", "data-v-d3e81837"]]);
+const _hoisted_1$d = {
   type: "button",
   class: "vbwd-dropdown-btn"
 };
-const _hoisted_2$b = ["onClick"];
-const _sfc_main$e = /* @__PURE__ */ defineComponent({
+const _hoisted_2$d = ["onClick"];
+const _sfc_main$g = /* @__PURE__ */ defineComponent({
   __name: "Dropdown",
   props: {
     label: { default: "Select" },
@@ -1346,7 +1346,7 @@ const _sfc_main$e = /* @__PURE__ */ defineComponent({
           onClick: toggle
         }, [
           renderSlot(_ctx.$slots, "trigger", {}, () => [
-            createElementVNode("button", _hoisted_1$b, [
+            createElementVNode("button", _hoisted_1$d, [
               createTextVNode(toDisplayString(__props.label) + " ", 1),
               (openBlock(), createElementBlock("svg", {
                 class: normalizeClass(["vbwd-dropdown-arrow", { "vbwd-dropdown-arrow-open": isOpen.value }]),
@@ -1379,7 +1379,7 @@ const _sfc_main$e = /* @__PURE__ */ defineComponent({
                       { "vbwd-dropdown-item-disabled": item.disabled }
                     ]),
                     onClick: ($event) => !item.disabled && selectItem(item)
-                  }, toDisplayString(item.label), 11, _hoisted_2$b);
+                  }, toDisplayString(item.label), 11, _hoisted_2$d);
                 }), 128))
               ], true)
             ], 2)) : createCommentVNode("", true)
@@ -1390,30 +1390,30 @@ const _sfc_main$e = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const Dropdown = /* @__PURE__ */ _export_sfc(_sfc_main$e, [["__scopeId", "data-v-ab6a622e"]]);
-const _hoisted_1$a = {
+const Dropdown = /* @__PURE__ */ _export_sfc(_sfc_main$g, [["__scopeId", "data-v-ab6a622e"]]);
+const _hoisted_1$c = {
   key: 0,
   class: "vbwd-input-required"
 };
-const _hoisted_2$a = { class: "vbwd-input-container" };
-const _hoisted_3$7 = {
+const _hoisted_2$c = { class: "vbwd-input-container" };
+const _hoisted_3$9 = {
   key: 0,
   class: "vbwd-input-prefix"
 };
-const _hoisted_4$7 = ["value", "type", "placeholder", "disabled", "readonly"];
-const _hoisted_5$4 = {
+const _hoisted_4$9 = ["value", "type", "placeholder", "disabled", "readonly"];
+const _hoisted_5$6 = {
   key: 1,
   class: "vbwd-input-suffix"
 };
-const _hoisted_6$3 = {
+const _hoisted_6$4 = {
   key: 1,
   class: "vbwd-input-error-text"
 };
-const _hoisted_7$3 = {
+const _hoisted_7$4 = {
   key: 2,
   class: "vbwd-input-hint"
 };
-const _sfc_main$d = /* @__PURE__ */ defineComponent({
+const _sfc_main$f = /* @__PURE__ */ defineComponent({
   __name: "Input",
   props: {
     modelValue: { default: "" },
@@ -1450,10 +1450,10 @@ const _sfc_main$d = /* @__PURE__ */ defineComponent({
           class: "vbwd-input-label"
         }, [
           createTextVNode(toDisplayString(__props.label) + " ", 1),
-          __props.required ? (openBlock(), createElementBlock("span", _hoisted_1$a, "*")) : createCommentVNode("", true)
+          __props.required ? (openBlock(), createElementBlock("span", _hoisted_1$c, "*")) : createCommentVNode("", true)
         ])) : createCommentVNode("", true),
-        createElementVNode("div", _hoisted_2$a, [
-          _ctx.$slots.prefix ? (openBlock(), createElementBlock("span", _hoisted_3$7, [
+        createElementVNode("div", _hoisted_2$c, [
+          _ctx.$slots.prefix ? (openBlock(), createElementBlock("span", _hoisted_3$9, [
             renderSlot(_ctx.$slots, "prefix", {}, void 0, true)
           ])) : createCommentVNode("", true),
           createElementVNode("input", {
@@ -1467,28 +1467,28 @@ const _sfc_main$d = /* @__PURE__ */ defineComponent({
             onInput: _cache[0] || (_cache[0] = ($event) => _ctx.$emit("update:modelValue", $event.target.value)),
             onBlur: _cache[1] || (_cache[1] = ($event) => _ctx.$emit("blur", $event)),
             onFocus: _cache[2] || (_cache[2] = ($event) => _ctx.$emit("focus", $event))
-          }, null, 42, _hoisted_4$7),
-          _ctx.$slots.suffix ? (openBlock(), createElementBlock("span", _hoisted_5$4, [
+          }, null, 42, _hoisted_4$9),
+          _ctx.$slots.suffix ? (openBlock(), createElementBlock("span", _hoisted_5$6, [
             renderSlot(_ctx.$slots, "suffix", {}, void 0, true)
           ])) : createCommentVNode("", true)
         ]),
-        __props.error ? (openBlock(), createElementBlock("p", _hoisted_6$3, toDisplayString(__props.error), 1)) : __props.hint ? (openBlock(), createElementBlock("p", _hoisted_7$3, toDisplayString(__props.hint), 1)) : createCommentVNode("", true)
+        __props.error ? (openBlock(), createElementBlock("p", _hoisted_6$4, toDisplayString(__props.error), 1)) : __props.hint ? (openBlock(), createElementBlock("p", _hoisted_7$4, toDisplayString(__props.hint), 1)) : createCommentVNode("", true)
       ], 2);
     };
   }
 });
-const Input = /* @__PURE__ */ _export_sfc(_sfc_main$d, [["__scopeId", "data-v-bf22b843"]]);
-const _hoisted_1$9 = ["aria-labelledby"];
-const _hoisted_2$9 = {
+const Input = /* @__PURE__ */ _export_sfc(_sfc_main$f, [["__scopeId", "data-v-bf22b843"]]);
+const _hoisted_1$b = ["aria-labelledby"];
+const _hoisted_2$b = {
   key: 0,
   class: "vbwd-modal-header"
 };
-const _hoisted_3$6 = { class: "vbwd-modal-body" };
-const _hoisted_4$6 = {
+const _hoisted_3$8 = { class: "vbwd-modal-body" };
+const _hoisted_4$8 = {
   key: 1,
   class: "vbwd-modal-footer"
 };
-const _sfc_main$c = /* @__PURE__ */ defineComponent({
+const _sfc_main$e = /* @__PURE__ */ defineComponent({
   __name: "Modal",
   props: {
     modelValue: { type: Boolean },
@@ -1542,7 +1542,7 @@ const _sfc_main$c = /* @__PURE__ */ defineComponent({
                 "aria-modal": "true",
                 "aria-labelledby": __props.title ? modalTitleId : void 0
               }, [
-                __props.title || _ctx.$slots.header ? (openBlock(), createElementBlock("header", _hoisted_2$9, [
+                __props.title || _ctx.$slots.header ? (openBlock(), createElementBlock("header", _hoisted_2$b, [
                   renderSlot(_ctx.$slots, "header", {}, () => [
                     createElementVNode("h3", {
                       id: modalTitleId,
@@ -1569,13 +1569,13 @@ const _sfc_main$c = /* @__PURE__ */ defineComponent({
                     ], -1)
                   ])])) : createCommentVNode("", true)
                 ])) : createCommentVNode("", true),
-                createElementVNode("div", _hoisted_3$6, [
+                createElementVNode("div", _hoisted_3$8, [
                   renderSlot(_ctx.$slots, "default", {}, void 0, true)
                 ]),
-                _ctx.$slots.footer ? (openBlock(), createElementBlock("footer", _hoisted_4$6, [
+                _ctx.$slots.footer ? (openBlock(), createElementBlock("footer", _hoisted_4$8, [
                   renderSlot(_ctx.$slots, "footer", {}, void 0, true)
                 ])) : createCommentVNode("", true)
-              ], 10, _hoisted_1$9)
+              ], 10, _hoisted_1$b)
             ])) : createCommentVNode("", true)
           ]),
           _: 3
@@ -1584,20 +1584,20 @@ const _sfc_main$c = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const Modal = /* @__PURE__ */ _export_sfc(_sfc_main$c, [["__scopeId", "data-v-a9346ee5"]]);
-const _hoisted_1$8 = {
+const Modal = /* @__PURE__ */ _export_sfc(_sfc_main$e, [["__scopeId", "data-v-a9346ee5"]]);
+const _hoisted_1$a = {
   class: "vbwd-pagination",
   role: "navigation",
   "aria-label": "Pagination"
 };
-const _hoisted_2$8 = ["disabled"];
-const _hoisted_3$5 = {
+const _hoisted_2$a = ["disabled"];
+const _hoisted_3$7 = {
   key: 0,
   class: "vbwd-pagination-ellipsis"
 };
-const _hoisted_4$5 = ["aria-current", "onClick"];
-const _hoisted_5$3 = ["disabled"];
-const _sfc_main$b = /* @__PURE__ */ defineComponent({
+const _hoisted_4$7 = ["aria-current", "onClick"];
+const _hoisted_5$5 = ["disabled"];
+const _sfc_main$d = /* @__PURE__ */ defineComponent({
   __name: "Pagination",
   props: {
     currentPage: {},
@@ -1638,7 +1638,7 @@ const _sfc_main$b = /* @__PURE__ */ defineComponent({
       }
     };
     return (_ctx, _cache) => {
-      return openBlock(), createElementBlock("nav", _hoisted_1$8, [
+      return openBlock(), createElementBlock("nav", _hoisted_1$a, [
         createElementVNode("button", {
           class: "vbwd-pagination-btn vbwd-pagination-prev",
           disabled: __props.currentPage <= 1,
@@ -1657,15 +1657,15 @@ const _sfc_main$b = /* @__PURE__ */ defineComponent({
               "clip-rule": "evenodd"
             })
           ], -1)
-        ])], 8, _hoisted_2$8),
+        ])], 8, _hoisted_2$a),
         (openBlock(true), createElementBlock(Fragment, null, renderList(visiblePages.value, (page) => {
           return openBlock(), createElementBlock(Fragment, { key: page }, [
-            page === "..." ? (openBlock(), createElementBlock("span", _hoisted_3$5, "...")) : (openBlock(), createElementBlock("button", {
+            page === "..." ? (openBlock(), createElementBlock("span", _hoisted_3$7, "...")) : (openBlock(), createElementBlock("button", {
               key: 1,
               class: normalizeClass(["vbwd-pagination-btn", "vbwd-pagination-page", { "vbwd-pagination-active": page === __props.currentPage }]),
               "aria-current": page === __props.currentPage ? "page" : void 0,
               onClick: ($event) => goToPage(page)
-            }, toDisplayString(page), 11, _hoisted_4$5))
+            }, toDisplayString(page), 11, _hoisted_4$7))
           ], 64);
         }), 128)),
         createElementVNode("button", {
@@ -1686,28 +1686,28 @@ const _sfc_main$b = /* @__PURE__ */ defineComponent({
               "clip-rule": "evenodd"
             })
           ], -1)
-        ])], 8, _hoisted_5$3)
+        ])], 8, _hoisted_5$5)
       ]);
     };
   }
 });
-const Pagination = /* @__PURE__ */ _export_sfc(_sfc_main$b, [["__scopeId", "data-v-939ce8f2"]]);
-const _hoisted_1$7 = { class: "vbwd-table-wrapper" };
-const _hoisted_2$7 = { key: 0 };
-const _hoisted_3$4 = ["onClick"];
-const _hoisted_4$4 = { class: "vbwd-table-th-content" };
-const _hoisted_5$2 = {
+const Pagination = /* @__PURE__ */ _export_sfc(_sfc_main$d, [["__scopeId", "data-v-939ce8f2"]]);
+const _hoisted_1$9 = { class: "vbwd-table-wrapper" };
+const _hoisted_2$9 = { key: 0 };
+const _hoisted_3$6 = ["onClick"];
+const _hoisted_4$6 = { class: "vbwd-table-th-content" };
+const _hoisted_5$4 = {
   key: 0,
   class: "vbwd-table-sort-icon"
 };
-const _hoisted_6$2 = {
+const _hoisted_6$3 = {
   key: 0,
   width: "12",
   height: "12",
   viewBox: "0 0 12 12",
   fill: "currentColor"
 };
-const _hoisted_7$2 = {
+const _hoisted_7$3 = {
   key: 0,
   d: "M6 2L10 8H2L6 2Z"
 };
@@ -1727,7 +1727,7 @@ const _hoisted_10 = { key: 0 };
 const _hoisted_11 = ["colspan"];
 const _hoisted_12 = { key: 1 };
 const _hoisted_13 = ["colspan"];
-const _sfc_main$a = /* @__PURE__ */ defineComponent({
+const _sfc_main$c = /* @__PURE__ */ defineComponent({
   __name: "Table",
   props: {
     columns: { default: () => [] },
@@ -1752,11 +1752,11 @@ const _sfc_main$a = /* @__PURE__ */ defineComponent({
       emit("sort", key, sortOrder.value);
     };
     return (_ctx, _cache) => {
-      return openBlock(), createElementBlock("div", _hoisted_1$7, [
+      return openBlock(), createElementBlock("div", _hoisted_1$9, [
         createElementVNode("table", {
           class: normalizeClass(["vbwd-table", { "vbwd-table-striped": __props.striped, "vbwd-table-hoverable": __props.hoverable }])
         }, [
-          __props.columns.length ? (openBlock(), createElementBlock("thead", _hoisted_2$7, [
+          __props.columns.length ? (openBlock(), createElementBlock("thead", _hoisted_2$9, [
             createElementVNode("tr", null, [
               (openBlock(true), createElementBlock(Fragment, null, renderList(__props.columns, (col) => {
                 return openBlock(), createElementBlock("th", {
@@ -1769,17 +1769,17 @@ const _sfc_main$a = /* @__PURE__ */ defineComponent({
                   style: normalizeStyle(col.width ? { width: col.width } : {}),
                   onClick: ($event) => col.sortable && handleSort(col.key)
                 }, [
-                  createElementVNode("span", _hoisted_4$4, [
+                  createElementVNode("span", _hoisted_4$6, [
                     createTextVNode(toDisplayString(col.label) + " ", 1),
-                    col.sortable ? (openBlock(), createElementBlock("span", _hoisted_5$2, [
-                      sortKey.value === col.key ? (openBlock(), createElementBlock("svg", _hoisted_6$2, [
-                        sortOrder.value === "asc" ? (openBlock(), createElementBlock("path", _hoisted_7$2)) : (openBlock(), createElementBlock("path", _hoisted_8$1))
+                    col.sortable ? (openBlock(), createElementBlock("span", _hoisted_5$4, [
+                      sortKey.value === col.key ? (openBlock(), createElementBlock("svg", _hoisted_6$3, [
+                        sortOrder.value === "asc" ? (openBlock(), createElementBlock("path", _hoisted_7$3)) : (openBlock(), createElementBlock("path", _hoisted_8$1))
                       ])) : (openBlock(), createElementBlock("svg", _hoisted_9$1, [..._cache[0] || (_cache[0] = [
                         createElementVNode("path", { d: "M6 2L10 6H2L6 2ZM6 10L2 6H10L6 10Z" }, null, -1)
                       ])]))
                     ])) : createCommentVNode("", true)
                   ])
-                ], 14, _hoisted_3$4);
+                ], 14, _hoisted_3$6);
               }), 128))
             ])
           ])) : createCommentVNode("", true),
@@ -1828,21 +1828,21 @@ const _sfc_main$a = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const Table = /* @__PURE__ */ _export_sfc(_sfc_main$a, [["__scopeId", "data-v-aa02112d"]]);
-const _hoisted_1$6 = {
+const Table = /* @__PURE__ */ _export_sfc(_sfc_main$c, [["__scopeId", "data-v-aa02112d"]]);
+const _hoisted_1$8 = {
   key: 0,
   class: "vbwd-form-field-asterisk"
 };
-const _hoisted_2$6 = { class: "vbwd-form-field-control" };
-const _hoisted_3$3 = {
+const _hoisted_2$8 = { class: "vbwd-form-field-control" };
+const _hoisted_3$5 = {
   key: 1,
   class: "vbwd-form-field-error-text"
 };
-const _hoisted_4$3 = {
+const _hoisted_4$5 = {
   key: 2,
   class: "vbwd-form-field-hint"
 };
-const _sfc_main$9 = /* @__PURE__ */ defineComponent({
+const _sfc_main$b = /* @__PURE__ */ defineComponent({
   __name: "FormField",
   props: {
     label: {},
@@ -1863,29 +1863,29 @@ const _sfc_main$9 = /* @__PURE__ */ defineComponent({
           class: "vbwd-form-field-label"
         }, [
           createTextVNode(toDisplayString(__props.label) + " ", 1),
-          __props.required ? (openBlock(), createElementBlock("span", _hoisted_1$6, "*")) : createCommentVNode("", true)
+          __props.required ? (openBlock(), createElementBlock("span", _hoisted_1$8, "*")) : createCommentVNode("", true)
         ])) : createCommentVNode("", true),
-        createElementVNode("div", _hoisted_2$6, [
+        createElementVNode("div", _hoisted_2$8, [
           renderSlot(_ctx.$slots, "default", {
             id: fieldId,
             error: __props.error
           }, void 0, true)
         ]),
-        __props.error ? (openBlock(), createElementBlock("p", _hoisted_3$3, toDisplayString(__props.error), 1)) : __props.hint ? (openBlock(), createElementBlock("p", _hoisted_4$3, toDisplayString(__props.hint), 1)) : createCommentVNode("", true)
+        __props.error ? (openBlock(), createElementBlock("p", _hoisted_3$5, toDisplayString(__props.error), 1)) : __props.hint ? (openBlock(), createElementBlock("p", _hoisted_4$5, toDisplayString(__props.hint), 1)) : createCommentVNode("", true)
       ], 2);
     };
   }
 });
-const FormField = /* @__PURE__ */ _export_sfc(_sfc_main$9, [["__scopeId", "data-v-65b44107"]]);
-const _hoisted_1$5 = {
+const FormField = /* @__PURE__ */ _export_sfc(_sfc_main$b, [["__scopeId", "data-v-65b44107"]]);
+const _hoisted_1$7 = {
   key: 0,
   class: "vbwd-form-group-title"
 };
-const _hoisted_2$5 = {
+const _hoisted_2$7 = {
   key: 1,
   class: "vbwd-form-group-description"
 };
-const _sfc_main$8 = /* @__PURE__ */ defineComponent({
+const _sfc_main$a = /* @__PURE__ */ defineComponent({
   __name: "FormGroup",
   props: {
     title: {},
@@ -1898,8 +1898,8 @@ const _sfc_main$8 = /* @__PURE__ */ defineComponent({
       return openBlock(), createElementBlock("fieldset", {
         class: normalizeClass(["vbwd-form-group", { "vbwd-form-group-bordered": __props.bordered }])
       }, [
-        __props.title ? (openBlock(), createElementBlock("legend", _hoisted_1$5, toDisplayString(__props.title), 1)) : createCommentVNode("", true),
-        __props.description ? (openBlock(), createElementBlock("p", _hoisted_2$5, toDisplayString(__props.description), 1)) : createCommentVNode("", true),
+        __props.title ? (openBlock(), createElementBlock("legend", _hoisted_1$7, toDisplayString(__props.title), 1)) : createCommentVNode("", true),
+        __props.description ? (openBlock(), createElementBlock("p", _hoisted_2$7, toDisplayString(__props.description), 1)) : createCommentVNode("", true),
         createElementVNode("div", {
           class: normalizeClass(["vbwd-form-group-fields", `vbwd-form-group-${__props.layout}`])
         }, [
@@ -1909,18 +1909,18 @@ const _sfc_main$8 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const FormGroup = /* @__PURE__ */ _export_sfc(_sfc_main$8, [["__scopeId", "data-v-b15a233a"]]);
-const _hoisted_1$4 = {
+const FormGroup = /* @__PURE__ */ _export_sfc(_sfc_main$a, [["__scopeId", "data-v-b15a233a"]]);
+const _hoisted_1$6 = {
   key: 0,
   class: "vbwd-form-error"
 };
-const _hoisted_2$4 = { class: "vbwd-form-error-content" };
-const _hoisted_3$2 = {
+const _hoisted_2$6 = { class: "vbwd-form-error-content" };
+const _hoisted_3$4 = {
   key: 0,
   class: "vbwd-form-error-title"
 };
-const _hoisted_4$2 = { class: "vbwd-form-error-list" };
-const _sfc_main$7 = /* @__PURE__ */ defineComponent({
+const _hoisted_4$4 = { class: "vbwd-form-error-list" };
+const _sfc_main$9 = /* @__PURE__ */ defineComponent({
   __name: "FormError",
   props: {
     errors: { default: () => [] },
@@ -1928,7 +1928,7 @@ const _sfc_main$7 = /* @__PURE__ */ defineComponent({
   },
   setup(__props) {
     return (_ctx, _cache) => {
-      return __props.errors.length ? (openBlock(), createElementBlock("div", _hoisted_1$4, [
+      return __props.errors.length ? (openBlock(), createElementBlock("div", _hoisted_1$6, [
         _cache[0] || (_cache[0] = createElementVNode("div", { class: "vbwd-form-error-icon" }, [
           createElementVNode("svg", {
             width: "20",
@@ -1943,9 +1943,9 @@ const _sfc_main$7 = /* @__PURE__ */ defineComponent({
             })
           ])
         ], -1)),
-        createElementVNode("div", _hoisted_2$4, [
-          __props.title ? (openBlock(), createElementBlock("h4", _hoisted_3$2, toDisplayString(__props.title), 1)) : createCommentVNode("", true),
-          createElementVNode("ul", _hoisted_4$2, [
+        createElementVNode("div", _hoisted_2$6, [
+          __props.title ? (openBlock(), createElementBlock("h4", _hoisted_3$4, toDisplayString(__props.title), 1)) : createCommentVNode("", true),
+          createElementVNode("ul", _hoisted_4$4, [
             (openBlock(true), createElementBlock(Fragment, null, renderList(__props.errors, (error, index) => {
               return openBlock(), createElementBlock("li", { key: index }, toDisplayString(error), 1);
             }), 128))
@@ -1955,8 +1955,8 @@ const _sfc_main$7 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const FormError = /* @__PURE__ */ _export_sfc(_sfc_main$7, [["__scopeId", "data-v-7e76f4e4"]]);
-const _sfc_main$6 = /* @__PURE__ */ defineComponent({
+const FormError = /* @__PURE__ */ _export_sfc(_sfc_main$9, [["__scopeId", "data-v-7e76f4e4"]]);
+const _sfc_main$8 = /* @__PURE__ */ defineComponent({
   __name: "Container",
   props: {
     fluid: { type: Boolean, default: false }
@@ -1971,8 +1971,8 @@ const _sfc_main$6 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const Container = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["__scopeId", "data-v-282e6973"]]);
-const _sfc_main$5 = /* @__PURE__ */ defineComponent({
+const Container = /* @__PURE__ */ _export_sfc(_sfc_main$8, [["__scopeId", "data-v-282e6973"]]);
+const _sfc_main$7 = /* @__PURE__ */ defineComponent({
   __name: "Row",
   props: {
     gap: { default: "1rem" },
@@ -2001,8 +2001,8 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const Row = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["__scopeId", "data-v-f82a9ba1"]]);
-const _sfc_main$4 = /* @__PURE__ */ defineComponent({
+const Row = /* @__PURE__ */ _export_sfc(_sfc_main$7, [["__scopeId", "data-v-f82a9ba1"]]);
+const _sfc_main$6 = /* @__PURE__ */ defineComponent({
   __name: "Col",
   props: {
     span: { default: "auto" },
@@ -2048,14 +2048,14 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const Col = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["__scopeId", "data-v-2bedd799"]]);
-const _hoisted_1$3 = ["aria-label"];
-const _hoisted_2$3 = {
+const Col = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["__scopeId", "data-v-2bedd799"]]);
+const _hoisted_1$5 = ["aria-label"];
+const _hoisted_2$5 = {
   key: 0,
   class: "vbwd-cart-icon-badge",
   "data-testid": "cart-icon-badge"
 };
-const _sfc_main$3 = /* @__PURE__ */ defineComponent({
+const _sfc_main$5 = /* @__PURE__ */ defineComponent({
   __name: "CartIcon",
   props: {
     count: {}
@@ -2094,28 +2094,28 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
             createElementVNode("path", { d: "M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" })
           ], -1))
         ], true),
-        __props.count > 0 ? (openBlock(), createElementBlock("span", _hoisted_2$3, toDisplayString(__props.count > 99 ? "99+" : __props.count), 1)) : createCommentVNode("", true)
-      ], 8, _hoisted_1$3);
+        __props.count > 0 ? (openBlock(), createElementBlock("span", _hoisted_2$5, toDisplayString(__props.count > 99 ? "99+" : __props.count), 1)) : createCommentVNode("", true)
+      ], 8, _hoisted_1$5);
     };
   }
 });
-const CartIcon = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["__scopeId", "data-v-9bcdbe98"]]);
-const _hoisted_1$2 = {
+const CartIcon = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["__scopeId", "data-v-9bcdbe98"]]);
+const _hoisted_1$4 = {
   class: "vbwd-cart-item",
   "data-testid": "cart-item"
 };
-const _hoisted_2$2 = { class: "vbwd-cart-item-info" };
-const _hoisted_3$1 = {
+const _hoisted_2$4 = { class: "vbwd-cart-item-info" };
+const _hoisted_3$3 = {
   class: "vbwd-cart-item-name",
   "data-testid": "cart-item-name"
 };
-const _hoisted_4$1 = {
+const _hoisted_4$3 = {
   class: "vbwd-cart-item-type",
   "data-testid": "cart-item-type"
 };
-const _hoisted_5$1 = { class: "vbwd-cart-item-details" };
-const _hoisted_6$1 = { class: "vbwd-cart-item-quantity" };
-const _hoisted_7$1 = ["disabled"];
+const _hoisted_5$3 = { class: "vbwd-cart-item-details" };
+const _hoisted_6$2 = { class: "vbwd-cart-item-quantity" };
+const _hoisted_7$2 = ["disabled"];
 const _hoisted_8 = {
   class: "vbwd-cart-item-qty-value",
   "data-testid": "cart-item-quantity"
@@ -2124,7 +2124,7 @@ const _hoisted_9 = {
   class: "vbwd-cart-item-price",
   "data-testid": "cart-item-price"
 };
-const _sfc_main$2 = /* @__PURE__ */ defineComponent({
+const _sfc_main$4 = /* @__PURE__ */ defineComponent({
   __name: "CartItem",
   props: {
     item: {}
@@ -2147,20 +2147,20 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
       }).format(price);
     }
     return (_ctx, _cache) => {
-      return openBlock(), createElementBlock("div", _hoisted_1$2, [
-        createElementVNode("div", _hoisted_2$2, [
-          createElementVNode("span", _hoisted_3$1, toDisplayString(__props.item.name), 1),
-          createElementVNode("span", _hoisted_4$1, toDisplayString(formatType(__props.item.type)), 1)
+      return openBlock(), createElementBlock("div", _hoisted_1$4, [
+        createElementVNode("div", _hoisted_2$4, [
+          createElementVNode("span", _hoisted_3$3, toDisplayString(__props.item.name), 1),
+          createElementVNode("span", _hoisted_4$3, toDisplayString(formatType(__props.item.type)), 1)
         ]),
-        createElementVNode("div", _hoisted_5$1, [
-          createElementVNode("div", _hoisted_6$1, [
+        createElementVNode("div", _hoisted_5$3, [
+          createElementVNode("div", _hoisted_6$2, [
             createElementVNode("button", {
               type: "button",
               class: "vbwd-cart-item-qty-btn",
               "data-testid": "cart-item-decrease",
               disabled: __props.item.quantity <= 1,
               onClick: _cache[0] || (_cache[0] = ($event) => emit("decrease"))
-            }, " - ", 8, _hoisted_7$1),
+            }, " - ", 8, _hoisted_7$2),
             createElementVNode("span", _hoisted_8, toDisplayString(__props.item.quantity), 1),
             createElementVNode("button", {
               type: "button",
@@ -2195,23 +2195,23 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const CartItem = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v-8dc99341"]]);
-const _hoisted_1$1 = {
+const CartItem = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["__scopeId", "data-v-8dc99341"]]);
+const _hoisted_1$3 = {
   class: "vbwd-cart-empty",
   "data-testid": "cart-empty"
 };
-const _hoisted_2$1 = {
+const _hoisted_2$3 = {
   class: "vbwd-cart-empty-text",
   "data-testid": "cart-empty-message"
 };
-const _sfc_main$1 = /* @__PURE__ */ defineComponent({
+const _sfc_main$3 = /* @__PURE__ */ defineComponent({
   __name: "CartEmpty",
   props: {
     message: { default: "Your cart is empty" }
   },
   setup(__props) {
     return (_ctx, _cache) => {
-      return openBlock(), createElementBlock("div", _hoisted_1$1, [
+      return openBlock(), createElementBlock("div", _hoisted_1$3, [
         renderSlot(_ctx.$slots, "icon", {}, () => [
           _cache[0] || (_cache[0] = createElementVNode("svg", {
             class: "vbwd-cart-empty-icon",
@@ -2235,7 +2235,7 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
             createElementVNode("path", { d: "M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" })
           ], -1))
         ], true),
-        createElementVNode("p", _hoisted_2$1, [
+        createElementVNode("p", _hoisted_2$3, [
           renderSlot(_ctx.$slots, "default", {}, () => [
             createTextVNode(toDisplayString(__props.message), 1)
           ], true)
@@ -2245,7 +2245,7 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const CartEmpty = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["__scopeId", "data-v-320b03d4"]]);
+const CartEmpty = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["__scopeId", "data-v-320b03d4"]]);
 const STORAGE_KEY = "vbwd_cart";
 function loadFromStorage() {
   try {
@@ -2401,27 +2401,27 @@ function createCartStore(storageKey = STORAGE_KEY) {
     };
   });
 }
-const _hoisted_1 = { class: "vbwd-cart-dropdown-header" };
-const _hoisted_2 = {
+const _hoisted_1$2 = { class: "vbwd-cart-dropdown-header" };
+const _hoisted_2$2 = {
   class: "vbwd-cart-dropdown-count",
   "data-testid": "cart-dropdown-count"
 };
-const _hoisted_3 = { class: "vbwd-cart-dropdown-content" };
-const _hoisted_4 = {
+const _hoisted_3$2 = { class: "vbwd-cart-dropdown-content" };
+const _hoisted_4$2 = {
   key: 1,
   class: "vbwd-cart-dropdown-items",
   "data-testid": "cart-dropdown-items"
 };
-const _hoisted_5 = {
+const _hoisted_5$2 = {
   key: 0,
   class: "vbwd-cart-dropdown-footer"
 };
-const _hoisted_6 = { class: "vbwd-cart-dropdown-total" };
-const _hoisted_7 = {
+const _hoisted_6$1 = { class: "vbwd-cart-dropdown-total" };
+const _hoisted_7$1 = {
   class: "vbwd-cart-dropdown-total-value",
   "data-testid": "cart-dropdown-total"
 };
-const _sfc_main = /* @__PURE__ */ defineComponent({
+const _sfc_main$2 = /* @__PURE__ */ defineComponent({
   __name: "CartDropdown",
   props: {
     placement: { default: "bottom-end" }
@@ -2497,17 +2497,17 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
               class: normalizeClass(["vbwd-cart-dropdown-menu", `vbwd-cart-dropdown-${__props.placement}`]),
               "data-testid": "cart-dropdown-menu"
             }, [
-              createElementVNode("div", _hoisted_1, [
+              createElementVNode("div", _hoisted_1$2, [
                 _cache[0] || (_cache[0] = createElementVNode("h3", { class: "vbwd-cart-dropdown-title" }, "Shopping Cart", -1)),
-                createElementVNode("span", _hoisted_2, toDisplayString(unref(itemCount)) + " " + toDisplayString(unref(itemCount) === 1 ? "item" : "items"), 1)
+                createElementVNode("span", _hoisted_2$2, toDisplayString(unref(itemCount)) + " " + toDisplayString(unref(itemCount) === 1 ? "item" : "items"), 1)
               ]),
-              createElementVNode("div", _hoisted_3, [
+              createElementVNode("div", _hoisted_3$2, [
                 unref(isEmpty) ? (openBlock(), createBlock(CartEmpty, { key: 0 }, {
                   action: withCtx(() => [
                     renderSlot(_ctx.$slots, "empty-action", {}, void 0, true)
                   ]),
                   _: 3
-                })) : (openBlock(), createElementBlock("div", _hoisted_4, [
+                })) : (openBlock(), createElementBlock("div", _hoisted_4$2, [
                   (openBlock(true), createElementBlock(Fragment, null, renderList(unref(items), (item) => {
                     return openBlock(), createBlock(CartItem, {
                       key: `${item.type}-${item.id}`,
@@ -2519,10 +2519,10 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
                   }), 128))
                 ]))
               ]),
-              !unref(isEmpty) ? (openBlock(), createElementBlock("div", _hoisted_5, [
-                createElementVNode("div", _hoisted_6, [
+              !unref(isEmpty) ? (openBlock(), createElementBlock("div", _hoisted_5$2, [
+                createElementVNode("div", _hoisted_6$1, [
                   _cache[1] || (_cache[1] = createElementVNode("span", null, "Total:", -1)),
-                  createElementVNode("span", _hoisted_7, toDisplayString(formatPrice(unref(total))), 1)
+                  createElementVNode("span", _hoisted_7$1, toDisplayString(formatPrice(unref(total))), 1)
                 ]),
                 createElementVNode("div", { class: "vbwd-cart-dropdown-actions" }, [
                   createElementVNode("button", {
@@ -2547,7 +2547,244 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const CartDropdown = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-5b63da9d"]]);
+const CartDropdown = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v-5b63da9d"]]);
+const registry$1 = {};
+function registerPaymentDataContributor(key, contributor) {
+  registry$1[key] = contributor;
+}
+function getPaymentDataContributor(key) {
+  return registry$1[key];
+}
+function getPaymentDataContributors() {
+  return { ...registry$1 };
+}
+function _resetPaymentDataContributors() {
+  for (const key of Object.keys(registry$1)) {
+    delete registry$1[key];
+  }
+}
+const _hoisted_1$1 = {
+  key: 0,
+  class: "vbwd-payment-data",
+  "data-testid": "payment-data-block"
+};
+const _hoisted_2$1 = ["data-testid"];
+const _hoisted_3$1 = { class: "vbwd-payment-data__label" };
+const _hoisted_4$1 = { class: "vbwd-payment-data__value" };
+const _hoisted_5$1 = ["href"];
+const _sfc_main$1 = /* @__PURE__ */ defineComponent({
+  __name: "PaymentDataBlock",
+  props: {
+    metadata: { default: () => ({}) },
+    paymentMethod: { default: null }
+  },
+  setup(__props) {
+    const props = __props;
+    function buildEntry(namespaceKey, payload, contributor, fromFallback) {
+      const label = (contributor == null ? void 0 : contributor.label) ?? namespaceKey;
+      const text = (contributor == null ? void 0 : contributor.component) ? "" : (contributor == null ? void 0 : contributor.format) ? contributor.format(payload) : JSON.stringify(payload);
+      const link = (contributor == null ? void 0 : contributor.component) ? null : (contributor == null ? void 0 : contributor.link) ? contributor.link(payload) : null;
+      return {
+        key: namespaceKey,
+        component: contributor == null ? void 0 : contributor.component,
+        label,
+        text,
+        link,
+        data: payload,
+        order: (contributor == null ? void 0 : contributor.order) ?? 100,
+        fromPaymentMethodFallback: fromFallback
+      };
+    }
+    const renderableEntries = computed(() => {
+      const metadata = props.metadata ?? {};
+      const method = (props.paymentMethod || "").toLowerCase();
+      const seen = /* @__PURE__ */ new Set();
+      const entries = [];
+      for (const namespaceKey of Object.keys(metadata)) {
+        const payload = metadata[namespaceKey];
+        if (payload === null || payload === void 0) continue;
+        seen.add(namespaceKey);
+        entries.push(buildEntry(namespaceKey, payload, getPaymentDataContributor(namespaceKey), false));
+      }
+      if (method) {
+        for (const [namespaceKey, contributor] of Object.entries(getPaymentDataContributors())) {
+          if (seen.has(namespaceKey)) continue;
+          const matchers = contributor.matchPaymentMethod;
+          const matcherList = Array.isArray(matchers) ? matchers : matchers ? [matchers] : [];
+          if (matcherList.some((candidate) => candidate.toLowerCase() === method)) {
+            entries.push(buildEntry(namespaceKey, {}, contributor, true));
+          }
+        }
+      }
+      entries.sort((left, right) => left.order - right.order || left.key.localeCompare(right.key));
+      return entries;
+    });
+    const hasRenderableEntries = computed(() => renderableEntries.value.length > 0);
+    return (_ctx, _cache) => {
+      return hasRenderableEntries.value ? (openBlock(), createElementBlock("div", _hoisted_1$1, [
+        (openBlock(true), createElementBlock(Fragment, null, renderList(renderableEntries.value, (entry) => {
+          return openBlock(), createElementBlock("div", {
+            key: entry.key,
+            class: normalizeClass(["vbwd-payment-data__row", { "vbwd-payment-data__row--fallback": entry.fromPaymentMethodFallback }]),
+            "data-testid": `payment-data-${entry.key}`
+          }, [
+            createElementVNode("span", _hoisted_3$1, toDisplayString(entry.label), 1),
+            createElementVNode("span", _hoisted_4$1, [
+              entry.component ? (openBlock(), createBlock(resolveDynamicComponent(entry.component), {
+                key: 0,
+                data: entry.data
+              }, null, 8, ["data"])) : entry.link ? (openBlock(), createElementBlock("a", {
+                key: 1,
+                href: entry.link,
+                target: "_blank",
+                rel: "noopener noreferrer",
+                class: "vbwd-payment-data__link"
+              }, [
+                createTextVNode(toDisplayString(entry.text) + " ", 1),
+                _cache[0] || (_cache[0] = createElementVNode("svg", {
+                  class: "vbwd-payment-data__link-icon",
+                  viewBox: "0 0 24 24",
+                  width: "12",
+                  height: "12",
+                  fill: "none",
+                  stroke: "currentColor",
+                  "stroke-width": "2",
+                  "stroke-linecap": "round",
+                  "stroke-linejoin": "round",
+                  "aria-hidden": "true"
+                }, [
+                  createElementVNode("path", { d: "M14 4h6v6" }),
+                  createElementVNode("path", { d: "M10 14L20 4" }),
+                  createElementVNode("path", { d: "M19 13v6a1 1 0 01-1 1H5a1 1 0 01-1-1V6a1 1 0 011-1h6" })
+                ], -1))
+              ], 8, _hoisted_5$1)) : (openBlock(), createElementBlock(Fragment, { key: 2 }, [
+                createTextVNode(toDisplayString(entry.text), 1)
+              ], 64))
+            ])
+          ], 10, _hoisted_2$1);
+        }), 128))
+      ])) : createCommentVNode("", true);
+    };
+  }
+});
+const PaymentDataBlock = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["__scopeId", "data-v-6e610b22"]]);
+const registry = {};
+function registerPaymentInformationContributor(key, contributor) {
+  registry[key] = contributor;
+}
+function getPaymentInformationContributor(key) {
+  return registry[key];
+}
+function getPaymentInformationContributors() {
+  return { ...registry };
+}
+function _resetPaymentInformationContributors() {
+  for (const key of Object.keys(registry)) {
+    delete registry[key];
+  }
+}
+const _hoisted_1 = {
+  key: 0,
+  class: "vbwd-payment-information",
+  "data-testid": "payment-information-block"
+};
+const _hoisted_2 = { class: "vbwd-payment-information__heading" };
+const _hoisted_3 = { class: "vbwd-payment-information__table" };
+const _hoisted_4 = ["data-testid"];
+const _hoisted_5 = {
+  scope: "row",
+  class: "vbwd-payment-information__label"
+};
+const _hoisted_6 = { class: "vbwd-payment-information__value" };
+const _hoisted_7 = ["href"];
+const _sfc_main = /* @__PURE__ */ defineComponent({
+  __name: "PaymentInformationBlock",
+  props: {
+    metadata: { default: () => ({}) },
+    paymentMethod: { default: null },
+    heading: { default: "Payment information" }
+  },
+  setup(__props) {
+    const props = __props;
+    const rows = computed(() => {
+      const metadata = props.metadata ?? {};
+      const method = (props.paymentMethod || "").toLowerCase();
+      const seen = /* @__PURE__ */ new Set();
+      const collected = [];
+      for (const namespaceKey of Object.keys(metadata)) {
+        const payload = metadata[namespaceKey];
+        if (payload === null || payload === void 0) continue;
+        seen.add(namespaceKey);
+        const contributor = getPaymentInformationContributor(namespaceKey);
+        if (!contributor) continue;
+        for (const row of contributor.rows(payload)) {
+          collected.push({
+            ...row,
+            namespace: namespaceKey,
+            contributorOrder: contributor.order ?? 100
+          });
+        }
+      }
+      if (method) {
+        for (const [namespaceKey, contributor] of Object.entries(
+          getPaymentInformationContributors()
+        )) {
+          if (seen.has(namespaceKey)) continue;
+          const matchers = contributor.matchPaymentMethod;
+          const matcherList = Array.isArray(matchers) ? matchers : matchers ? [matchers] : [];
+          if (matcherList.some((candidate) => candidate.toLowerCase() === method)) {
+            for (const row of contributor.rows({})) {
+              collected.push({
+                ...row,
+                namespace: namespaceKey,
+                contributorOrder: contributor.order ?? 100
+              });
+            }
+          }
+        }
+      }
+      collected.sort((left, right) => {
+        const contributorDelta = left.contributorOrder - right.contributorOrder;
+        if (contributorDelta !== 0) return contributorDelta;
+        return (left.order ?? 100) - (right.order ?? 100);
+      });
+      return collected;
+    });
+    const hasRows = computed(() => rows.value.length > 0);
+    function normalize(label) {
+      return label.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+    }
+    return (_ctx, _cache) => {
+      return hasRows.value ? (openBlock(), createElementBlock("section", _hoisted_1, [
+        createElementVNode("h3", _hoisted_2, toDisplayString(__props.heading), 1),
+        createElementVNode("table", _hoisted_3, [
+          createElementVNode("tbody", null, [
+            (openBlock(true), createElementBlock(Fragment, null, renderList(rows.value, (row, index) => {
+              return openBlock(), createElementBlock("tr", {
+                key: `${row.namespace}-${row.label}-${index}`,
+                "data-testid": `payment-information-${row.namespace}-${normalize(row.label)}`
+              }, [
+                createElementVNode("th", _hoisted_5, toDisplayString(row.label), 1),
+                createElementVNode("td", _hoisted_6, [
+                  row.link ? (openBlock(), createElementBlock("a", {
+                    key: 0,
+                    href: row.link,
+                    target: "_blank",
+                    rel: "noopener noreferrer",
+                    class: "vbwd-payment-information__link"
+                  }, toDisplayString(row.value), 9, _hoisted_7)) : (openBlock(), createElementBlock(Fragment, { key: 1 }, [
+                    createTextVNode(toDisplayString(row.value), 1)
+                  ], 64))
+                ])
+              ], 8, _hoisted_4);
+            }), 128))
+          ])
+        ])
+      ])) : createCommentVNode("", true);
+    };
+  }
+});
+const PaymentInformationBlock = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-26480a51"]]);
 let storeConfig = null;
 function configureAuthStore(config) {
   storeConfig = {
@@ -3021,9 +3258,9 @@ function ensurePluginsDir(pluginsDir) {
 }
 const VERSION = "1.0.0";
 class PluginManagerCLI {
-  constructor(registry, options) {
+  constructor(registry2, options) {
     __publicField(this, "options");
-    this.registry = registry;
+    this.registry = registry2;
     this.options = {
       pluginsDir: options.pluginsDir || "./src/plugins",
       configFile: options.configFile || "./plugins.json",
@@ -3317,6 +3554,31 @@ For more information, see the documentation.
     return "not-installed";
   }
 }
+const override = ref(null);
+const payButtonLabelOverride = override;
+function setPayButtonLabelOverride(label) {
+  override.value = label;
+}
+const CENTS_EPSILON = 1e-9;
+function roundToCents(value) {
+  if (value == null || Number.isNaN(value)) return 0;
+  return Math.round((value + CENTS_EPSILON) * 100) / 100;
+}
+function formatMoney(value, options = {}) {
+  const numericValue = value == null || Number.isNaN(value) ? 0 : Number(value);
+  const rounded = roundToCents(numericValue);
+  const currency = (options.currency || "USD").toUpperCase();
+  try {
+    return new Intl.NumberFormat(options.locale, {
+      style: "currency",
+      currency,
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    }).format(rounded);
+  } catch {
+    return `${currency === "USD" ? "$" : ""}${rounded.toFixed(2)}`;
+  }
+}
 const version = "0.1.0";
 const name = "@vbwd/view-component";
 export {
@@ -3344,6 +3606,8 @@ export {
   Modal,
   NetworkError,
   Pagination,
+  PaymentDataBlock,
+  PaymentInformationBlock,
   PlatformSDK,
   PluginManagerCLI,
   PluginRegistry,
@@ -3352,6 +3616,8 @@ export {
   Spinner,
   Table,
   ValidationError,
+  _resetPaymentDataContributors,
+  _resetPaymentInformationContributors,
   authGuard,
   configureAuthStore,
   configureEventBus,
@@ -3361,12 +3627,22 @@ export {
   eventBus,
   fetchPluginConfigs,
   fetchPluginManifest,
+  formatMoney,
+  getPaymentDataContributor,
+  getPaymentDataContributors,
+  getPaymentInformationContributor,
+  getPaymentInformationContributors,
   isValidSemver,
   loadPluginConfig,
   name,
+  payButtonLabelOverride,
+  registerPaymentDataContributor,
+  registerPaymentInformationContributor,
   roleGuard,
+  roundToCents,
   satisfiesVersion,
   savePluginConfig,
+  setPayButtonLabelOverride,
   useAuthStore,
   useCartStore,
   usePaymentRedirect,

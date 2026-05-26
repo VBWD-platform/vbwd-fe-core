@@ -30,6 +30,12 @@ export * from './composables';
 // CLI Plugin Manager
 export * from './cli';
 
+// Registries (agnostic seams for plugin contributions)
+export * from './registries';
+
+// Utilities (money formatting, etc.)
+export * from './utils';
+
 // Authentication (Sprint 3)
 // export * from './auth';
 

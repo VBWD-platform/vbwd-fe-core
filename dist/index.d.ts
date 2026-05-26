@@ -12,4 +12,6 @@ export * from './stores';
 export * from './guards';
 export * from './composables';
 export * from './cli';
+export * from './registries';
+export * from './utils';
 //# sourceMappingURL=index.d.ts.map

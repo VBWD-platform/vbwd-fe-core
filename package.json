@@ -16,8 +16,10 @@
       "import": "./dist/components/index.mjs",
       "types": "./dist/components/index.d.ts"
     },
-    "./styles": "./dist/styles/index.css"
+    "./styles": "./dist/style.css",
+    "./dist/style.css": "./dist/style.css"
   },
+  "style": "./dist/style.css",
   "repository": {
     "type": "git",
     "url": "https://github.com/vbwd/view-component.git"
