@@ -4,7 +4,8 @@ import type {
   IEventBus,
   IRouteConfig,
   ComponentDefinition,
-  IStoreOptions
+  IStoreOptions,
+  INavigationGuard
 } from './types';
 import { deepMerge } from '../utils/deep-merge';
 
@@ -34,6 +35,9 @@ export class PlatformSDK implements IPlatformSDK {
 
   // Collected translations
   private translations: Record<string, Record<string, unknown>> = {};
+
+  // Registered router beforeEach guards (plugin install order)
+  private routerGuards: INavigationGuard[] = [];
 
   // vue-i18n instance (optional — injected at bootstrap)
   private i18n: I18nInstance | null = null;
@@ -111,5 +115,21 @@ export class PlatformSDK implements IPlatformSDK {
    */
   getTranslations(): Record<string, Record<string, unknown>> {
     return { ...this.translations };
+  }
+
+  /**
+   * Register a router beforeEach guard. The host wires every registered
+   * guard into the app router in plugin installation order.
+   */
+  addRouterGuard(guard: INavigationGuard): void {
+    this.routerGuards.push(guard);
+  }
+
+  /**
+   * Get all registered router guards. Returns a copy so external
+   * mutation of the array cannot corrupt the internal registry.
+   */
+  getRouterGuards(): INavigationGuard[] {
+    return [...this.routerGuards];
   }
 }

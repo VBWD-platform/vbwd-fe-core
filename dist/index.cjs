@@ -338,6 +338,8 @@ class PlatformSDK {
     __publicField(this, "stores", {});
     // Collected translations
     __publicField(this, "translations", {});
+    // Registered router beforeEach guards (plugin install order)
+    __publicField(this, "routerGuards", []);
     // vue-i18n instance (optional — injected at bootstrap)
     __publicField(this, "i18n", null);
     this.i18n = i18n || null;
@@ -402,6 +404,20 @@ class PlatformSDK {
    */
   getTranslations() {
     return { ...this.translations };
+  }
+  /**
+   * Register a router beforeEach guard. The host wires every registered
+   * guard into the app router in plugin installation order.
+   */
+  addRouterGuard(guard) {
+    this.routerGuards.push(guard);
+  }
+  /**
+   * Get all registered router guards. Returns a copy so external
+   * mutation of the array cannot corrupt the internal registry.
+   */
+  getRouterGuards() {
+    return [...this.routerGuards];
   }
 }
 const DEFAULT_MANIFEST_PATH = "/plugins.json";

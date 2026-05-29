@@ -1,4 +1,4 @@
-import type { IPlatformSDK, IApiClient, IEventBus, IRouteConfig, ComponentDefinition, IStoreOptions } from './types';
+import type { IPlatformSDK, IApiClient, IEventBus, IRouteConfig, ComponentDefinition, IStoreOptions, INavigationGuard } from './types';
 interface I18nInstance {
     global: {
         mergeLocaleMessage(locale: string, messages: Record<string, unknown>): void;
@@ -15,6 +15,7 @@ export declare class PlatformSDK implements IPlatformSDK {
     private components;
     private stores;
     private translations;
+    private routerGuards;
     private i18n;
     constructor(i18n?: I18nInstance);
     /**
@@ -53,6 +54,16 @@ export declare class PlatformSDK implements IPlatformSDK {
      * Get all collected translations
      */
     getTranslations(): Record<string, Record<string, unknown>>;
+    /**
+     * Register a router beforeEach guard. The host wires every registered
+     * guard into the app router in plugin installation order.
+     */
+    addRouterGuard(guard: INavigationGuard): void;
+    /**
+     * Get all registered router guards. Returns a copy so external
+     * mutation of the array cannot corrupt the internal registry.
+     */
+    getRouterGuards(): INavigationGuard[];
 }
 export {};
 //# sourceMappingURL=PlatformSDK.d.ts.map

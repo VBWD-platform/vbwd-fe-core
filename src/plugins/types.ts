@@ -199,6 +199,49 @@ export interface IStoreOptions {
 }
 
 /**
+ * Minimal route-location shape passed to navigation guards.
+ *
+ * Intentionally narrower than vue-router's RouteLocationNormalized so the
+ * SDK does not pull vue-router into its public API surface — plugins
+ * receive the fields they actually need (path, name, params, query) and
+ * are free to cast to the host router's richer type if they need more.
+ */
+export interface IRouteLocation {
+  path: string;
+  fullPath: string;
+  name: string | symbol | null | undefined;
+  params: Record<string, string | string[]>;
+  query: Record<string, string | string[] | null>;
+  meta: Record<string, unknown>;
+}
+
+/**
+ * Navigation guard return — either a redirect target (path or location),
+ * `false` to cancel, or `undefined`/`void` to continue. Matches vue-router's
+ * NavigationGuardReturn but kept SDK-local for the same isolation reason
+ * as IRouteLocation above.
+ */
+export type INavigationGuardResult =
+  | void
+  | undefined
+  | false
+  | string
+  | { path: string; replace?: boolean };
+
+/**
+ * Router navigation guard registered by a plugin via `sdk.addRouterGuard`.
+ *
+ * The host wires every registered guard into the app's `router.beforeEach`
+ * in plugin-installation order. Plugins must NOT perform expensive work
+ * inside a guard — fetch once on install, cache, and read from the cache
+ * here.
+ */
+export type INavigationGuard = (
+  to: IRouteLocation,
+  from: IRouteLocation,
+) => INavigationGuardResult | Promise<INavigationGuardResult>;
+
+/**
  * Platform SDK interface
  * Provides core APIs to plugins during installation
  */
@@ -262,4 +305,22 @@ export interface IPlatformSDK {
    * Get all collected translations
    */
   getTranslations(): Record<string, Record<string, unknown>>;
+
+  /**
+   * Register a Vue Router `beforeEach` guard.
+   *
+   * Each registered guard is wired into the host app's router in plugin
+   * installation order. Use this for cross-cutting navigation concerns
+   * the plugin owns (CMS routing-rule middleware, auth on plugin pages,
+   * feature-flag redirects, etc.). Do NOT perform expensive work inside
+   * the guard — fetch once on install + cache; the guard runs on every
+   * navigation.
+   */
+  addRouterGuard(guard: INavigationGuard): void;
+
+  /**
+   * Get all registered router guards in installation order.
+   * The host iterates this list and wires each into `router.beforeEach`.
+   */
+  getRouterGuards(): INavigationGuard[];
 }
