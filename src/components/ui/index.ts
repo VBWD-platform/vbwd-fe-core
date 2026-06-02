@@ -3,6 +3,7 @@ export { default as Alert } from './Alert.vue';
 export { default as Badge } from './Badge.vue';
 export { default as Button } from './Button.vue';
 export { default as Card } from './Card.vue';
+export { default as CouponInput } from './CouponInput.vue';
 export { default as DetailField } from './DetailField.vue';
 export { default as DetailGrid } from './DetailGrid.vue';
 export { default as Dropdown } from './Dropdown.vue';

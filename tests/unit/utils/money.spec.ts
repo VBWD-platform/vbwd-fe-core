@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { roundToCents, formatMoney } from '@/utils/money';
+import { roundToCents, formatMoney, isZeroTotal } from '@/utils/money';
 
 describe('roundToCents', () => {
   it('rounds the third decimal half-up (user spec)', () => {
@@ -24,6 +24,38 @@ describe('roundToCents', () => {
   it('coerces null / NaN to 0 (defensive)', () => {
     expect(roundToCents(null as unknown as number)).toBe(0);
     expect(roundToCents(Number.NaN)).toBe(0);
+  });
+});
+
+describe('isZeroTotal', () => {
+  it('is true when there is nothing to pay (zero)', () => {
+    expect(isZeroTotal(0)).toBe(true);
+  });
+
+  it('is false for any positive cents amount', () => {
+    expect(isZeroTotal(10)).toBe(false);
+    expect(isZeroTotal(0.01)).toBe(false);
+  });
+
+  it('treats sub-cent / floating-point noise as zero (rounds to cents first)', () => {
+    // A discount that lands a hair below zero, or binary-fraction noise.
+    expect(isZeroTotal(0.004)).toBe(true);
+    expect(isZeroTotal(0.000000001)).toBe(true);
+    expect(isZeroTotal(29.99 - 29.99)).toBe(true);
+  });
+
+  it('is true for negative totals (still nothing to pay)', () => {
+    expect(isZeroTotal(-5)).toBe(true);
+  });
+
+  it('a half-cent rounds up and is therefore payable', () => {
+    expect(isZeroTotal(0.005)).toBe(false);
+  });
+
+  it('coerces null / undefined / NaN to zero (defensive)', () => {
+    expect(isZeroTotal(null)).toBe(true);
+    expect(isZeroTotal(undefined)).toBe(true);
+    expect(isZeroTotal(Number.NaN)).toBe(true);
   });
 });
 

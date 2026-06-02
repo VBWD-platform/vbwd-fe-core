@@ -3,7 +3,7 @@ var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { en
 var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
 var _a;
 import axios from "axios";
-import { defineComponent, ref, computed, openBlock, createElementBlock, normalizeClass, createElementVNode, renderSlot, createBlock, resolveDynamicComponent, toDisplayString, createCommentVNode, createTextVNode, h, withCtx, normalizeStyle, onMounted, onUnmounted, createVNode, Transition, Fragment, renderList, watch, Teleport, withModifiers, unref } from "vue";
+import { defineComponent, ref, computed, openBlock, createElementBlock, normalizeClass, createElementVNode, renderSlot, createBlock, resolveDynamicComponent, toDisplayString, createCommentVNode, createTextVNode, h, withDirectives, withKeys, vModelText, withCtx, normalizeStyle, onMounted, onUnmounted, createVNode, Transition, Fragment, renderList, watch, Teleport, withModifiers, unref } from "vue";
 import { defineStore, storeToRefs } from "pinia";
 import * as fs from "fs";
 import * as path from "path";
@@ -1014,14 +1014,14 @@ const AppEvents = {
   PLUGIN_ERROR: "plugin:error",
   PLUGIN_STOPPED: "plugin:stopped"
 };
-const _hoisted_1$h = { class: "vbwd-alert-icon" };
-const _hoisted_2$g = { class: "vbwd-alert-content" };
-const _hoisted_3$c = {
+const _hoisted_1$i = { class: "vbwd-alert-icon" };
+const _hoisted_2$h = { class: "vbwd-alert-content" };
+const _hoisted_3$d = {
   key: 0,
   class: "vbwd-alert-title"
 };
-const _hoisted_4$b = { class: "vbwd-alert-message" };
-const _sfc_main$n = /* @__PURE__ */ defineComponent({
+const _hoisted_4$c = { class: "vbwd-alert-message" };
+const _sfc_main$o = /* @__PURE__ */ defineComponent({
   __name: "Alert",
   props: {
     variant: { default: "info" },
@@ -1059,14 +1059,14 @@ const _sfc_main$n = /* @__PURE__ */ defineComponent({
         class: normalizeClass(["vbwd-alert", `vbwd-alert-${__props.variant}`]),
         role: "alert"
       }, [
-        createElementVNode("div", _hoisted_1$h, [
+        createElementVNode("div", _hoisted_1$i, [
           renderSlot(_ctx.$slots, "icon", {}, () => [
             (openBlock(), createBlock(resolveDynamicComponent(iconComponent.value)))
           ], true)
         ]),
-        createElementVNode("div", _hoisted_2$g, [
-          __props.title ? (openBlock(), createElementBlock("h4", _hoisted_3$c, toDisplayString(__props.title), 1)) : createCommentVNode("", true),
-          createElementVNode("p", _hoisted_4$b, [
+        createElementVNode("div", _hoisted_2$h, [
+          __props.title ? (openBlock(), createElementBlock("h4", _hoisted_3$d, toDisplayString(__props.title), 1)) : createCommentVNode("", true),
+          createElementVNode("p", _hoisted_4$c, [
             renderSlot(_ctx.$slots, "default", {}, () => [
               createTextVNode(toDisplayString(__props.message), 1)
             ], true)
@@ -1102,8 +1102,8 @@ const _export_sfc = (sfc, props) => {
   }
   return target;
 };
-const Alert = /* @__PURE__ */ _export_sfc(_sfc_main$n, [["__scopeId", "data-v-64c3ffe7"]]);
-const _sfc_main$m = /* @__PURE__ */ defineComponent({
+const Alert = /* @__PURE__ */ _export_sfc(_sfc_main$o, [["__scopeId", "data-v-64c3ffe7"]]);
+const _sfc_main$n = /* @__PURE__ */ defineComponent({
   __name: "Badge",
   props: {
     label: {},
@@ -1122,8 +1122,8 @@ const _sfc_main$m = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const Badge = /* @__PURE__ */ _export_sfc(_sfc_main$m, [["__scopeId", "data-v-4df2bf4f"]]);
-const _sfc_main$l = /* @__PURE__ */ defineComponent({
+const Badge = /* @__PURE__ */ _export_sfc(_sfc_main$n, [["__scopeId", "data-v-4df2bf4f"]]);
+const _sfc_main$m = /* @__PURE__ */ defineComponent({
   __name: "Spinner",
   props: {
     size: { default: "md" }
@@ -1153,9 +1153,9 @@ const _sfc_main$l = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const Spinner = /* @__PURE__ */ _export_sfc(_sfc_main$l, [["__scopeId", "data-v-3dad9f75"]]);
-const _hoisted_1$g = ["type", "disabled"];
-const _sfc_main$k = /* @__PURE__ */ defineComponent({
+const Spinner = /* @__PURE__ */ _export_sfc(_sfc_main$m, [["__scopeId", "data-v-3dad9f75"]]);
+const _hoisted_1$h = ["type", "disabled"];
+const _sfc_main$l = /* @__PURE__ */ defineComponent({
   __name: "Button",
   props: {
     type: { default: "button" },
@@ -1190,30 +1190,30 @@ const _sfc_main$k = /* @__PURE__ */ defineComponent({
           class: "vbwd-btn-spinner"
         })) : createCommentVNode("", true),
         renderSlot(_ctx.$slots, "default", {}, void 0, true)
-      ], 10, _hoisted_1$g);
+      ], 10, _hoisted_1$h);
     };
   }
 });
-const Button = /* @__PURE__ */ _export_sfc(_sfc_main$k, [["__scopeId", "data-v-496cc81d"]]);
-const _hoisted_1$f = {
+const Button = /* @__PURE__ */ _export_sfc(_sfc_main$l, [["__scopeId", "data-v-496cc81d"]]);
+const _hoisted_1$g = {
   key: 0,
   class: "vbwd-card-header"
 };
-const _hoisted_2$f = { class: "vbwd-card-title" };
-const _hoisted_3$b = {
+const _hoisted_2$g = { class: "vbwd-card-title" };
+const _hoisted_3$c = {
   key: 0,
   class: "vbwd-card-subtitle"
 };
-const _hoisted_4$a = {
+const _hoisted_4$b = {
   key: 0,
   class: "vbwd-card-actions"
 };
-const _hoisted_5$7 = { class: "vbwd-card-body" };
-const _hoisted_6$5 = {
+const _hoisted_5$8 = { class: "vbwd-card-body" };
+const _hoisted_6$6 = {
   key: 1,
   class: "vbwd-card-footer"
 };
-const _sfc_main$j = /* @__PURE__ */ defineComponent({
+const _sfc_main$k = /* @__PURE__ */ defineComponent({
   __name: "Card",
   props: {
     title: {},
@@ -1225,26 +1225,106 @@ const _sfc_main$j = /* @__PURE__ */ defineComponent({
       return openBlock(), createElementBlock("div", {
         class: normalizeClass(["vbwd-card", { "vbwd-card-hoverable": __props.hoverable }])
       }, [
-        __props.title || _ctx.$slots.header ? (openBlock(), createElementBlock("header", _hoisted_1$f, [
+        __props.title || _ctx.$slots.header ? (openBlock(), createElementBlock("header", _hoisted_1$g, [
           renderSlot(_ctx.$slots, "header", {}, () => [
-            createElementVNode("h3", _hoisted_2$f, toDisplayString(__props.title), 1),
-            __props.subtitle ? (openBlock(), createElementBlock("p", _hoisted_3$b, toDisplayString(__props.subtitle), 1)) : createCommentVNode("", true)
+            createElementVNode("h3", _hoisted_2$g, toDisplayString(__props.title), 1),
+            __props.subtitle ? (openBlock(), createElementBlock("p", _hoisted_3$c, toDisplayString(__props.subtitle), 1)) : createCommentVNode("", true)
           ], true),
-          _ctx.$slots.actions ? (openBlock(), createElementBlock("div", _hoisted_4$a, [
+          _ctx.$slots.actions ? (openBlock(), createElementBlock("div", _hoisted_4$b, [
             renderSlot(_ctx.$slots, "actions", {}, void 0, true)
           ])) : createCommentVNode("", true)
         ])) : createCommentVNode("", true),
-        createElementVNode("div", _hoisted_5$7, [
+        createElementVNode("div", _hoisted_5$8, [
           renderSlot(_ctx.$slots, "default", {}, void 0, true)
         ]),
-        _ctx.$slots.footer ? (openBlock(), createElementBlock("footer", _hoisted_6$5, [
+        _ctx.$slots.footer ? (openBlock(), createElementBlock("footer", _hoisted_6$6, [
           renderSlot(_ctx.$slots, "footer", {}, void 0, true)
         ])) : createCommentVNode("", true)
       ], 2);
     };
   }
 });
-const Card = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["__scopeId", "data-v-3c45206a"]]);
+const Card = /* @__PURE__ */ _export_sfc(_sfc_main$k, [["__scopeId", "data-v-3c45206a"]]);
+const _hoisted_1$f = { class: "vbwd-coupon" };
+const _hoisted_2$f = {
+  key: 0,
+  class: "vbwd-coupon__applied",
+  "data-testid": "coupon-applied"
+};
+const _hoisted_3$b = { class: "vbwd-coupon__applied-label" };
+const _hoisted_4$a = ["disabled"];
+const _hoisted_5$7 = {
+  key: 1,
+  class: "vbwd-coupon__row"
+};
+const _hoisted_6$5 = ["placeholder", "disabled"];
+const _hoisted_7$5 = ["disabled"];
+const _hoisted_8$2 = {
+  key: 2,
+  class: "vbwd-coupon__error",
+  "data-testid": "coupon-error"
+};
+const _sfc_main$j = /* @__PURE__ */ defineComponent({
+  __name: "CouponInput",
+  props: {
+    appliedCode: { default: null },
+    error: { default: null },
+    loading: { type: Boolean, default: false },
+    placeholder: { default: "Coupon code" },
+    applyLabel: { default: "Apply" },
+    removeLabel: { default: "Remove" },
+    appliedLabel: { default: "Coupon applied:" }
+  },
+  emits: ["apply", "clear"],
+  setup(__props, { emit: __emit }) {
+    const props = __props;
+    const emit = __emit;
+    const code = ref("");
+    function onApply() {
+      const trimmed = code.value.trim();
+      if (!trimmed || props.loading) {
+        return;
+      }
+      emit("apply", trimmed);
+    }
+    return (_ctx, _cache) => {
+      return openBlock(), createElementBlock("div", _hoisted_1$f, [
+        __props.appliedCode ? (openBlock(), createElementBlock("div", _hoisted_2$f, [
+          createElementVNode("span", _hoisted_3$b, toDisplayString(__props.appliedLabel) + " " + toDisplayString(__props.appliedCode), 1),
+          createElementVNode("button", {
+            type: "button",
+            class: "vbwd-coupon__clear",
+            "data-testid": "coupon-clear",
+            disabled: __props.loading,
+            onClick: _cache[0] || (_cache[0] = ($event) => _ctx.$emit("clear"))
+          }, toDisplayString(__props.removeLabel), 9, _hoisted_4$a)
+        ])) : (openBlock(), createElementBlock("div", _hoisted_5$7, [
+          withDirectives(createElementVNode("input", {
+            "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => code.value = $event),
+            type: "text",
+            class: "vbwd-coupon__input",
+            "data-testid": "coupon-input",
+            placeholder: __props.placeholder,
+            disabled: __props.loading,
+            autocomplete: "off",
+            onKeyup: withKeys(onApply, ["enter"])
+          }, null, 40, _hoisted_6$5), [
+            [vModelText, code.value]
+          ]),
+          createElementVNode("button", {
+            type: "button",
+            class: "vbwd-coupon__apply",
+            "data-testid": "coupon-apply",
+            disabled: __props.loading || !code.value.trim(),
+            onClick: onApply
+          }, toDisplayString(__props.loading ? "…" : __props.applyLabel), 9, _hoisted_7$5)
+        ])),
+        __props.error ? (openBlock(), createElementBlock("p", _hoisted_8$2, toDisplayString(__props.error), 1)) : createCommentVNode("", true)
+      ]);
+    };
+  }
+});
+const CouponInput = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["__scopeId", "data-v-dc293241"]]);
 const _hoisted_1$e = { class: "vbwd-detail-field" };
 const _hoisted_2$e = { class: "vbwd-detail-field-label" };
 const _hoisted_3$a = {
@@ -3580,6 +3660,9 @@ function roundToCents(value) {
   if (value == null || Number.isNaN(value)) return 0;
   return Math.round((value + CENTS_EPSILON) * 100) / 100;
 }
+function isZeroTotal(value) {
+  return roundToCents(Number(value)) <= 0;
+}
 function formatMoney(value, options = {}) {
   const numericValue = value == null || Number.isNaN(value) ? 0 : Number(value);
   const rounded = roundToCents(numericValue);
@@ -3611,6 +3694,7 @@ export {
   CartItem,
   Col,
   Container,
+  CouponInput,
   DetailField,
   DetailGrid,
   Dropdown,
@@ -3649,6 +3733,7 @@ export {
   getPaymentInformationContributor,
   getPaymentInformationContributors,
   isValidSemver,
+  isZeroTotal,
   loadPluginConfig,
   name,
   payButtonLabelOverride,

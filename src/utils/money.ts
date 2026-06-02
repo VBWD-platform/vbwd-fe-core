@@ -24,6 +24,23 @@ export function roundToCents(value: number): number {
   return Math.round((value + CENTS_EPSILON) * 100) / 100;
 }
 
+/**
+ * Whether a checkout total represents "nothing to pay" — the **Pay Zero** case.
+ *
+ * The value is rounded to cents first, so both binary-fraction noise
+ * (``0.000000001``) and a discount that lands a hair below zero are treated as
+ * zero. A negative total (over-discounted) is also "nothing to pay". This is
+ * the single source of truth shared by every checkout flow when deciding
+ * whether to skip payment-method selection — mirrors the iOS
+ * ``CheckoutViewModel.isZeroTotal``.
+ *
+ * Pass the **net** total (what the user actually pays, after discounts), not
+ * the gross — a plan discounted to zero by a 100% coupon is still Pay Zero.
+ */
+export function isZeroTotal(value: number | null | undefined): boolean {
+  return roundToCents(Number(value)) <= 0;
+}
+
 export interface FormatMoneyOptions {
   /** ISO-4217 currency code. Defaults to ``USD``. */
   currency?: string;
