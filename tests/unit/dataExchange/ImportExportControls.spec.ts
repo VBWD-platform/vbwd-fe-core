@@ -50,6 +50,63 @@ describe('ImportExportControls — permission rendering', () => {
   });
 });
 
+describe('ImportExportControls — granular action props', () => {
+  it('shows all four actions by default (back-compat)', () => {
+    const wrapper = mount(ImportExportControls, { props: { ...baseProps } });
+    expect(wrapper.find('[data-test="export-all"]').exists()).toBe(true);
+    expect(wrapper.find('[data-test="export-selected"]').exists()).toBe(true);
+    expect(wrapper.find('[data-test="export-filter"]').exists()).toBe(true);
+    expect(wrapper.find('[data-test="import-open"]').exists()).toBe(true);
+  });
+
+  it('allowExportAll=false hides only export-all', () => {
+    const wrapper = mount(ImportExportControls, {
+      props: { ...baseProps, allowExportAll: false },
+    });
+    expect(wrapper.find('[data-test="export-all"]').exists()).toBe(false);
+    expect(wrapper.find('[data-test="export-selected"]').exists()).toBe(true);
+    expect(wrapper.find('[data-test="export-filter"]').exists()).toBe(true);
+    expect(wrapper.find('[data-test="import-open"]').exists()).toBe(true);
+  });
+
+  it('allowExportSelected=false hides only export-selected', () => {
+    const wrapper = mount(ImportExportControls, {
+      props: { ...baseProps, allowExportSelected: false },
+    });
+    expect(wrapper.find('[data-test="export-selected"]').exists()).toBe(false);
+    expect(wrapper.find('[data-test="export-all"]').exists()).toBe(true);
+    expect(wrapper.find('[data-test="export-filter"]').exists()).toBe(true);
+    expect(wrapper.find('[data-test="import-open"]').exists()).toBe(true);
+  });
+
+  it('allowExportFiltered=false hides only export-filter', () => {
+    const wrapper = mount(ImportExportControls, {
+      props: { ...baseProps, allowExportFiltered: false },
+    });
+    expect(wrapper.find('[data-test="export-filter"]').exists()).toBe(false);
+    expect(wrapper.find('[data-test="export-all"]').exists()).toBe(true);
+    expect(wrapper.find('[data-test="export-selected"]').exists()).toBe(true);
+    expect(wrapper.find('[data-test="import-open"]').exists()).toBe(true);
+  });
+
+  it('allowImport=false hides only import-open', () => {
+    const wrapper = mount(ImportExportControls, {
+      props: { ...baseProps, allowImport: false },
+    });
+    expect(wrapper.find('[data-test="import-open"]').exists()).toBe(false);
+    expect(wrapper.find('[data-test="export-all"]').exists()).toBe(true);
+    expect(wrapper.find('[data-test="export-selected"]').exists()).toBe(true);
+    expect(wrapper.find('[data-test="export-filter"]').exists()).toBe(true);
+  });
+
+  it('allow* props still require the matching permission gate', () => {
+    const wrapper = mount(ImportExportControls, {
+      props: { ...baseProps, canExport: false, allowExportAll: true },
+    });
+    expect(wrapper.find('[data-test="export-all"]').exists()).toBe(false);
+  });
+});
+
 describe('ImportExportControls — export', () => {
   beforeEach(() => vi.clearAllMocks());
 
