@@ -2,6 +2,7 @@
   <div class="vbwd-iec">
     <div v-if="canExport" class="vbwd-iec-export">
       <button
+        v-if="allowExportSelected"
         type="button"
         class="vbwd-iec-btn"
         data-test="export-selected"
@@ -11,6 +12,7 @@
         {{ labels.exportSelected }}
       </button>
       <button
+        v-if="allowExportAll"
         type="button"
         class="vbwd-iec-btn"
         data-test="export-all"
@@ -20,6 +22,7 @@
         {{ labels.exportAll }}
       </button>
       <button
+        v-if="allowExportFiltered"
         type="button"
         class="vbwd-iec-btn"
         data-test="export-filter"
@@ -41,7 +44,7 @@
     </div>
 
     <button
-      v-if="canImport"
+      v-if="canImport && allowImport"
       type="button"
       class="vbwd-iec-btn"
       data-test="import-open"
@@ -198,6 +201,10 @@ const props = withDefaults(
     isSuperadmin?: boolean;
     supportedFormats?: DataExchangeFormat[];
     labels?: Partial<ControlLabels>;
+    allowExportAll?: boolean;
+    allowExportSelected?: boolean;
+    allowExportFiltered?: boolean;
+    allowImport?: boolean;
   }>(),
   {
     selectedIds: () => [],
@@ -208,6 +215,10 @@ const props = withDefaults(
     isSuperadmin: false,
     supportedFormats: () => ['json'],
     labels: () => ({}),
+    allowExportAll: true,
+    allowExportSelected: true,
+    allowExportFiltered: true,
+    allowImport: true,
   },
 );
 

@@ -4263,7 +4263,11 @@ const _sfc_main = /* @__PURE__ */ vue.defineComponent({
     canExportPii: { type: Boolean, default: false },
     isSuperadmin: { type: Boolean, default: false },
     supportedFormats: { default: () => ["json"] },
-    labels: { default: () => ({}) }
+    labels: { default: () => ({}) },
+    allowExportAll: { type: Boolean, default: true },
+    allowExportSelected: { type: Boolean, default: true },
+    allowExportFiltered: { type: Boolean, default: true },
+    allowImport: { type: Boolean, default: true }
   },
   emits: ["refresh"],
   setup(__props, { emit: __emit }) {
@@ -4391,29 +4395,32 @@ const _sfc_main = /* @__PURE__ */ vue.defineComponent({
     return (_ctx, _cache) => {
       return vue.openBlock(), vue.createElementBlock("div", _hoisted_1, [
         __props.canExport ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_2, [
-          vue.createElementVNode("button", {
+          __props.allowExportSelected ? (vue.openBlock(), vue.createElementBlock("button", {
+            key: 0,
             type: "button",
             class: "vbwd-iec-btn",
             "data-test": "export-selected",
             disabled: __props.selectedIds.length === 0 || busy.value,
             onClick: exportSelected
-          }, vue.toDisplayString(labels.value.exportSelected), 9, _hoisted_3),
-          vue.createElementVNode("button", {
+          }, vue.toDisplayString(labels.value.exportSelected), 9, _hoisted_3)) : vue.createCommentVNode("", true),
+          __props.allowExportAll ? (vue.openBlock(), vue.createElementBlock("button", {
+            key: 1,
             type: "button",
             class: "vbwd-iec-btn",
             "data-test": "export-all",
             disabled: busy.value,
             onClick: exportAll
-          }, vue.toDisplayString(labels.value.exportAll), 9, _hoisted_4),
-          vue.createElementVNode("button", {
+          }, vue.toDisplayString(labels.value.exportAll), 9, _hoisted_4)) : vue.createCommentVNode("", true),
+          __props.allowExportFiltered ? (vue.openBlock(), vue.createElementBlock("button", {
+            key: 2,
             type: "button",
             class: "vbwd-iec-btn",
             "data-test": "export-filter",
             disabled: busy.value,
             onClick: exportFilter
-          }, vue.toDisplayString(labels.value.exportFilter), 9, _hoisted_5),
+          }, vue.toDisplayString(labels.value.exportFilter), 9, _hoisted_5)) : vue.createCommentVNode("", true),
           __props.supportedFormats.length > 1 ? vue.withDirectives((vue.openBlock(), vue.createElementBlock("select", {
-            key: 0,
+            key: 3,
             "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => format.value = $event),
             class: "vbwd-iec-format",
             "data-test": "export-format"
@@ -4428,7 +4435,7 @@ const _sfc_main = /* @__PURE__ */ vue.defineComponent({
             [vue.vModelSelect, format.value]
           ]) : vue.createCommentVNode("", true)
         ])) : vue.createCommentVNode("", true),
-        __props.canImport ? (vue.openBlock(), vue.createElementBlock("button", {
+        __props.canImport && __props.allowImport ? (vue.openBlock(), vue.createElementBlock("button", {
           key: 1,
           type: "button",
           class: "vbwd-iec-btn",
@@ -4502,7 +4509,7 @@ const _sfc_main = /* @__PURE__ */ vue.defineComponent({
     };
   }
 });
-const ImportExportControls = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-240d2862"]]);
+const ImportExportControls = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-60311b35"]]);
 const version = "0.1.0";
 const name = "@vbwd/view-component";
 exports.Alert = Alert;

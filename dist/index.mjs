@@ -4243,7 +4243,11 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
     canExportPii: { type: Boolean, default: false },
     isSuperadmin: { type: Boolean, default: false },
     supportedFormats: { default: () => ["json"] },
-    labels: { default: () => ({}) }
+    labels: { default: () => ({}) },
+    allowExportAll: { type: Boolean, default: true },
+    allowExportSelected: { type: Boolean, default: true },
+    allowExportFiltered: { type: Boolean, default: true },
+    allowImport: { type: Boolean, default: true }
   },
   emits: ["refresh"],
   setup(__props, { emit: __emit }) {
@@ -4371,29 +4375,32 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
     return (_ctx, _cache) => {
       return openBlock(), createElementBlock("div", _hoisted_1, [
         __props.canExport ? (openBlock(), createElementBlock("div", _hoisted_2, [
-          createElementVNode("button", {
+          __props.allowExportSelected ? (openBlock(), createElementBlock("button", {
+            key: 0,
             type: "button",
             class: "vbwd-iec-btn",
             "data-test": "export-selected",
             disabled: __props.selectedIds.length === 0 || busy.value,
             onClick: exportSelected
-          }, toDisplayString(labels.value.exportSelected), 9, _hoisted_3),
-          createElementVNode("button", {
+          }, toDisplayString(labels.value.exportSelected), 9, _hoisted_3)) : createCommentVNode("", true),
+          __props.allowExportAll ? (openBlock(), createElementBlock("button", {
+            key: 1,
             type: "button",
             class: "vbwd-iec-btn",
             "data-test": "export-all",
             disabled: busy.value,
             onClick: exportAll
-          }, toDisplayString(labels.value.exportAll), 9, _hoisted_4),
-          createElementVNode("button", {
+          }, toDisplayString(labels.value.exportAll), 9, _hoisted_4)) : createCommentVNode("", true),
+          __props.allowExportFiltered ? (openBlock(), createElementBlock("button", {
+            key: 2,
             type: "button",
             class: "vbwd-iec-btn",
             "data-test": "export-filter",
             disabled: busy.value,
             onClick: exportFilter
-          }, toDisplayString(labels.value.exportFilter), 9, _hoisted_5),
+          }, toDisplayString(labels.value.exportFilter), 9, _hoisted_5)) : createCommentVNode("", true),
           __props.supportedFormats.length > 1 ? withDirectives((openBlock(), createElementBlock("select", {
-            key: 0,
+            key: 3,
             "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => format.value = $event),
             class: "vbwd-iec-format",
             "data-test": "export-format"
@@ -4408,7 +4415,7 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
             [vModelSelect, format.value]
           ]) : createCommentVNode("", true)
         ])) : createCommentVNode("", true),
-        __props.canImport ? (openBlock(), createElementBlock("button", {
+        __props.canImport && __props.allowImport ? (openBlock(), createElementBlock("button", {
           key: 1,
           type: "button",
           class: "vbwd-iec-btn",
@@ -4482,7 +4489,7 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const ImportExportControls = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-240d2862"]]);
+const ImportExportControls = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-60311b35"]]);
 const version = "0.1.0";
 const name = "@vbwd/view-component";
 export {
