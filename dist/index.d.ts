@@ -14,4 +14,5 @@ export * from './composables';
 export * from './cli';
 export * from './registries';
 export * from './utils';
+export * from './dataExchange';
 //# sourceMappingURL=index.d.ts.map

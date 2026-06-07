@@ -31,6 +31,11 @@ export interface RequestConfig {
     data?: unknown;
     /** Request timeout (overrides client default) */
     timeout?: number;
+    /**
+     * Axios response type. Defaults to JSON. Set to 'blob' to receive a binary
+     * download (used by the data-exchange export endpoints).
+     */
+    responseType?: 'json' | 'blob' | 'text' | 'arraybuffer';
 }
 /**
  * Standard API response wrapper

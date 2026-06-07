@@ -122,7 +122,8 @@ export class ApiClient {
       const response = await this.axiosInstance.post<T>(url, data, {
         params: config?.params,
         headers: config?.headers,
-        timeout: config?.timeout
+        timeout: config?.timeout,
+        responseType: config?.responseType
       });
       return response.data;
     } catch (error) {

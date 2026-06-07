@@ -3,7 +3,7 @@ var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { en
 var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
 var _a;
 import axios from "axios";
-import { defineComponent, ref, computed, openBlock, createElementBlock, normalizeClass, createElementVNode, renderSlot, createBlock, resolveDynamicComponent, toDisplayString, createCommentVNode, createTextVNode, h, withDirectives, withKeys, vModelText, withCtx, normalizeStyle, onMounted, onUnmounted, createVNode, Transition, Fragment, renderList, watch, Teleport, withModifiers, unref } from "vue";
+import { defineComponent, ref, computed, openBlock, createElementBlock, normalizeClass, createElementVNode, renderSlot, createBlock, resolveDynamicComponent, toDisplayString, createCommentVNode, createTextVNode, h, withDirectives, withKeys, vModelText, withCtx, normalizeStyle, onMounted, onUnmounted, createVNode, Transition, Fragment, renderList, watch, Teleport, withModifiers, unref, reactive, vModelCheckbox, vModelSelect, vModelRadio, mergeProps, vShow } from "vue";
 import { defineStore, storeToRefs } from "pinia";
 import * as fs from "fs";
 import * as path from "path";
@@ -578,7 +578,8 @@ class ApiClient {
       const response = await this.axiosInstance.post(url, data, {
         params: config == null ? void 0 : config.params,
         headers: config == null ? void 0 : config.headers,
-        timeout: config == null ? void 0 : config.timeout
+        timeout: config == null ? void 0 : config.timeout,
+        responseType: config == null ? void 0 : config.responseType
       });
       return response.data;
     } catch (error) {
@@ -1014,14 +1015,14 @@ const AppEvents = {
   PLUGIN_ERROR: "plugin:error",
   PLUGIN_STOPPED: "plugin:stopped"
 };
-const _hoisted_1$i = { class: "vbwd-alert-icon" };
-const _hoisted_2$h = { class: "vbwd-alert-content" };
-const _hoisted_3$d = {
+const _hoisted_1$k = { class: "vbwd-alert-icon" };
+const _hoisted_2$j = { class: "vbwd-alert-content" };
+const _hoisted_3$f = {
   key: 0,
   class: "vbwd-alert-title"
 };
-const _hoisted_4$c = { class: "vbwd-alert-message" };
-const _sfc_main$o = /* @__PURE__ */ defineComponent({
+const _hoisted_4$e = { class: "vbwd-alert-message" };
+const _sfc_main$q = /* @__PURE__ */ defineComponent({
   __name: "Alert",
   props: {
     variant: { default: "info" },
@@ -1059,14 +1060,14 @@ const _sfc_main$o = /* @__PURE__ */ defineComponent({
         class: normalizeClass(["vbwd-alert", `vbwd-alert-${__props.variant}`]),
         role: "alert"
       }, [
-        createElementVNode("div", _hoisted_1$i, [
+        createElementVNode("div", _hoisted_1$k, [
           renderSlot(_ctx.$slots, "icon", {}, () => [
             (openBlock(), createBlock(resolveDynamicComponent(iconComponent.value)))
           ], true)
         ]),
-        createElementVNode("div", _hoisted_2$h, [
-          __props.title ? (openBlock(), createElementBlock("h4", _hoisted_3$d, toDisplayString(__props.title), 1)) : createCommentVNode("", true),
-          createElementVNode("p", _hoisted_4$c, [
+        createElementVNode("div", _hoisted_2$j, [
+          __props.title ? (openBlock(), createElementBlock("h4", _hoisted_3$f, toDisplayString(__props.title), 1)) : createCommentVNode("", true),
+          createElementVNode("p", _hoisted_4$e, [
             renderSlot(_ctx.$slots, "default", {}, () => [
               createTextVNode(toDisplayString(__props.message), 1)
             ], true)
@@ -1102,8 +1103,8 @@ const _export_sfc = (sfc, props) => {
   }
   return target;
 };
-const Alert = /* @__PURE__ */ _export_sfc(_sfc_main$o, [["__scopeId", "data-v-64c3ffe7"]]);
-const _sfc_main$n = /* @__PURE__ */ defineComponent({
+const Alert = /* @__PURE__ */ _export_sfc(_sfc_main$q, [["__scopeId", "data-v-64c3ffe7"]]);
+const _sfc_main$p = /* @__PURE__ */ defineComponent({
   __name: "Badge",
   props: {
     label: {},
@@ -1122,8 +1123,8 @@ const _sfc_main$n = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const Badge = /* @__PURE__ */ _export_sfc(_sfc_main$n, [["__scopeId", "data-v-4df2bf4f"]]);
-const _sfc_main$m = /* @__PURE__ */ defineComponent({
+const Badge = /* @__PURE__ */ _export_sfc(_sfc_main$p, [["__scopeId", "data-v-4df2bf4f"]]);
+const _sfc_main$o = /* @__PURE__ */ defineComponent({
   __name: "Spinner",
   props: {
     size: { default: "md" }
@@ -1153,9 +1154,9 @@ const _sfc_main$m = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const Spinner = /* @__PURE__ */ _export_sfc(_sfc_main$m, [["__scopeId", "data-v-3dad9f75"]]);
-const _hoisted_1$h = ["type", "disabled"];
-const _sfc_main$l = /* @__PURE__ */ defineComponent({
+const Spinner = /* @__PURE__ */ _export_sfc(_sfc_main$o, [["__scopeId", "data-v-3dad9f75"]]);
+const _hoisted_1$j = ["type", "disabled"];
+const _sfc_main$n = /* @__PURE__ */ defineComponent({
   __name: "Button",
   props: {
     type: { default: "button" },
@@ -1190,30 +1191,30 @@ const _sfc_main$l = /* @__PURE__ */ defineComponent({
           class: "vbwd-btn-spinner"
         })) : createCommentVNode("", true),
         renderSlot(_ctx.$slots, "default", {}, void 0, true)
-      ], 10, _hoisted_1$h);
+      ], 10, _hoisted_1$j);
     };
   }
 });
-const Button = /* @__PURE__ */ _export_sfc(_sfc_main$l, [["__scopeId", "data-v-496cc81d"]]);
-const _hoisted_1$g = {
+const Button = /* @__PURE__ */ _export_sfc(_sfc_main$n, [["__scopeId", "data-v-496cc81d"]]);
+const _hoisted_1$i = {
   key: 0,
   class: "vbwd-card-header"
 };
-const _hoisted_2$g = { class: "vbwd-card-title" };
-const _hoisted_3$c = {
+const _hoisted_2$i = { class: "vbwd-card-title" };
+const _hoisted_3$e = {
   key: 0,
   class: "vbwd-card-subtitle"
 };
-const _hoisted_4$b = {
+const _hoisted_4$d = {
   key: 0,
   class: "vbwd-card-actions"
 };
-const _hoisted_5$8 = { class: "vbwd-card-body" };
-const _hoisted_6$6 = {
+const _hoisted_5$a = { class: "vbwd-card-body" };
+const _hoisted_6$8 = {
   key: 1,
   class: "vbwd-card-footer"
 };
-const _sfc_main$k = /* @__PURE__ */ defineComponent({
+const _sfc_main$m = /* @__PURE__ */ defineComponent({
   __name: "Card",
   props: {
     title: {},
@@ -1225,46 +1226,46 @@ const _sfc_main$k = /* @__PURE__ */ defineComponent({
       return openBlock(), createElementBlock("div", {
         class: normalizeClass(["vbwd-card", { "vbwd-card-hoverable": __props.hoverable }])
       }, [
-        __props.title || _ctx.$slots.header ? (openBlock(), createElementBlock("header", _hoisted_1$g, [
+        __props.title || _ctx.$slots.header ? (openBlock(), createElementBlock("header", _hoisted_1$i, [
           renderSlot(_ctx.$slots, "header", {}, () => [
-            createElementVNode("h3", _hoisted_2$g, toDisplayString(__props.title), 1),
-            __props.subtitle ? (openBlock(), createElementBlock("p", _hoisted_3$c, toDisplayString(__props.subtitle), 1)) : createCommentVNode("", true)
+            createElementVNode("h3", _hoisted_2$i, toDisplayString(__props.title), 1),
+            __props.subtitle ? (openBlock(), createElementBlock("p", _hoisted_3$e, toDisplayString(__props.subtitle), 1)) : createCommentVNode("", true)
           ], true),
-          _ctx.$slots.actions ? (openBlock(), createElementBlock("div", _hoisted_4$b, [
+          _ctx.$slots.actions ? (openBlock(), createElementBlock("div", _hoisted_4$d, [
             renderSlot(_ctx.$slots, "actions", {}, void 0, true)
           ])) : createCommentVNode("", true)
         ])) : createCommentVNode("", true),
-        createElementVNode("div", _hoisted_5$8, [
+        createElementVNode("div", _hoisted_5$a, [
           renderSlot(_ctx.$slots, "default", {}, void 0, true)
         ]),
-        _ctx.$slots.footer ? (openBlock(), createElementBlock("footer", _hoisted_6$6, [
+        _ctx.$slots.footer ? (openBlock(), createElementBlock("footer", _hoisted_6$8, [
           renderSlot(_ctx.$slots, "footer", {}, void 0, true)
         ])) : createCommentVNode("", true)
       ], 2);
     };
   }
 });
-const Card = /* @__PURE__ */ _export_sfc(_sfc_main$k, [["__scopeId", "data-v-3c45206a"]]);
-const _hoisted_1$f = { class: "vbwd-coupon" };
-const _hoisted_2$f = {
+const Card = /* @__PURE__ */ _export_sfc(_sfc_main$m, [["__scopeId", "data-v-3c45206a"]]);
+const _hoisted_1$h = { class: "vbwd-coupon" };
+const _hoisted_2$h = {
   key: 0,
   class: "vbwd-coupon__applied",
   "data-testid": "coupon-applied"
 };
-const _hoisted_3$b = { class: "vbwd-coupon__applied-label" };
-const _hoisted_4$a = ["disabled"];
-const _hoisted_5$7 = {
+const _hoisted_3$d = { class: "vbwd-coupon__applied-label" };
+const _hoisted_4$c = ["disabled"];
+const _hoisted_5$9 = {
   key: 1,
   class: "vbwd-coupon__row"
 };
-const _hoisted_6$5 = ["placeholder", "disabled"];
-const _hoisted_7$5 = ["disabled"];
-const _hoisted_8$2 = {
+const _hoisted_6$7 = ["placeholder", "disabled"];
+const _hoisted_7$7 = ["disabled"];
+const _hoisted_8$4 = {
   key: 2,
   class: "vbwd-coupon__error",
   "data-testid": "coupon-error"
 };
-const _sfc_main$j = /* @__PURE__ */ defineComponent({
+const _sfc_main$l = /* @__PURE__ */ defineComponent({
   __name: "CouponInput",
   props: {
     appliedCode: { default: null },
@@ -1288,17 +1289,17 @@ const _sfc_main$j = /* @__PURE__ */ defineComponent({
       emit("apply", trimmed);
     }
     return (_ctx, _cache) => {
-      return openBlock(), createElementBlock("div", _hoisted_1$f, [
-        __props.appliedCode ? (openBlock(), createElementBlock("div", _hoisted_2$f, [
-          createElementVNode("span", _hoisted_3$b, toDisplayString(__props.appliedLabel) + " " + toDisplayString(__props.appliedCode), 1),
+      return openBlock(), createElementBlock("div", _hoisted_1$h, [
+        __props.appliedCode ? (openBlock(), createElementBlock("div", _hoisted_2$h, [
+          createElementVNode("span", _hoisted_3$d, toDisplayString(__props.appliedLabel) + " " + toDisplayString(__props.appliedCode), 1),
           createElementVNode("button", {
             type: "button",
             class: "vbwd-coupon__clear",
             "data-testid": "coupon-clear",
             disabled: __props.loading,
             onClick: _cache[0] || (_cache[0] = ($event) => _ctx.$emit("clear"))
-          }, toDisplayString(__props.removeLabel), 9, _hoisted_4$a)
-        ])) : (openBlock(), createElementBlock("div", _hoisted_5$7, [
+          }, toDisplayString(__props.removeLabel), 9, _hoisted_4$c)
+        ])) : (openBlock(), createElementBlock("div", _hoisted_5$9, [
           withDirectives(createElementVNode("input", {
             "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => code.value = $event),
             type: "text",
@@ -1308,7 +1309,7 @@ const _sfc_main$j = /* @__PURE__ */ defineComponent({
             disabled: __props.loading,
             autocomplete: "off",
             onKeyup: withKeys(onApply, ["enter"])
-          }, null, 40, _hoisted_6$5), [
+          }, null, 40, _hoisted_6$7), [
             [vModelText, code.value]
           ]),
           createElementVNode("button", {
@@ -1317,21 +1318,21 @@ const _sfc_main$j = /* @__PURE__ */ defineComponent({
             "data-testid": "coupon-apply",
             disabled: __props.loading || !code.value.trim(),
             onClick: onApply
-          }, toDisplayString(__props.loading ? "…" : __props.applyLabel), 9, _hoisted_7$5)
+          }, toDisplayString(__props.loading ? "…" : __props.applyLabel), 9, _hoisted_7$7)
         ])),
-        __props.error ? (openBlock(), createElementBlock("p", _hoisted_8$2, toDisplayString(__props.error), 1)) : createCommentVNode("", true)
+        __props.error ? (openBlock(), createElementBlock("p", _hoisted_8$4, toDisplayString(__props.error), 1)) : createCommentVNode("", true)
       ]);
     };
   }
 });
-const CouponInput = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["__scopeId", "data-v-dc293241"]]);
-const _hoisted_1$e = { class: "vbwd-detail-field" };
-const _hoisted_2$e = { class: "vbwd-detail-field-label" };
-const _hoisted_3$a = {
+const CouponInput = /* @__PURE__ */ _export_sfc(_sfc_main$l, [["__scopeId", "data-v-dc293241"]]);
+const _hoisted_1$g = { class: "vbwd-detail-field" };
+const _hoisted_2$g = { class: "vbwd-detail-field-label" };
+const _hoisted_3$c = {
   key: 1,
   class: "vbwd-detail-field-value"
 };
-const _sfc_main$i = /* @__PURE__ */ defineComponent({
+const _sfc_main$k = /* @__PURE__ */ defineComponent({
   __name: "DetailField",
   props: {
     label: {},
@@ -1348,8 +1349,8 @@ const _sfc_main$i = /* @__PURE__ */ defineComponent({
       return String(props.value);
     });
     return (_ctx, _cache) => {
-      return openBlock(), createElementBlock("div", _hoisted_1$e, [
-        createElementVNode("span", _hoisted_2$e, toDisplayString(__props.label), 1),
+      return openBlock(), createElementBlock("div", _hoisted_1$g, [
+        createElementVNode("span", _hoisted_2$g, toDisplayString(__props.label), 1),
         __props.badge ? (openBlock(), createBlock(Badge, {
           key: 0,
           variant: __props.badgeVariant,
@@ -1359,13 +1360,13 @@ const _sfc_main$i = /* @__PURE__ */ defineComponent({
             createTextVNode(toDisplayString(displayValue.value), 1)
           ]),
           _: 1
-        }, 8, ["variant"])) : (openBlock(), createElementBlock("span", _hoisted_3$a, toDisplayString(displayValue.value), 1))
+        }, 8, ["variant"])) : (openBlock(), createElementBlock("span", _hoisted_3$c, toDisplayString(displayValue.value), 1))
       ]);
     };
   }
 });
-const DetailField = /* @__PURE__ */ _export_sfc(_sfc_main$i, [["__scopeId", "data-v-aae1356f"]]);
-const _sfc_main$h = /* @__PURE__ */ defineComponent({
+const DetailField = /* @__PURE__ */ _export_sfc(_sfc_main$k, [["__scopeId", "data-v-aae1356f"]]);
+const _sfc_main$j = /* @__PURE__ */ defineComponent({
   __name: "DetailGrid",
   props: {
     columns: { default: 2 }
@@ -1385,13 +1386,13 @@ const _sfc_main$h = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const DetailGrid = /* @__PURE__ */ _export_sfc(_sfc_main$h, [["__scopeId", "data-v-d3e81837"]]);
-const _hoisted_1$d = {
+const DetailGrid = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["__scopeId", "data-v-d3e81837"]]);
+const _hoisted_1$f = {
   type: "button",
   class: "vbwd-dropdown-btn"
 };
-const _hoisted_2$d = ["onClick"];
-const _sfc_main$g = /* @__PURE__ */ defineComponent({
+const _hoisted_2$f = ["onClick"];
+const _sfc_main$i = /* @__PURE__ */ defineComponent({
   __name: "Dropdown",
   props: {
     label: { default: "Select" },
@@ -1442,7 +1443,7 @@ const _sfc_main$g = /* @__PURE__ */ defineComponent({
           onClick: toggle
         }, [
           renderSlot(_ctx.$slots, "trigger", {}, () => [
-            createElementVNode("button", _hoisted_1$d, [
+            createElementVNode("button", _hoisted_1$f, [
               createTextVNode(toDisplayString(__props.label) + " ", 1),
               (openBlock(), createElementBlock("svg", {
                 class: normalizeClass(["vbwd-dropdown-arrow", { "vbwd-dropdown-arrow-open": isOpen.value }]),
@@ -1475,7 +1476,7 @@ const _sfc_main$g = /* @__PURE__ */ defineComponent({
                       { "vbwd-dropdown-item-disabled": item.disabled }
                     ]),
                     onClick: ($event) => !item.disabled && selectItem(item)
-                  }, toDisplayString(item.label), 11, _hoisted_2$d);
+                  }, toDisplayString(item.label), 11, _hoisted_2$f);
                 }), 128))
               ], true)
             ], 2)) : createCommentVNode("", true)
@@ -1486,30 +1487,30 @@ const _sfc_main$g = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const Dropdown = /* @__PURE__ */ _export_sfc(_sfc_main$g, [["__scopeId", "data-v-ab6a622e"]]);
-const _hoisted_1$c = {
+const Dropdown = /* @__PURE__ */ _export_sfc(_sfc_main$i, [["__scopeId", "data-v-ab6a622e"]]);
+const _hoisted_1$e = {
   key: 0,
   class: "vbwd-input-required"
 };
-const _hoisted_2$c = { class: "vbwd-input-container" };
-const _hoisted_3$9 = {
+const _hoisted_2$e = { class: "vbwd-input-container" };
+const _hoisted_3$b = {
   key: 0,
   class: "vbwd-input-prefix"
 };
-const _hoisted_4$9 = ["value", "type", "placeholder", "disabled", "readonly"];
-const _hoisted_5$6 = {
+const _hoisted_4$b = ["value", "type", "placeholder", "disabled", "readonly"];
+const _hoisted_5$8 = {
   key: 1,
   class: "vbwd-input-suffix"
 };
-const _hoisted_6$4 = {
+const _hoisted_6$6 = {
   key: 1,
   class: "vbwd-input-error-text"
 };
-const _hoisted_7$4 = {
+const _hoisted_7$6 = {
   key: 2,
   class: "vbwd-input-hint"
 };
-const _sfc_main$f = /* @__PURE__ */ defineComponent({
+const _sfc_main$h = /* @__PURE__ */ defineComponent({
   __name: "Input",
   props: {
     modelValue: { default: "" },
@@ -1546,10 +1547,10 @@ const _sfc_main$f = /* @__PURE__ */ defineComponent({
           class: "vbwd-input-label"
         }, [
           createTextVNode(toDisplayString(__props.label) + " ", 1),
-          __props.required ? (openBlock(), createElementBlock("span", _hoisted_1$c, "*")) : createCommentVNode("", true)
+          __props.required ? (openBlock(), createElementBlock("span", _hoisted_1$e, "*")) : createCommentVNode("", true)
         ])) : createCommentVNode("", true),
-        createElementVNode("div", _hoisted_2$c, [
-          _ctx.$slots.prefix ? (openBlock(), createElementBlock("span", _hoisted_3$9, [
+        createElementVNode("div", _hoisted_2$e, [
+          _ctx.$slots.prefix ? (openBlock(), createElementBlock("span", _hoisted_3$b, [
             renderSlot(_ctx.$slots, "prefix", {}, void 0, true)
           ])) : createCommentVNode("", true),
           createElementVNode("input", {
@@ -1563,28 +1564,28 @@ const _sfc_main$f = /* @__PURE__ */ defineComponent({
             onInput: _cache[0] || (_cache[0] = ($event) => _ctx.$emit("update:modelValue", $event.target.value)),
             onBlur: _cache[1] || (_cache[1] = ($event) => _ctx.$emit("blur", $event)),
             onFocus: _cache[2] || (_cache[2] = ($event) => _ctx.$emit("focus", $event))
-          }, null, 42, _hoisted_4$9),
-          _ctx.$slots.suffix ? (openBlock(), createElementBlock("span", _hoisted_5$6, [
+          }, null, 42, _hoisted_4$b),
+          _ctx.$slots.suffix ? (openBlock(), createElementBlock("span", _hoisted_5$8, [
             renderSlot(_ctx.$slots, "suffix", {}, void 0, true)
           ])) : createCommentVNode("", true)
         ]),
-        __props.error ? (openBlock(), createElementBlock("p", _hoisted_6$4, toDisplayString(__props.error), 1)) : __props.hint ? (openBlock(), createElementBlock("p", _hoisted_7$4, toDisplayString(__props.hint), 1)) : createCommentVNode("", true)
+        __props.error ? (openBlock(), createElementBlock("p", _hoisted_6$6, toDisplayString(__props.error), 1)) : __props.hint ? (openBlock(), createElementBlock("p", _hoisted_7$6, toDisplayString(__props.hint), 1)) : createCommentVNode("", true)
       ], 2);
     };
   }
 });
-const Input = /* @__PURE__ */ _export_sfc(_sfc_main$f, [["__scopeId", "data-v-bf22b843"]]);
-const _hoisted_1$b = ["aria-labelledby"];
-const _hoisted_2$b = {
+const Input = /* @__PURE__ */ _export_sfc(_sfc_main$h, [["__scopeId", "data-v-bf22b843"]]);
+const _hoisted_1$d = ["aria-labelledby"];
+const _hoisted_2$d = {
   key: 0,
   class: "vbwd-modal-header"
 };
-const _hoisted_3$8 = { class: "vbwd-modal-body" };
-const _hoisted_4$8 = {
+const _hoisted_3$a = { class: "vbwd-modal-body" };
+const _hoisted_4$a = {
   key: 1,
   class: "vbwd-modal-footer"
 };
-const _sfc_main$e = /* @__PURE__ */ defineComponent({
+const _sfc_main$g = /* @__PURE__ */ defineComponent({
   __name: "Modal",
   props: {
     modelValue: { type: Boolean },
@@ -1638,7 +1639,7 @@ const _sfc_main$e = /* @__PURE__ */ defineComponent({
                 "aria-modal": "true",
                 "aria-labelledby": __props.title ? modalTitleId : void 0
               }, [
-                __props.title || _ctx.$slots.header ? (openBlock(), createElementBlock("header", _hoisted_2$b, [
+                __props.title || _ctx.$slots.header ? (openBlock(), createElementBlock("header", _hoisted_2$d, [
                   renderSlot(_ctx.$slots, "header", {}, () => [
                     createElementVNode("h3", {
                       id: modalTitleId,
@@ -1665,13 +1666,13 @@ const _sfc_main$e = /* @__PURE__ */ defineComponent({
                     ], -1)
                   ])])) : createCommentVNode("", true)
                 ])) : createCommentVNode("", true),
-                createElementVNode("div", _hoisted_3$8, [
+                createElementVNode("div", _hoisted_3$a, [
                   renderSlot(_ctx.$slots, "default", {}, void 0, true)
                 ]),
-                _ctx.$slots.footer ? (openBlock(), createElementBlock("footer", _hoisted_4$8, [
+                _ctx.$slots.footer ? (openBlock(), createElementBlock("footer", _hoisted_4$a, [
                   renderSlot(_ctx.$slots, "footer", {}, void 0, true)
                 ])) : createCommentVNode("", true)
-              ], 10, _hoisted_1$b)
+              ], 10, _hoisted_1$d)
             ])) : createCommentVNode("", true)
           ]),
           _: 3
@@ -1680,20 +1681,20 @@ const _sfc_main$e = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const Modal = /* @__PURE__ */ _export_sfc(_sfc_main$e, [["__scopeId", "data-v-a9346ee5"]]);
-const _hoisted_1$a = {
+const Modal = /* @__PURE__ */ _export_sfc(_sfc_main$g, [["__scopeId", "data-v-a9346ee5"]]);
+const _hoisted_1$c = {
   class: "vbwd-pagination",
   role: "navigation",
   "aria-label": "Pagination"
 };
-const _hoisted_2$a = ["disabled"];
-const _hoisted_3$7 = {
+const _hoisted_2$c = ["disabled"];
+const _hoisted_3$9 = {
   key: 0,
   class: "vbwd-pagination-ellipsis"
 };
-const _hoisted_4$7 = ["aria-current", "onClick"];
-const _hoisted_5$5 = ["disabled"];
-const _sfc_main$d = /* @__PURE__ */ defineComponent({
+const _hoisted_4$9 = ["aria-current", "onClick"];
+const _hoisted_5$7 = ["disabled"];
+const _sfc_main$f = /* @__PURE__ */ defineComponent({
   __name: "Pagination",
   props: {
     currentPage: {},
@@ -1734,7 +1735,7 @@ const _sfc_main$d = /* @__PURE__ */ defineComponent({
       }
     };
     return (_ctx, _cache) => {
-      return openBlock(), createElementBlock("nav", _hoisted_1$a, [
+      return openBlock(), createElementBlock("nav", _hoisted_1$c, [
         createElementVNode("button", {
           class: "vbwd-pagination-btn vbwd-pagination-prev",
           disabled: __props.currentPage <= 1,
@@ -1753,15 +1754,15 @@ const _sfc_main$d = /* @__PURE__ */ defineComponent({
               "clip-rule": "evenodd"
             })
           ], -1)
-        ])], 8, _hoisted_2$a),
+        ])], 8, _hoisted_2$c),
         (openBlock(true), createElementBlock(Fragment, null, renderList(visiblePages.value, (page) => {
           return openBlock(), createElementBlock(Fragment, { key: page }, [
-            page === "..." ? (openBlock(), createElementBlock("span", _hoisted_3$7, "...")) : (openBlock(), createElementBlock("button", {
+            page === "..." ? (openBlock(), createElementBlock("span", _hoisted_3$9, "...")) : (openBlock(), createElementBlock("button", {
               key: 1,
               class: normalizeClass(["vbwd-pagination-btn", "vbwd-pagination-page", { "vbwd-pagination-active": page === __props.currentPage }]),
               "aria-current": page === __props.currentPage ? "page" : void 0,
               onClick: ($event) => goToPage(page)
-            }, toDisplayString(page), 11, _hoisted_4$7))
+            }, toDisplayString(page), 11, _hoisted_4$9))
           ], 64);
         }), 128)),
         createElementVNode("button", {
@@ -1782,36 +1783,36 @@ const _sfc_main$d = /* @__PURE__ */ defineComponent({
               "clip-rule": "evenodd"
             })
           ], -1)
-        ])], 8, _hoisted_5$5)
+        ])], 8, _hoisted_5$7)
       ]);
     };
   }
 });
-const Pagination = /* @__PURE__ */ _export_sfc(_sfc_main$d, [["__scopeId", "data-v-939ce8f2"]]);
-const _hoisted_1$9 = { class: "vbwd-table-wrapper" };
-const _hoisted_2$9 = { key: 0 };
-const _hoisted_3$6 = ["onClick"];
-const _hoisted_4$6 = { class: "vbwd-table-th-content" };
-const _hoisted_5$4 = {
+const Pagination = /* @__PURE__ */ _export_sfc(_sfc_main$f, [["__scopeId", "data-v-939ce8f2"]]);
+const _hoisted_1$b = { class: "vbwd-table-wrapper" };
+const _hoisted_2$b = { key: 0 };
+const _hoisted_3$8 = ["onClick"];
+const _hoisted_4$8 = { class: "vbwd-table-th-content" };
+const _hoisted_5$6 = {
   key: 0,
   class: "vbwd-table-sort-icon"
 };
-const _hoisted_6$3 = {
+const _hoisted_6$5 = {
   key: 0,
   width: "12",
   height: "12",
   viewBox: "0 0 12 12",
   fill: "currentColor"
 };
-const _hoisted_7$3 = {
+const _hoisted_7$5 = {
   key: 0,
   d: "M6 2L10 8H2L6 2Z"
 };
-const _hoisted_8$1 = {
+const _hoisted_8$3 = {
   key: 1,
   d: "M6 10L2 4H10L6 10Z"
 };
-const _hoisted_9$1 = {
+const _hoisted_9$3 = {
   key: 1,
   width: "12",
   height: "12",
@@ -1819,11 +1820,11 @@ const _hoisted_9$1 = {
   fill: "currentColor",
   opacity: "0.3"
 };
-const _hoisted_10 = { key: 0 };
-const _hoisted_11 = ["colspan"];
-const _hoisted_12 = { key: 1 };
-const _hoisted_13 = ["colspan"];
-const _sfc_main$c = /* @__PURE__ */ defineComponent({
+const _hoisted_10$2 = { key: 0 };
+const _hoisted_11$2 = ["colspan"];
+const _hoisted_12$2 = { key: 1 };
+const _hoisted_13$2 = ["colspan"];
+const _sfc_main$e = /* @__PURE__ */ defineComponent({
   __name: "Table",
   props: {
     columns: { default: () => [] },
@@ -1848,11 +1849,11 @@ const _sfc_main$c = /* @__PURE__ */ defineComponent({
       emit("sort", key, sortOrder.value);
     };
     return (_ctx, _cache) => {
-      return openBlock(), createElementBlock("div", _hoisted_1$9, [
+      return openBlock(), createElementBlock("div", _hoisted_1$b, [
         createElementVNode("table", {
           class: normalizeClass(["vbwd-table", { "vbwd-table-striped": __props.striped, "vbwd-table-hoverable": __props.hoverable }])
         }, [
-          __props.columns.length ? (openBlock(), createElementBlock("thead", _hoisted_2$9, [
+          __props.columns.length ? (openBlock(), createElementBlock("thead", _hoisted_2$b, [
             createElementVNode("tr", null, [
               (openBlock(true), createElementBlock(Fragment, null, renderList(__props.columns, (col) => {
                 return openBlock(), createElementBlock("th", {
@@ -1865,22 +1866,22 @@ const _sfc_main$c = /* @__PURE__ */ defineComponent({
                   style: normalizeStyle(col.width ? { width: col.width } : {}),
                   onClick: ($event) => col.sortable && handleSort(col.key)
                 }, [
-                  createElementVNode("span", _hoisted_4$6, [
+                  createElementVNode("span", _hoisted_4$8, [
                     createTextVNode(toDisplayString(col.label) + " ", 1),
-                    col.sortable ? (openBlock(), createElementBlock("span", _hoisted_5$4, [
-                      sortKey.value === col.key ? (openBlock(), createElementBlock("svg", _hoisted_6$3, [
-                        sortOrder.value === "asc" ? (openBlock(), createElementBlock("path", _hoisted_7$3)) : (openBlock(), createElementBlock("path", _hoisted_8$1))
-                      ])) : (openBlock(), createElementBlock("svg", _hoisted_9$1, [..._cache[0] || (_cache[0] = [
+                    col.sortable ? (openBlock(), createElementBlock("span", _hoisted_5$6, [
+                      sortKey.value === col.key ? (openBlock(), createElementBlock("svg", _hoisted_6$5, [
+                        sortOrder.value === "asc" ? (openBlock(), createElementBlock("path", _hoisted_7$5)) : (openBlock(), createElementBlock("path", _hoisted_8$3))
+                      ])) : (openBlock(), createElementBlock("svg", _hoisted_9$3, [..._cache[0] || (_cache[0] = [
                         createElementVNode("path", { d: "M6 2L10 6H2L6 2ZM6 10L2 6H10L6 10Z" }, null, -1)
                       ])]))
                     ])) : createCommentVNode("", true)
                   ])
-                ], 14, _hoisted_3$6);
+                ], 14, _hoisted_3$8);
               }), 128))
             ])
           ])) : createCommentVNode("", true),
           createElementVNode("tbody", null, [
-            __props.loading ? (openBlock(), createElementBlock("tr", _hoisted_10, [
+            __props.loading ? (openBlock(), createElementBlock("tr", _hoisted_10$2, [
               createElementVNode("td", {
                 colspan: __props.columns.length,
                 class: "vbwd-table-loading"
@@ -1888,8 +1889,8 @@ const _sfc_main$c = /* @__PURE__ */ defineComponent({
                 renderSlot(_ctx.$slots, "loading", {}, () => [
                   _cache[1] || (_cache[1] = createTextVNode("Loading...", -1))
                 ], true)
-              ], 8, _hoisted_11)
-            ])) : !__props.data.length ? (openBlock(), createElementBlock("tr", _hoisted_12, [
+              ], 8, _hoisted_11$2)
+            ])) : !__props.data.length ? (openBlock(), createElementBlock("tr", _hoisted_12$2, [
               createElementVNode("td", {
                 colspan: __props.columns.length,
                 class: "vbwd-table-empty"
@@ -1897,7 +1898,7 @@ const _sfc_main$c = /* @__PURE__ */ defineComponent({
                 renderSlot(_ctx.$slots, "empty", {}, () => [
                   _cache[2] || (_cache[2] = createTextVNode("No data available", -1))
                 ], true)
-              ], 8, _hoisted_13)
+              ], 8, _hoisted_13$2)
             ])) : (openBlock(true), createElementBlock(Fragment, { key: 2 }, renderList(__props.data, (row, index) => {
               return openBlock(), createElementBlock("tr", {
                 key: __props.rowKey ? row[__props.rowKey] : index
@@ -1924,21 +1925,21 @@ const _sfc_main$c = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const Table = /* @__PURE__ */ _export_sfc(_sfc_main$c, [["__scopeId", "data-v-aa02112d"]]);
-const _hoisted_1$8 = {
+const Table = /* @__PURE__ */ _export_sfc(_sfc_main$e, [["__scopeId", "data-v-aa02112d"]]);
+const _hoisted_1$a = {
   key: 0,
   class: "vbwd-form-field-asterisk"
 };
-const _hoisted_2$8 = { class: "vbwd-form-field-control" };
-const _hoisted_3$5 = {
+const _hoisted_2$a = { class: "vbwd-form-field-control" };
+const _hoisted_3$7 = {
   key: 1,
   class: "vbwd-form-field-error-text"
 };
-const _hoisted_4$5 = {
+const _hoisted_4$7 = {
   key: 2,
   class: "vbwd-form-field-hint"
 };
-const _sfc_main$b = /* @__PURE__ */ defineComponent({
+const _sfc_main$d = /* @__PURE__ */ defineComponent({
   __name: "FormField",
   props: {
     label: {},
@@ -1959,29 +1960,29 @@ const _sfc_main$b = /* @__PURE__ */ defineComponent({
           class: "vbwd-form-field-label"
         }, [
           createTextVNode(toDisplayString(__props.label) + " ", 1),
-          __props.required ? (openBlock(), createElementBlock("span", _hoisted_1$8, "*")) : createCommentVNode("", true)
+          __props.required ? (openBlock(), createElementBlock("span", _hoisted_1$a, "*")) : createCommentVNode("", true)
         ])) : createCommentVNode("", true),
-        createElementVNode("div", _hoisted_2$8, [
+        createElementVNode("div", _hoisted_2$a, [
           renderSlot(_ctx.$slots, "default", {
             id: fieldId,
             error: __props.error
           }, void 0, true)
         ]),
-        __props.error ? (openBlock(), createElementBlock("p", _hoisted_3$5, toDisplayString(__props.error), 1)) : __props.hint ? (openBlock(), createElementBlock("p", _hoisted_4$5, toDisplayString(__props.hint), 1)) : createCommentVNode("", true)
+        __props.error ? (openBlock(), createElementBlock("p", _hoisted_3$7, toDisplayString(__props.error), 1)) : __props.hint ? (openBlock(), createElementBlock("p", _hoisted_4$7, toDisplayString(__props.hint), 1)) : createCommentVNode("", true)
       ], 2);
     };
   }
 });
-const FormField = /* @__PURE__ */ _export_sfc(_sfc_main$b, [["__scopeId", "data-v-65b44107"]]);
-const _hoisted_1$7 = {
+const FormField = /* @__PURE__ */ _export_sfc(_sfc_main$d, [["__scopeId", "data-v-65b44107"]]);
+const _hoisted_1$9 = {
   key: 0,
   class: "vbwd-form-group-title"
 };
-const _hoisted_2$7 = {
+const _hoisted_2$9 = {
   key: 1,
   class: "vbwd-form-group-description"
 };
-const _sfc_main$a = /* @__PURE__ */ defineComponent({
+const _sfc_main$c = /* @__PURE__ */ defineComponent({
   __name: "FormGroup",
   props: {
     title: {},
@@ -1994,8 +1995,8 @@ const _sfc_main$a = /* @__PURE__ */ defineComponent({
       return openBlock(), createElementBlock("fieldset", {
         class: normalizeClass(["vbwd-form-group", { "vbwd-form-group-bordered": __props.bordered }])
       }, [
-        __props.title ? (openBlock(), createElementBlock("legend", _hoisted_1$7, toDisplayString(__props.title), 1)) : createCommentVNode("", true),
-        __props.description ? (openBlock(), createElementBlock("p", _hoisted_2$7, toDisplayString(__props.description), 1)) : createCommentVNode("", true),
+        __props.title ? (openBlock(), createElementBlock("legend", _hoisted_1$9, toDisplayString(__props.title), 1)) : createCommentVNode("", true),
+        __props.description ? (openBlock(), createElementBlock("p", _hoisted_2$9, toDisplayString(__props.description), 1)) : createCommentVNode("", true),
         createElementVNode("div", {
           class: normalizeClass(["vbwd-form-group-fields", `vbwd-form-group-${__props.layout}`])
         }, [
@@ -2005,18 +2006,18 @@ const _sfc_main$a = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const FormGroup = /* @__PURE__ */ _export_sfc(_sfc_main$a, [["__scopeId", "data-v-b15a233a"]]);
-const _hoisted_1$6 = {
+const FormGroup = /* @__PURE__ */ _export_sfc(_sfc_main$c, [["__scopeId", "data-v-b15a233a"]]);
+const _hoisted_1$8 = {
   key: 0,
   class: "vbwd-form-error"
 };
-const _hoisted_2$6 = { class: "vbwd-form-error-content" };
-const _hoisted_3$4 = {
+const _hoisted_2$8 = { class: "vbwd-form-error-content" };
+const _hoisted_3$6 = {
   key: 0,
   class: "vbwd-form-error-title"
 };
-const _hoisted_4$4 = { class: "vbwd-form-error-list" };
-const _sfc_main$9 = /* @__PURE__ */ defineComponent({
+const _hoisted_4$6 = { class: "vbwd-form-error-list" };
+const _sfc_main$b = /* @__PURE__ */ defineComponent({
   __name: "FormError",
   props: {
     errors: { default: () => [] },
@@ -2024,7 +2025,7 @@ const _sfc_main$9 = /* @__PURE__ */ defineComponent({
   },
   setup(__props) {
     return (_ctx, _cache) => {
-      return __props.errors.length ? (openBlock(), createElementBlock("div", _hoisted_1$6, [
+      return __props.errors.length ? (openBlock(), createElementBlock("div", _hoisted_1$8, [
         _cache[0] || (_cache[0] = createElementVNode("div", { class: "vbwd-form-error-icon" }, [
           createElementVNode("svg", {
             width: "20",
@@ -2039,9 +2040,9 @@ const _sfc_main$9 = /* @__PURE__ */ defineComponent({
             })
           ])
         ], -1)),
-        createElementVNode("div", _hoisted_2$6, [
-          __props.title ? (openBlock(), createElementBlock("h4", _hoisted_3$4, toDisplayString(__props.title), 1)) : createCommentVNode("", true),
-          createElementVNode("ul", _hoisted_4$4, [
+        createElementVNode("div", _hoisted_2$8, [
+          __props.title ? (openBlock(), createElementBlock("h4", _hoisted_3$6, toDisplayString(__props.title), 1)) : createCommentVNode("", true),
+          createElementVNode("ul", _hoisted_4$6, [
             (openBlock(true), createElementBlock(Fragment, null, renderList(__props.errors, (error, index) => {
               return openBlock(), createElementBlock("li", { key: index }, toDisplayString(error), 1);
             }), 128))
@@ -2051,8 +2052,8 @@ const _sfc_main$9 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const FormError = /* @__PURE__ */ _export_sfc(_sfc_main$9, [["__scopeId", "data-v-7e76f4e4"]]);
-const _sfc_main$8 = /* @__PURE__ */ defineComponent({
+const FormError = /* @__PURE__ */ _export_sfc(_sfc_main$b, [["__scopeId", "data-v-7e76f4e4"]]);
+const _sfc_main$a = /* @__PURE__ */ defineComponent({
   __name: "Container",
   props: {
     fluid: { type: Boolean, default: false }
@@ -2067,8 +2068,8 @@ const _sfc_main$8 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const Container = /* @__PURE__ */ _export_sfc(_sfc_main$8, [["__scopeId", "data-v-282e6973"]]);
-const _sfc_main$7 = /* @__PURE__ */ defineComponent({
+const Container = /* @__PURE__ */ _export_sfc(_sfc_main$a, [["__scopeId", "data-v-282e6973"]]);
+const _sfc_main$9 = /* @__PURE__ */ defineComponent({
   __name: "Row",
   props: {
     gap: { default: "1rem" },
@@ -2097,8 +2098,8 @@ const _sfc_main$7 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const Row = /* @__PURE__ */ _export_sfc(_sfc_main$7, [["__scopeId", "data-v-f82a9ba1"]]);
-const _sfc_main$6 = /* @__PURE__ */ defineComponent({
+const Row = /* @__PURE__ */ _export_sfc(_sfc_main$9, [["__scopeId", "data-v-f82a9ba1"]]);
+const _sfc_main$8 = /* @__PURE__ */ defineComponent({
   __name: "Col",
   props: {
     span: { default: "auto" },
@@ -2144,14 +2145,14 @@ const _sfc_main$6 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const Col = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["__scopeId", "data-v-2bedd799"]]);
-const _hoisted_1$5 = ["aria-label"];
-const _hoisted_2$5 = {
+const Col = /* @__PURE__ */ _export_sfc(_sfc_main$8, [["__scopeId", "data-v-2bedd799"]]);
+const _hoisted_1$7 = ["aria-label"];
+const _hoisted_2$7 = {
   key: 0,
   class: "vbwd-cart-icon-badge",
   "data-testid": "cart-icon-badge"
 };
-const _sfc_main$5 = /* @__PURE__ */ defineComponent({
+const _sfc_main$7 = /* @__PURE__ */ defineComponent({
   __name: "CartIcon",
   props: {
     count: {}
@@ -2190,37 +2191,37 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
             createElementVNode("path", { d: "M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" })
           ], -1))
         ], true),
-        __props.count > 0 ? (openBlock(), createElementBlock("span", _hoisted_2$5, toDisplayString(__props.count > 99 ? "99+" : __props.count), 1)) : createCommentVNode("", true)
-      ], 8, _hoisted_1$5);
+        __props.count > 0 ? (openBlock(), createElementBlock("span", _hoisted_2$7, toDisplayString(__props.count > 99 ? "99+" : __props.count), 1)) : createCommentVNode("", true)
+      ], 8, _hoisted_1$7);
     };
   }
 });
-const CartIcon = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["__scopeId", "data-v-9bcdbe98"]]);
-const _hoisted_1$4 = {
+const CartIcon = /* @__PURE__ */ _export_sfc(_sfc_main$7, [["__scopeId", "data-v-9bcdbe98"]]);
+const _hoisted_1$6 = {
   class: "vbwd-cart-item",
   "data-testid": "cart-item"
 };
-const _hoisted_2$4 = { class: "vbwd-cart-item-info" };
-const _hoisted_3$3 = {
+const _hoisted_2$6 = { class: "vbwd-cart-item-info" };
+const _hoisted_3$5 = {
   class: "vbwd-cart-item-name",
   "data-testid": "cart-item-name"
 };
-const _hoisted_4$3 = {
+const _hoisted_4$5 = {
   class: "vbwd-cart-item-type",
   "data-testid": "cart-item-type"
 };
-const _hoisted_5$3 = { class: "vbwd-cart-item-details" };
-const _hoisted_6$2 = { class: "vbwd-cart-item-quantity" };
-const _hoisted_7$2 = ["disabled"];
-const _hoisted_8 = {
+const _hoisted_5$5 = { class: "vbwd-cart-item-details" };
+const _hoisted_6$4 = { class: "vbwd-cart-item-quantity" };
+const _hoisted_7$4 = ["disabled"];
+const _hoisted_8$2 = {
   class: "vbwd-cart-item-qty-value",
   "data-testid": "cart-item-quantity"
 };
-const _hoisted_9 = {
+const _hoisted_9$2 = {
   class: "vbwd-cart-item-price",
   "data-testid": "cart-item-price"
 };
-const _sfc_main$4 = /* @__PURE__ */ defineComponent({
+const _sfc_main$6 = /* @__PURE__ */ defineComponent({
   __name: "CartItem",
   props: {
     item: {}
@@ -2243,21 +2244,21 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
       }).format(price);
     }
     return (_ctx, _cache) => {
-      return openBlock(), createElementBlock("div", _hoisted_1$4, [
-        createElementVNode("div", _hoisted_2$4, [
-          createElementVNode("span", _hoisted_3$3, toDisplayString(__props.item.name), 1),
-          createElementVNode("span", _hoisted_4$3, toDisplayString(formatType(__props.item.type)), 1)
+      return openBlock(), createElementBlock("div", _hoisted_1$6, [
+        createElementVNode("div", _hoisted_2$6, [
+          createElementVNode("span", _hoisted_3$5, toDisplayString(__props.item.name), 1),
+          createElementVNode("span", _hoisted_4$5, toDisplayString(formatType(__props.item.type)), 1)
         ]),
-        createElementVNode("div", _hoisted_5$3, [
-          createElementVNode("div", _hoisted_6$2, [
+        createElementVNode("div", _hoisted_5$5, [
+          createElementVNode("div", _hoisted_6$4, [
             createElementVNode("button", {
               type: "button",
               class: "vbwd-cart-item-qty-btn",
               "data-testid": "cart-item-decrease",
               disabled: __props.item.quantity <= 1,
               onClick: _cache[0] || (_cache[0] = ($event) => emit("decrease"))
-            }, " - ", 8, _hoisted_7$2),
-            createElementVNode("span", _hoisted_8, toDisplayString(__props.item.quantity), 1),
+            }, " - ", 8, _hoisted_7$4),
+            createElementVNode("span", _hoisted_8$2, toDisplayString(__props.item.quantity), 1),
             createElementVNode("button", {
               type: "button",
               class: "vbwd-cart-item-qty-btn",
@@ -2265,7 +2266,7 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
               onClick: _cache[1] || (_cache[1] = ($event) => emit("increase"))
             }, " + ")
           ]),
-          createElementVNode("span", _hoisted_9, toDisplayString(formatPrice(__props.item.price * __props.item.quantity)), 1),
+          createElementVNode("span", _hoisted_9$2, toDisplayString(formatPrice(__props.item.price * __props.item.quantity)), 1),
           createElementVNode("button", {
             type: "button",
             class: "vbwd-cart-item-remove",
@@ -2291,23 +2292,23 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const CartItem = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["__scopeId", "data-v-8dc99341"]]);
-const _hoisted_1$3 = {
+const CartItem = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["__scopeId", "data-v-8dc99341"]]);
+const _hoisted_1$5 = {
   class: "vbwd-cart-empty",
   "data-testid": "cart-empty"
 };
-const _hoisted_2$3 = {
+const _hoisted_2$5 = {
   class: "vbwd-cart-empty-text",
   "data-testid": "cart-empty-message"
 };
-const _sfc_main$3 = /* @__PURE__ */ defineComponent({
+const _sfc_main$5 = /* @__PURE__ */ defineComponent({
   __name: "CartEmpty",
   props: {
     message: { default: "Your cart is empty" }
   },
   setup(__props) {
     return (_ctx, _cache) => {
-      return openBlock(), createElementBlock("div", _hoisted_1$3, [
+      return openBlock(), createElementBlock("div", _hoisted_1$5, [
         renderSlot(_ctx.$slots, "icon", {}, () => [
           _cache[0] || (_cache[0] = createElementVNode("svg", {
             class: "vbwd-cart-empty-icon",
@@ -2331,7 +2332,7 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
             createElementVNode("path", { d: "M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" })
           ], -1))
         ], true),
-        createElementVNode("p", _hoisted_2$3, [
+        createElementVNode("p", _hoisted_2$5, [
           renderSlot(_ctx.$slots, "default", {}, () => [
             createTextVNode(toDisplayString(__props.message), 1)
           ], true)
@@ -2341,7 +2342,7 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const CartEmpty = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["__scopeId", "data-v-320b03d4"]]);
+const CartEmpty = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["__scopeId", "data-v-320b03d4"]]);
 const STORAGE_KEY = "vbwd_cart";
 function loadFromStorage() {
   try {
@@ -2497,27 +2498,27 @@ function createCartStore(storageKey = STORAGE_KEY) {
     };
   });
 }
-const _hoisted_1$2 = { class: "vbwd-cart-dropdown-header" };
-const _hoisted_2$2 = {
+const _hoisted_1$4 = { class: "vbwd-cart-dropdown-header" };
+const _hoisted_2$4 = {
   class: "vbwd-cart-dropdown-count",
   "data-testid": "cart-dropdown-count"
 };
-const _hoisted_3$2 = { class: "vbwd-cart-dropdown-content" };
-const _hoisted_4$2 = {
+const _hoisted_3$4 = { class: "vbwd-cart-dropdown-content" };
+const _hoisted_4$4 = {
   key: 1,
   class: "vbwd-cart-dropdown-items",
   "data-testid": "cart-dropdown-items"
 };
-const _hoisted_5$2 = {
+const _hoisted_5$4 = {
   key: 0,
   class: "vbwd-cart-dropdown-footer"
 };
-const _hoisted_6$1 = { class: "vbwd-cart-dropdown-total" };
-const _hoisted_7$1 = {
+const _hoisted_6$3 = { class: "vbwd-cart-dropdown-total" };
+const _hoisted_7$3 = {
   class: "vbwd-cart-dropdown-total-value",
   "data-testid": "cart-dropdown-total"
 };
-const _sfc_main$2 = /* @__PURE__ */ defineComponent({
+const _sfc_main$4 = /* @__PURE__ */ defineComponent({
   __name: "CartDropdown",
   props: {
     placement: { default: "bottom-end" }
@@ -2593,17 +2594,17 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
               class: normalizeClass(["vbwd-cart-dropdown-menu", `vbwd-cart-dropdown-${__props.placement}`]),
               "data-testid": "cart-dropdown-menu"
             }, [
-              createElementVNode("div", _hoisted_1$2, [
+              createElementVNode("div", _hoisted_1$4, [
                 _cache[0] || (_cache[0] = createElementVNode("h3", { class: "vbwd-cart-dropdown-title" }, "Shopping Cart", -1)),
-                createElementVNode("span", _hoisted_2$2, toDisplayString(unref(itemCount)) + " " + toDisplayString(unref(itemCount) === 1 ? "item" : "items"), 1)
+                createElementVNode("span", _hoisted_2$4, toDisplayString(unref(itemCount)) + " " + toDisplayString(unref(itemCount) === 1 ? "item" : "items"), 1)
               ]),
-              createElementVNode("div", _hoisted_3$2, [
+              createElementVNode("div", _hoisted_3$4, [
                 unref(isEmpty) ? (openBlock(), createBlock(CartEmpty, { key: 0 }, {
                   action: withCtx(() => [
                     renderSlot(_ctx.$slots, "empty-action", {}, void 0, true)
                   ]),
                   _: 3
-                })) : (openBlock(), createElementBlock("div", _hoisted_4$2, [
+                })) : (openBlock(), createElementBlock("div", _hoisted_4$4, [
                   (openBlock(true), createElementBlock(Fragment, null, renderList(unref(items), (item) => {
                     return openBlock(), createBlock(CartItem, {
                       key: `${item.type}-${item.id}`,
@@ -2615,10 +2616,10 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
                   }), 128))
                 ]))
               ]),
-              !unref(isEmpty) ? (openBlock(), createElementBlock("div", _hoisted_5$2, [
-                createElementVNode("div", _hoisted_6$1, [
+              !unref(isEmpty) ? (openBlock(), createElementBlock("div", _hoisted_5$4, [
+                createElementVNode("div", _hoisted_6$3, [
                   _cache[1] || (_cache[1] = createElementVNode("span", null, "Total:", -1)),
-                  createElementVNode("span", _hoisted_7$1, toDisplayString(formatPrice(unref(total))), 1)
+                  createElementVNode("span", _hoisted_7$3, toDisplayString(formatPrice(unref(total))), 1)
                 ]),
                 createElementVNode("div", { class: "vbwd-cart-dropdown-actions" }, [
                   createElementVNode("button", {
@@ -2643,7 +2644,7 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const CartDropdown = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v-5b63da9d"]]);
+const CartDropdown = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["__scopeId", "data-v-5b63da9d"]]);
 const registry$1 = {};
 function registerPaymentDataContributor(key, contributor) {
   registry$1[key] = contributor;
@@ -2659,16 +2660,16 @@ function _resetPaymentDataContributors() {
     delete registry$1[key];
   }
 }
-const _hoisted_1$1 = {
+const _hoisted_1$3 = {
   key: 0,
   class: "vbwd-payment-data",
   "data-testid": "payment-data-block"
 };
-const _hoisted_2$1 = ["data-testid"];
-const _hoisted_3$1 = { class: "vbwd-payment-data__label" };
-const _hoisted_4$1 = { class: "vbwd-payment-data__value" };
-const _hoisted_5$1 = ["href"];
-const _sfc_main$1 = /* @__PURE__ */ defineComponent({
+const _hoisted_2$3 = ["data-testid"];
+const _hoisted_3$3 = { class: "vbwd-payment-data__label" };
+const _hoisted_4$3 = { class: "vbwd-payment-data__value" };
+const _hoisted_5$3 = ["href"];
+const _sfc_main$3 = /* @__PURE__ */ defineComponent({
   __name: "PaymentDataBlock",
   props: {
     metadata: { default: () => ({}) },
@@ -2717,15 +2718,15 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
     });
     const hasRenderableEntries = computed(() => renderableEntries.value.length > 0);
     return (_ctx, _cache) => {
-      return hasRenderableEntries.value ? (openBlock(), createElementBlock("div", _hoisted_1$1, [
+      return hasRenderableEntries.value ? (openBlock(), createElementBlock("div", _hoisted_1$3, [
         (openBlock(true), createElementBlock(Fragment, null, renderList(renderableEntries.value, (entry) => {
           return openBlock(), createElementBlock("div", {
             key: entry.key,
             class: normalizeClass(["vbwd-payment-data__row", { "vbwd-payment-data__row--fallback": entry.fromPaymentMethodFallback }]),
             "data-testid": `payment-data-${entry.key}`
           }, [
-            createElementVNode("span", _hoisted_3$1, toDisplayString(entry.label), 1),
-            createElementVNode("span", _hoisted_4$1, [
+            createElementVNode("span", _hoisted_3$3, toDisplayString(entry.label), 1),
+            createElementVNode("span", _hoisted_4$3, [
               entry.component ? (openBlock(), createBlock(resolveDynamicComponent(entry.component), {
                 key: 0,
                 data: entry.data
@@ -2753,17 +2754,17 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
                   createElementVNode("path", { d: "M10 14L20 4" }),
                   createElementVNode("path", { d: "M19 13v6a1 1 0 01-1 1H5a1 1 0 01-1-1V6a1 1 0 011-1h6" })
                 ], -1))
-              ], 8, _hoisted_5$1)) : (openBlock(), createElementBlock(Fragment, { key: 2 }, [
+              ], 8, _hoisted_5$3)) : (openBlock(), createElementBlock(Fragment, { key: 2 }, [
                 createTextVNode(toDisplayString(entry.text), 1)
               ], 64))
             ])
-          ], 10, _hoisted_2$1);
+          ], 10, _hoisted_2$3);
         }), 128))
       ])) : createCommentVNode("", true);
     };
   }
 });
-const PaymentDataBlock = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["__scopeId", "data-v-6e610b22"]]);
+const PaymentDataBlock = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["__scopeId", "data-v-6e610b22"]]);
 const registry = {};
 function registerPaymentInformationContributor(key, contributor) {
   registry[key] = contributor;
@@ -2779,21 +2780,21 @@ function _resetPaymentInformationContributors() {
     delete registry[key];
   }
 }
-const _hoisted_1 = {
+const _hoisted_1$2 = {
   key: 0,
   class: "vbwd-payment-information",
   "data-testid": "payment-information-block"
 };
-const _hoisted_2 = { class: "vbwd-payment-information__heading" };
-const _hoisted_3 = { class: "vbwd-payment-information__table" };
-const _hoisted_4 = ["data-testid"];
-const _hoisted_5 = {
+const _hoisted_2$2 = { class: "vbwd-payment-information__heading" };
+const _hoisted_3$2 = { class: "vbwd-payment-information__table" };
+const _hoisted_4$2 = ["data-testid"];
+const _hoisted_5$2 = {
   scope: "row",
   class: "vbwd-payment-information__label"
 };
-const _hoisted_6 = { class: "vbwd-payment-information__value" };
-const _hoisted_7 = ["href"];
-const _sfc_main = /* @__PURE__ */ defineComponent({
+const _hoisted_6$2 = { class: "vbwd-payment-information__value" };
+const _hoisted_7$2 = ["href"];
+const _sfc_main$2 = /* @__PURE__ */ defineComponent({
   __name: "PaymentInformationBlock",
   props: {
     metadata: { default: () => ({}) },
@@ -2851,28 +2852,28 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
       return label.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
     }
     return (_ctx, _cache) => {
-      return hasRows.value ? (openBlock(), createElementBlock("section", _hoisted_1, [
-        createElementVNode("h3", _hoisted_2, toDisplayString(__props.heading), 1),
-        createElementVNode("table", _hoisted_3, [
+      return hasRows.value ? (openBlock(), createElementBlock("section", _hoisted_1$2, [
+        createElementVNode("h3", _hoisted_2$2, toDisplayString(__props.heading), 1),
+        createElementVNode("table", _hoisted_3$2, [
           createElementVNode("tbody", null, [
             (openBlock(true), createElementBlock(Fragment, null, renderList(rows.value, (row, index) => {
               return openBlock(), createElementBlock("tr", {
                 key: `${row.namespace}-${row.label}-${index}`,
                 "data-testid": `payment-information-${row.namespace}-${normalize(row.label)}`
               }, [
-                createElementVNode("th", _hoisted_5, toDisplayString(row.label), 1),
-                createElementVNode("td", _hoisted_6, [
+                createElementVNode("th", _hoisted_5$2, toDisplayString(row.label), 1),
+                createElementVNode("td", _hoisted_6$2, [
                   row.link ? (openBlock(), createElementBlock("a", {
                     key: 0,
                     href: row.link,
                     target: "_blank",
                     rel: "noopener noreferrer",
                     class: "vbwd-payment-information__link"
-                  }, toDisplayString(row.value), 9, _hoisted_7)) : (openBlock(), createElementBlock(Fragment, { key: 1 }, [
+                  }, toDisplayString(row.value), 9, _hoisted_7$2)) : (openBlock(), createElementBlock(Fragment, { key: 1 }, [
                     createTextVNode(toDisplayString(row.value), 1)
                   ], 64))
                 ])
-              ], 8, _hoisted_4);
+              ], 8, _hoisted_4$2);
             }), 128))
           ])
         ])
@@ -2880,7 +2881,7 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const PaymentInformationBlock = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-26480a51"]]);
+const PaymentInformationBlock = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v-26480a51"]]);
 let storeConfig = null;
 function configureAuthStore(config) {
   storeConfig = {
@@ -3678,6 +3679,810 @@ function formatMoney(value, options = {}) {
     return `${currency === "USD" ? "$" : ""}${rounded.toFixed(2)}`;
   }
 }
+function downloadBlob(blob, filename) {
+  const objectUrl = URL.createObjectURL(blob);
+  const anchor = document.createElement("a");
+  anchor.href = objectUrl;
+  anchor.download = filename;
+  anchor.style.display = "none";
+  document.body.appendChild(anchor);
+  anchor.click();
+  document.body.removeChild(anchor);
+  URL.revokeObjectURL(objectUrl);
+}
+function readImportFile(file) {
+  if (!file) {
+    return Promise.reject(new Error("No file provided"));
+  }
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(String(reader.result ?? ""));
+    reader.onerror = () => reject(reader.error ?? new Error("File read failed"));
+    reader.readAsText(file);
+  });
+}
+const BASE = "/api/v1/admin/data-exchange";
+const DEFAULT_FORMAT = "json";
+const BUNDLE_FILENAME = "data-exchange.zip";
+function manifestUrl() {
+  return `${BASE}/manifest`;
+}
+function entityExportUrl(entityKey) {
+  return `${BASE}/${entityKey}/export`;
+}
+function entityImportUrl(entityKey) {
+  return `${BASE}/${entityKey}/import`;
+}
+function bundleExportUrl() {
+  return `${BASE}/export`;
+}
+function bundleImportUrl() {
+  return `${BASE}/import`;
+}
+function buildImportForm(file, options) {
+  const form = new FormData();
+  form.append("file", file);
+  form.append("mode", (options == null ? void 0 : options.mode) ?? "upsert");
+  form.append("dry_run", String((options == null ? void 0 : options.dryRun) ?? false));
+  return form;
+}
+function useDataExchange(api, entityKey) {
+  function requireEntityKey(explicit) {
+    const key = explicit ?? entityKey;
+    if (!key) {
+      throw new Error("useDataExchange: entityKey is required for this call");
+    }
+    return key;
+  }
+  async function fetchManifest() {
+    const response = await api.getJson(manifestUrl());
+    return Array.isArray(response) ? response : response.entities;
+  }
+  async function exportEntity(selector, explicitEntityKey) {
+    const key = requireEntityKey(explicitEntityKey);
+    const format = selector.format ?? DEFAULT_FORMAT;
+    const blob = await api.postForBlob(entityExportUrl(key), selector);
+    downloadBlob(blob, `${key}.${format}`);
+  }
+  async function exportBundle(entityKeys, format = DEFAULT_FORMAT) {
+    const blob = await api.postForBlob(bundleExportUrl(), {
+      entities: entityKeys,
+      format
+    });
+    downloadBlob(blob, BUNDLE_FILENAME);
+  }
+  async function importEntity(file, options, explicitEntityKey) {
+    const key = requireEntityKey(explicitEntityKey);
+    const form = buildImportForm(file, options);
+    return api.postFormForJson(entityImportUrl(key), form);
+  }
+  async function importBundle(file, options) {
+    const form = buildImportForm(file, options);
+    const response = await api.postFormForJson(bundleImportUrl(), form);
+    return Array.isArray(response) ? response : response.results;
+  }
+  return {
+    fetchManifest,
+    exportEntity,
+    exportBundle,
+    importEntity,
+    importBundle
+  };
+}
+const _hoisted_1$1 = { class: "vbwd-iep" };
+const _hoisted_2$1 = {
+  class: "vbwd-iep-tabs",
+  role: "tablist"
+};
+const _hoisted_3$1 = ["data-test", "onClick"];
+const _hoisted_4$1 = {
+  key: 0,
+  class: "vbwd-iep-panel"
+};
+const _hoisted_5$1 = {
+  key: 0,
+  class: "vbwd-iep-status",
+  "data-test": "loading"
+};
+const _hoisted_6$1 = {
+  key: 1,
+  class: "vbwd-iep-error",
+  "data-test": "manifest-error"
+};
+const _hoisted_7$1 = {
+  class: "vbwd-iep-block",
+  "data-test": "export-block"
+};
+const _hoisted_8$1 = { class: "vbwd-iep-block-title" };
+const _hoisted_9$1 = { class: "vbwd-iep-toggle" };
+const _hoisted_10$1 = ["data-test"];
+const _hoisted_11$1 = { class: "vbwd-iep-cluster-title" };
+const _hoisted_12$1 = ["data-test"];
+const _hoisted_13$1 = { class: "vbwd-iep-entity" };
+const _hoisted_14$1 = ["value", "disabled"];
+const _hoisted_15$1 = ["onUpdate:modelValue", "data-test"];
+const _hoisted_16$1 = ["value"];
+const _hoisted_17$1 = ["disabled"];
+const _hoisted_18$1 = {
+  class: "vbwd-iep-block",
+  "data-test": "import-block"
+};
+const _hoisted_19$1 = { class: "vbwd-iep-block-title" };
+const _hoisted_20$1 = { class: "vbwd-iep-modes" };
+const _hoisted_21$1 = {
+  class: "vbwd-iep-mode",
+  "data-test": "import-mode-upsert"
+};
+const _hoisted_22 = {
+  key: 0,
+  class: "vbwd-iep-mode vbwd-iep-mode-danger",
+  "data-test": "import-mode-replace_all"
+};
+const _hoisted_23 = {
+  key: 0,
+  class: "vbwd-iep-error",
+  "data-test": "import-error"
+};
+const _hoisted_24 = {
+  key: 1,
+  class: "vbwd-iep-preview",
+  "data-test": "import-preview"
+};
+const _hoisted_25 = ["data-test"];
+const _hoisted_26 = { class: "vbwd-iep-actions" };
+const _hoisted_27 = ["disabled"];
+const _hoisted_28 = ["disabled"];
+const _hoisted_29 = ["data-test"];
+const GENERAL_TAB_ID = "__general__";
+const _sfc_main$1 = /* @__PURE__ */ defineComponent({
+  __name: "ImportExportPage",
+  props: {
+    api: {},
+    isSuperadmin: { type: Boolean, default: false },
+    tabs: { default: () => [] },
+    labels: { default: () => ({}) }
+  },
+  setup(__props) {
+    const DEFAULT_LABELS = {
+      generalTab: "General",
+      loading: "Loading…",
+      exportTitle: "Export",
+      exportEverything: "Everything",
+      exportRun: "Export",
+      importTitle: "Import",
+      modeUpsert: "Upsert (add / update)",
+      modeReplaceAll: "Replace all (destructive)",
+      preview: "Dry-run / Preview",
+      confirm: "Confirm import",
+      entity: "Entity",
+      created: "Created",
+      updated: "Updated",
+      skipped: "Skipped",
+      errors: "Errors",
+      salesCluster: "Sales",
+      settingsCluster: "Settings",
+      contentCluster: "Content",
+      replaceAllConfirm: "Replace all will DELETE existing records before importing. Continue?"
+    };
+    const PREFERRED_CLUSTER_ORDER = [
+      "sales",
+      "settings",
+      "content"
+    ];
+    const KNOWN_CLUSTER_LABEL_KEYS = {
+      sales: "salesCluster",
+      settings: "settingsCluster",
+      content: "contentCluster"
+    };
+    const props = __props;
+    const labels = computed(() => ({
+      ...DEFAULT_LABELS,
+      ...props.labels
+    }));
+    const exchange = useDataExchange(props.api);
+    const activeTab = ref(GENERAL_TAB_ID);
+    const loading = ref(true);
+    const error = ref(null);
+    const manifest = ref([]);
+    const exportEverything = ref(false);
+    const selectedExportKeys = ref([]);
+    const exportFormats = reactive({});
+    const importFile = ref(null);
+    const importMode = ref("upsert");
+    const importResults = ref([]);
+    const importError = ref(null);
+    const busy = ref(false);
+    const sortedTabs = computed(
+      () => [...props.tabs].sort((a, b) => (a.order ?? 0) - (b.order ?? 0))
+    );
+    const exportable = computed(
+      () => manifest.value.filter((entry) => entry.can_export)
+    );
+    const exportableByCluster = computed(() => {
+      const grouped = {};
+      for (const entry of exportable.value) {
+        grouped[entry.cluster] = grouped[entry.cluster] ?? [];
+        grouped[entry.cluster].push(entry);
+      }
+      return grouped;
+    });
+    const clusters = computed(() => {
+      const present = Object.keys(exportableByCluster.value);
+      const preferred = PREFERRED_CLUSTER_ORDER.filter(
+        (cluster) => present.includes(cluster)
+      );
+      const rest = present.filter(
+        (cluster) => !PREFERRED_CLUSTER_ORDER.includes(cluster)
+      );
+      return [...preferred, ...rest];
+    });
+    const canRunExport = computed(
+      () => exportEverything.value || selectedExportKeys.value.length > 0
+    );
+    function titleCase(value) {
+      return value.split(/[\s_-]+/).filter(Boolean).map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ");
+    }
+    function clusterLabel(cluster) {
+      const labelKey = KNOWN_CLUSTER_LABEL_KEYS[cluster];
+      return labelKey ? labels.value[labelKey] : titleCase(cluster);
+    }
+    async function loadManifest() {
+      loading.value = true;
+      error.value = null;
+      try {
+        const entries = await exchange.fetchManifest();
+        manifest.value = entries;
+        for (const entry of entries) {
+          exportFormats[entry.entity_key] = entry.supported_formats[0] ?? "json";
+        }
+      } catch (caught) {
+        error.value = toMessage(caught);
+      } finally {
+        loading.value = false;
+      }
+    }
+    async function runExport() {
+      busy.value = true;
+      error.value = null;
+      try {
+        const keys = exportEverything.value ? exportable.value.map((entry) => entry.entity_key) : selectedExportKeys.value;
+        if (keys.length === 1 && !exportEverything.value) {
+          const key = keys[0];
+          await exchange.exportEntity(
+            { all: true, format: exportFormats[key] },
+            key
+          );
+        } else {
+          await exchange.exportBundle(keys, "json");
+        }
+      } catch (caught) {
+        error.value = toMessage(caught);
+      } finally {
+        busy.value = false;
+      }
+    }
+    function onFileChange(event) {
+      var _a2;
+      const target = event.target;
+      importFile.value = ((_a2 = target.files) == null ? void 0 : _a2[0]) ?? null;
+      importResults.value = [];
+    }
+    function isZip(file) {
+      return file.name.toLowerCase().endsWith(".zip");
+    }
+    async function runImport(dryRun) {
+      const file = importFile.value;
+      if (!file) {
+        return;
+      }
+      if (importMode.value === "replace_all" && !dryRun) {
+        const confirmed = typeof window !== "undefined" ? window.confirm(labels.value.replaceAllConfirm) : true;
+        if (!confirmed) {
+          return;
+        }
+      }
+      busy.value = true;
+      importError.value = null;
+      try {
+        if (isZip(file)) {
+          importResults.value = await exchange.importBundle(file, {
+            mode: importMode.value,
+            dryRun
+          });
+        } else {
+          const result = await exchange.importEntity(file, {
+            mode: importMode.value,
+            dryRun
+          });
+          importResults.value = [result];
+        }
+      } catch (caught) {
+        importError.value = toMessage(caught);
+      } finally {
+        busy.value = false;
+      }
+    }
+    function toMessage(caught) {
+      if (caught instanceof Error) {
+        return caught.message;
+      }
+      return "Operation failed";
+    }
+    onMounted(loadManifest);
+    return (_ctx, _cache) => {
+      return openBlock(), createElementBlock("div", _hoisted_1$1, [
+        createElementVNode("nav", _hoisted_2$1, [
+          createElementVNode("button", {
+            type: "button",
+            class: normalizeClass(["vbwd-iep-tab", { "vbwd-iep-tab-active": activeTab.value === GENERAL_TAB_ID }]),
+            "data-test": "tab-general",
+            role: "tab",
+            onClick: _cache[0] || (_cache[0] = ($event) => activeTab.value = GENERAL_TAB_ID)
+          }, toDisplayString(labels.value.generalTab), 3),
+          (openBlock(true), createElementBlock(Fragment, null, renderList(sortedTabs.value, (tab) => {
+            return openBlock(), createElementBlock("button", {
+              key: tab.id,
+              type: "button",
+              class: normalizeClass(["vbwd-iep-tab", { "vbwd-iep-tab-active": activeTab.value === tab.id }]),
+              "data-test": `tab-${tab.id}`,
+              role: "tab",
+              onClick: ($event) => activeTab.value = tab.id
+            }, toDisplayString(tab.label), 11, _hoisted_3$1);
+          }), 128))
+        ]),
+        activeTab.value === GENERAL_TAB_ID ? (openBlock(), createElementBlock("section", _hoisted_4$1, [
+          loading.value ? (openBlock(), createElementBlock("p", _hoisted_5$1, toDisplayString(labels.value.loading), 1)) : error.value ? (openBlock(), createElementBlock("p", _hoisted_6$1, toDisplayString(error.value), 1)) : (openBlock(), createElementBlock(Fragment, { key: 2 }, [
+            createElementVNode("div", _hoisted_7$1, [
+              createElementVNode("h3", _hoisted_8$1, toDisplayString(labels.value.exportTitle), 1),
+              createElementVNode("label", _hoisted_9$1, [
+                withDirectives(createElementVNode("input", {
+                  "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => exportEverything.value = $event),
+                  type: "checkbox"
+                }, null, 512), [
+                  [vModelCheckbox, exportEverything.value]
+                ]),
+                createTextVNode(" " + toDisplayString(labels.value.exportEverything), 1)
+              ]),
+              (openBlock(true), createElementBlock(Fragment, null, renderList(clusters.value, (cluster) => {
+                return openBlock(), createElementBlock("div", {
+                  key: `exp-${cluster}`,
+                  class: "vbwd-iep-cluster",
+                  "data-test": `cluster-${cluster}`
+                }, [
+                  createElementVNode("h4", _hoisted_11$1, toDisplayString(clusterLabel(cluster)), 1),
+                  (openBlock(true), createElementBlock(Fragment, null, renderList(exportableByCluster.value[cluster], (entry) => {
+                    return openBlock(), createElementBlock("div", {
+                      key: entry.entity_key,
+                      class: "vbwd-iep-row",
+                      "data-test": `export-entity-${entry.entity_key}`
+                    }, [
+                      createElementVNode("label", _hoisted_13$1, [
+                        withDirectives(createElementVNode("input", {
+                          "onUpdate:modelValue": _cache[2] || (_cache[2] = ($event) => selectedExportKeys.value = $event),
+                          type: "checkbox",
+                          value: entry.entity_key,
+                          disabled: exportEverything.value
+                        }, null, 8, _hoisted_14$1), [
+                          [vModelCheckbox, selectedExportKeys.value]
+                        ]),
+                        createTextVNode(" " + toDisplayString(entry.label), 1)
+                      ]),
+                      withDirectives(createElementVNode("select", {
+                        "onUpdate:modelValue": ($event) => exportFormats[entry.entity_key] = $event,
+                        class: "vbwd-iep-format",
+                        "data-test": `format-${entry.entity_key}`
+                      }, [
+                        (openBlock(true), createElementBlock(Fragment, null, renderList(entry.supported_formats, (fmt) => {
+                          return openBlock(), createElementBlock("option", {
+                            key: fmt,
+                            value: fmt
+                          }, toDisplayString(fmt.toUpperCase()), 9, _hoisted_16$1);
+                        }), 128))
+                      ], 8, _hoisted_15$1), [
+                        [vModelSelect, exportFormats[entry.entity_key]]
+                      ])
+                    ], 8, _hoisted_12$1);
+                  }), 128))
+                ], 8, _hoisted_10$1);
+              }), 128)),
+              createElementVNode("button", {
+                type: "button",
+                class: "vbwd-iep-btn vbwd-iep-btn-primary",
+                "data-test": "export-run",
+                disabled: busy.value || !canRunExport.value,
+                onClick: runExport
+              }, toDisplayString(labels.value.exportRun), 9, _hoisted_17$1)
+            ]),
+            createElementVNode("div", _hoisted_18$1, [
+              createElementVNode("h3", _hoisted_19$1, toDisplayString(labels.value.importTitle), 1),
+              createElementVNode("input", {
+                type: "file",
+                accept: ".json,.csv,.zip",
+                class: "vbwd-iep-file",
+                "data-test": "import-file",
+                onChange: onFileChange
+              }, null, 32),
+              createElementVNode("fieldset", _hoisted_20$1, [
+                createElementVNode("label", _hoisted_21$1, [
+                  withDirectives(createElementVNode("input", {
+                    "onUpdate:modelValue": _cache[3] || (_cache[3] = ($event) => importMode.value = $event),
+                    type: "radio",
+                    value: "upsert"
+                  }, null, 512), [
+                    [vModelRadio, importMode.value]
+                  ]),
+                  createTextVNode(" " + toDisplayString(labels.value.modeUpsert), 1)
+                ]),
+                __props.isSuperadmin ? (openBlock(), createElementBlock("label", _hoisted_22, [
+                  withDirectives(createElementVNode("input", {
+                    "onUpdate:modelValue": _cache[4] || (_cache[4] = ($event) => importMode.value = $event),
+                    type: "radio",
+                    value: "replace_all"
+                  }, null, 512), [
+                    [vModelRadio, importMode.value]
+                  ]),
+                  createTextVNode(" " + toDisplayString(labels.value.modeReplaceAll), 1)
+                ])) : createCommentVNode("", true)
+              ]),
+              importError.value ? (openBlock(), createElementBlock("p", _hoisted_23, toDisplayString(importError.value), 1)) : createCommentVNode("", true),
+              importResults.value.length ? (openBlock(), createElementBlock("table", _hoisted_24, [
+                createElementVNode("thead", null, [
+                  createElementVNode("tr", null, [
+                    createElementVNode("th", null, toDisplayString(labels.value.entity), 1),
+                    createElementVNode("th", null, toDisplayString(labels.value.created), 1),
+                    createElementVNode("th", null, toDisplayString(labels.value.updated), 1),
+                    createElementVNode("th", null, toDisplayString(labels.value.skipped), 1),
+                    createElementVNode("th", null, toDisplayString(labels.value.errors), 1)
+                  ])
+                ]),
+                createElementVNode("tbody", null, [
+                  (openBlock(true), createElementBlock(Fragment, null, renderList(importResults.value, (result) => {
+                    return openBlock(), createElementBlock("tr", {
+                      key: result.entity,
+                      "data-test": `import-result-${result.entity}`
+                    }, [
+                      createElementVNode("td", null, toDisplayString(result.entity), 1),
+                      createElementVNode("td", null, toDisplayString(result.created), 1),
+                      createElementVNode("td", null, toDisplayString(result.updated), 1),
+                      createElementVNode("td", null, toDisplayString(result.skipped), 1),
+                      createElementVNode("td", null, toDisplayString(result.errors.length), 1)
+                    ], 8, _hoisted_25);
+                  }), 128))
+                ])
+              ])) : createCommentVNode("", true),
+              createElementVNode("div", _hoisted_26, [
+                createElementVNode("button", {
+                  type: "button",
+                  class: "vbwd-iep-btn",
+                  "data-test": "import-preview-run",
+                  disabled: !importFile.value || busy.value,
+                  onClick: _cache[5] || (_cache[5] = ($event) => runImport(true))
+                }, toDisplayString(labels.value.preview), 9, _hoisted_27),
+                createElementVNode("button", {
+                  type: "button",
+                  class: "vbwd-iep-btn vbwd-iep-btn-primary",
+                  "data-test": "import-confirm",
+                  disabled: !importFile.value || busy.value,
+                  onClick: _cache[6] || (_cache[6] = ($event) => runImport(false))
+                }, toDisplayString(labels.value.confirm), 9, _hoisted_28)
+              ])
+            ])
+          ], 64))
+        ])) : createCommentVNode("", true),
+        (openBlock(true), createElementBlock(Fragment, null, renderList(sortedTabs.value, (tab) => {
+          return withDirectives((openBlock(), createElementBlock("section", {
+            key: `panel-${tab.id}`,
+            class: "vbwd-iep-panel",
+            "data-test": `panel-${tab.id}`,
+            role: "tabpanel"
+          }, [
+            (openBlock(), createBlock(resolveDynamicComponent(tab.component), mergeProps({ ref_for: true }, tab.props || {}), null, 16))
+          ], 8, _hoisted_29)), [
+            [vShow, activeTab.value === tab.id]
+          ]);
+        }), 128))
+      ]);
+    };
+  }
+});
+const ImportExportPage = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["__scopeId", "data-v-d2a75732"]]);
+const _hoisted_1 = { class: "vbwd-iec" };
+const _hoisted_2 = {
+  key: 0,
+  class: "vbwd-iec-export"
+};
+const _hoisted_3 = ["disabled"];
+const _hoisted_4 = ["disabled"];
+const _hoisted_5 = ["disabled"];
+const _hoisted_6 = ["value"];
+const _hoisted_7 = {
+  key: 2,
+  class: "vbwd-iec-dialog",
+  "data-test": "import-dialog",
+  role: "dialog",
+  "aria-modal": "true"
+};
+const _hoisted_8 = { class: "vbwd-iec-dialog-body" };
+const _hoisted_9 = { class: "vbwd-iec-dialog-title" };
+const _hoisted_10 = { class: "vbwd-iec-modes" };
+const _hoisted_11 = {
+  class: "vbwd-iec-mode",
+  "data-test": "mode-upsert"
+};
+const _hoisted_12 = {
+  key: 0,
+  class: "vbwd-iec-mode vbwd-iec-mode-danger",
+  "data-test": "mode-replace_all"
+};
+const _hoisted_13 = {
+  key: 0,
+  class: "vbwd-iec-error",
+  "data-test": "import-error"
+};
+const _hoisted_14 = {
+  key: 1,
+  class: "vbwd-iec-preview",
+  "data-test": "import-preview-result"
+};
+const _hoisted_15 = { "data-test": "preview-created" };
+const _hoisted_16 = { "data-test": "preview-updated" };
+const _hoisted_17 = { "data-test": "preview-skipped" };
+const _hoisted_18 = { "data-test": "preview-errors" };
+const _hoisted_19 = { class: "vbwd-iec-dialog-actions" };
+const _hoisted_20 = ["disabled"];
+const _hoisted_21 = ["disabled"];
+const _sfc_main = /* @__PURE__ */ defineComponent({
+  __name: "ImportExportControls",
+  props: {
+    api: {},
+    entityKey: {},
+    selectedIds: { default: () => [] },
+    filterState: { default: () => ({}) },
+    canExport: { type: Boolean, default: false },
+    canImport: { type: Boolean, default: false },
+    canExportPii: { type: Boolean, default: false },
+    isSuperadmin: { type: Boolean, default: false },
+    supportedFormats: { default: () => ["json"] },
+    labels: { default: () => ({}) }
+  },
+  emits: ["refresh"],
+  setup(__props, { emit: __emit }) {
+    const DEFAULT_LABELS = {
+      exportSelected: "Export selected",
+      exportAll: "Export all",
+      exportFilter: "Export current filter",
+      import: "Import",
+      importTitle: "Import",
+      modeUpsert: "Upsert (add / update)",
+      modeReplaceAll: "Replace all (destructive)",
+      preview: "Dry-run / Preview",
+      confirm: "Confirm import",
+      cancel: "Cancel",
+      created: "Created",
+      updated: "Updated",
+      skipped: "Skipped",
+      errors: "Errors",
+      replaceAllConfirm: "Replace all will DELETE every existing record for this entity before importing. Continue?"
+    };
+    const props = __props;
+    const emit = __emit;
+    const labels = computed(() => ({
+      ...DEFAULT_LABELS,
+      ...props.labels
+    }));
+    const exchange = useDataExchange(props.api, props.entityKey);
+    const format = ref(props.supportedFormats[0] ?? "json");
+    const busy = ref(false);
+    const error = ref(null);
+    const importOpen = ref(false);
+    const mode = ref("upsert");
+    const file = ref(null);
+    const preview = ref(null);
+    watch(
+      () => props.isSuperadmin,
+      (value) => {
+        if (!value && mode.value === "replace_all") {
+          mode.value = "upsert";
+        }
+      }
+    );
+    function withFormat() {
+      return format.value;
+    }
+    async function runExport(selector) {
+      busy.value = true;
+      error.value = null;
+      try {
+        await exchange.exportEntity({ ...selector, format: withFormat() });
+      } catch (caught) {
+        error.value = toMessage(caught);
+      } finally {
+        busy.value = false;
+      }
+    }
+    function exportSelected() {
+      void runExport({ ids: props.selectedIds });
+    }
+    function exportAll() {
+      void runExport({ all: true });
+    }
+    function exportFilter() {
+      void runExport({ filters: props.filterState });
+    }
+    function openImport() {
+      importOpen.value = true;
+      preview.value = null;
+      error.value = null;
+      file.value = null;
+      mode.value = "upsert";
+    }
+    function closeImport() {
+      importOpen.value = false;
+    }
+    function onFileChange(event) {
+      var _a2;
+      const target = event.target;
+      file.value = ((_a2 = target.files) == null ? void 0 : _a2[0]) ?? null;
+      preview.value = null;
+    }
+    async function runImport(dryRun) {
+      if (!file.value) {
+        return null;
+      }
+      if (mode.value === "replace_all" && !dryRun) {
+        const confirmed = typeof window !== "undefined" ? window.confirm(labels.value.replaceAllConfirm) : true;
+        if (!confirmed) {
+          return null;
+        }
+      }
+      busy.value = true;
+      error.value = null;
+      try {
+        return await exchange.importEntity(file.value, {
+          mode: mode.value,
+          dryRun
+        });
+      } catch (caught) {
+        error.value = toMessage(caught);
+        return null;
+      } finally {
+        busy.value = false;
+      }
+    }
+    async function runPreview() {
+      const result = await runImport(true);
+      if (result) {
+        preview.value = result;
+      }
+    }
+    async function runConfirm() {
+      const result = await runImport(false);
+      if (result) {
+        importOpen.value = false;
+        emit("refresh");
+      }
+    }
+    function toMessage(caught) {
+      if (caught instanceof Error) {
+        return caught.message;
+      }
+      return "Operation failed";
+    }
+    return (_ctx, _cache) => {
+      return openBlock(), createElementBlock("div", _hoisted_1, [
+        __props.canExport ? (openBlock(), createElementBlock("div", _hoisted_2, [
+          createElementVNode("button", {
+            type: "button",
+            class: "vbwd-iec-btn",
+            "data-test": "export-selected",
+            disabled: __props.selectedIds.length === 0 || busy.value,
+            onClick: exportSelected
+          }, toDisplayString(labels.value.exportSelected), 9, _hoisted_3),
+          createElementVNode("button", {
+            type: "button",
+            class: "vbwd-iec-btn",
+            "data-test": "export-all",
+            disabled: busy.value,
+            onClick: exportAll
+          }, toDisplayString(labels.value.exportAll), 9, _hoisted_4),
+          createElementVNode("button", {
+            type: "button",
+            class: "vbwd-iec-btn",
+            "data-test": "export-filter",
+            disabled: busy.value,
+            onClick: exportFilter
+          }, toDisplayString(labels.value.exportFilter), 9, _hoisted_5),
+          __props.supportedFormats.length > 1 ? withDirectives((openBlock(), createElementBlock("select", {
+            key: 0,
+            "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => format.value = $event),
+            class: "vbwd-iec-format",
+            "data-test": "export-format"
+          }, [
+            (openBlock(true), createElementBlock(Fragment, null, renderList(__props.supportedFormats, (fmt) => {
+              return openBlock(), createElementBlock("option", {
+                key: fmt,
+                value: fmt
+              }, toDisplayString(fmt.toUpperCase()), 9, _hoisted_6);
+            }), 128))
+          ], 512)), [
+            [vModelSelect, format.value]
+          ]) : createCommentVNode("", true)
+        ])) : createCommentVNode("", true),
+        __props.canImport ? (openBlock(), createElementBlock("button", {
+          key: 1,
+          type: "button",
+          class: "vbwd-iec-btn",
+          "data-test": "import-open",
+          onClick: openImport
+        }, toDisplayString(labels.value.import), 1)) : createCommentVNode("", true),
+        importOpen.value ? (openBlock(), createElementBlock("div", _hoisted_7, [
+          createElementVNode("div", _hoisted_8, [
+            createElementVNode("h4", _hoisted_9, toDisplayString(labels.value.importTitle), 1),
+            createElementVNode("input", {
+              type: "file",
+              accept: ".json,.csv",
+              class: "vbwd-iec-file",
+              "data-test": "import-file",
+              onChange: onFileChange
+            }, null, 32),
+            createElementVNode("fieldset", _hoisted_10, [
+              createElementVNode("label", _hoisted_11, [
+                withDirectives(createElementVNode("input", {
+                  "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => mode.value = $event),
+                  type: "radio",
+                  value: "upsert"
+                }, null, 512), [
+                  [vModelRadio, mode.value]
+                ]),
+                createTextVNode(" " + toDisplayString(labels.value.modeUpsert), 1)
+              ]),
+              __props.isSuperadmin ? (openBlock(), createElementBlock("label", _hoisted_12, [
+                withDirectives(createElementVNode("input", {
+                  "onUpdate:modelValue": _cache[2] || (_cache[2] = ($event) => mode.value = $event),
+                  type: "radio",
+                  value: "replace_all"
+                }, null, 512), [
+                  [vModelRadio, mode.value]
+                ]),
+                createTextVNode(" " + toDisplayString(labels.value.modeReplaceAll), 1)
+              ])) : createCommentVNode("", true)
+            ]),
+            error.value ? (openBlock(), createElementBlock("p", _hoisted_13, toDisplayString(error.value), 1)) : createCommentVNode("", true),
+            preview.value ? (openBlock(), createElementBlock("div", _hoisted_14, [
+              createElementVNode("span", _hoisted_15, toDisplayString(labels.value.created) + ": " + toDisplayString(preview.value.created), 1),
+              createElementVNode("span", _hoisted_16, toDisplayString(labels.value.updated) + ": " + toDisplayString(preview.value.updated), 1),
+              createElementVNode("span", _hoisted_17, toDisplayString(labels.value.skipped) + ": " + toDisplayString(preview.value.skipped), 1),
+              createElementVNode("span", _hoisted_18, toDisplayString(labels.value.errors) + ": " + toDisplayString(preview.value.errors.length), 1)
+            ])) : createCommentVNode("", true),
+            createElementVNode("div", _hoisted_19, [
+              createElementVNode("button", {
+                type: "button",
+                class: "vbwd-iec-btn",
+                "data-test": "import-cancel",
+                onClick: closeImport
+              }, toDisplayString(labels.value.cancel), 1),
+              createElementVNode("button", {
+                type: "button",
+                class: "vbwd-iec-btn",
+                "data-test": "import-preview",
+                disabled: !file.value || busy.value,
+                onClick: runPreview
+              }, toDisplayString(labels.value.preview), 9, _hoisted_20),
+              createElementVNode("button", {
+                type: "button",
+                class: "vbwd-iec-btn vbwd-iec-btn-primary",
+                "data-test": "import-confirm",
+                disabled: !file.value || busy.value,
+                onClick: runConfirm
+              }, toDisplayString(labels.value.confirm), 9, _hoisted_21)
+            ])
+          ])
+        ])) : createCommentVNode("", true)
+      ]);
+    };
+  }
+});
+const ImportExportControls = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-240d2862"]]);
 const version = "0.1.0";
 const name = "@vbwd/view-component";
 export {
@@ -3702,6 +4507,8 @@ export {
   FormError,
   FormField,
   FormGroup,
+  ImportExportControls,
+  ImportExportPage,
   Input,
   Modal,
   NetworkError,
@@ -3724,6 +4531,7 @@ export {
   createAuthGuard,
   createCartStore,
   createRoleGuard,
+  downloadBlob,
   eventBus,
   fetchPluginConfigs,
   fetchPluginManifest,
@@ -3737,6 +4545,7 @@ export {
   loadPluginConfig,
   name,
   payButtonLabelOverride,
+  readImportFile,
   registerPaymentDataContributor,
   registerPaymentInformationContributor,
   roleGuard,
@@ -3746,6 +4555,7 @@ export {
   setPayButtonLabelOverride,
   useAuthStore,
   useCartStore,
+  useDataExchange,
   usePaymentRedirect,
   usePaymentStatus,
   version

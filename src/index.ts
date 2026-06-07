@@ -36,6 +36,9 @@ export * from './registries';
 // Utilities (money formatting, etc.)
 export * from './utils';
 
+// Data Exchange (S46.3 — generic import/export components + composable)
+export * from './dataExchange';
+
 // Authentication (Sprint 3)
 // export * from './auth';
 
