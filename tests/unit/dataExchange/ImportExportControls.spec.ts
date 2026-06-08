@@ -29,7 +29,7 @@ describe('ImportExportControls — permission rendering', () => {
     const wrapper = mount(ImportExportControls, { props: { ...baseProps } });
     expect(wrapper.find('[data-test="export-selected"]').exists()).toBe(true);
     expect(wrapper.find('[data-test="export-all"]').exists()).toBe(true);
-    expect(wrapper.find('[data-test="export-filter"]').exists()).toBe(true);
+    expect(wrapper.find('[data-test="export-filter"]').exists()).toBe(false);
     expect(wrapper.find('[data-test="import-open"]').exists()).toBe(true);
   });
 
@@ -51,11 +51,11 @@ describe('ImportExportControls — permission rendering', () => {
 });
 
 describe('ImportExportControls — granular action props', () => {
-  it('shows all four actions by default (back-compat)', () => {
+  it('shows export-all, export-selected and import by default; never export-filter', () => {
     const wrapper = mount(ImportExportControls, { props: { ...baseProps } });
     expect(wrapper.find('[data-test="export-all"]').exists()).toBe(true);
     expect(wrapper.find('[data-test="export-selected"]').exists()).toBe(true);
-    expect(wrapper.find('[data-test="export-filter"]').exists()).toBe(true);
+    expect(wrapper.find('[data-test="export-filter"]').exists()).toBe(false);
     expect(wrapper.find('[data-test="import-open"]').exists()).toBe(true);
   });
 
@@ -65,7 +65,6 @@ describe('ImportExportControls — granular action props', () => {
     });
     expect(wrapper.find('[data-test="export-all"]').exists()).toBe(false);
     expect(wrapper.find('[data-test="export-selected"]').exists()).toBe(true);
-    expect(wrapper.find('[data-test="export-filter"]').exists()).toBe(true);
     expect(wrapper.find('[data-test="import-open"]').exists()).toBe(true);
   });
 
@@ -75,17 +74,6 @@ describe('ImportExportControls — granular action props', () => {
     });
     expect(wrapper.find('[data-test="export-selected"]').exists()).toBe(false);
     expect(wrapper.find('[data-test="export-all"]').exists()).toBe(true);
-    expect(wrapper.find('[data-test="export-filter"]').exists()).toBe(true);
-    expect(wrapper.find('[data-test="import-open"]').exists()).toBe(true);
-  });
-
-  it('allowExportFiltered=false hides only export-filter', () => {
-    const wrapper = mount(ImportExportControls, {
-      props: { ...baseProps, allowExportFiltered: false },
-    });
-    expect(wrapper.find('[data-test="export-filter"]').exists()).toBe(false);
-    expect(wrapper.find('[data-test="export-all"]').exists()).toBe(true);
-    expect(wrapper.find('[data-test="export-selected"]').exists()).toBe(true);
     expect(wrapper.find('[data-test="import-open"]').exists()).toBe(true);
   });
 
@@ -96,7 +84,6 @@ describe('ImportExportControls — granular action props', () => {
     expect(wrapper.find('[data-test="import-open"]').exists()).toBe(false);
     expect(wrapper.find('[data-test="export-all"]').exists()).toBe(true);
     expect(wrapper.find('[data-test="export-selected"]').exists()).toBe(true);
-    expect(wrapper.find('[data-test="export-filter"]').exists()).toBe(true);
   });
 
   it('allow* props still require the matching permission gate', () => {
@@ -141,18 +128,6 @@ describe('ImportExportControls — export', () => {
     );
   });
 
-  it('export-filter posts the current filter state', async () => {
-    const api = makeApi();
-    const filterState = { status: 'active' };
-    const wrapper = mount(ImportExportControls, {
-      props: { ...baseProps, api, filterState },
-    });
-    await wrapper.find('[data-test="export-filter"]').trigger('click');
-    expect(api.postForBlob).toHaveBeenCalledWith(
-      '/api/v1/admin/data-exchange/users/export',
-      expect.objectContaining({ filters: filterState }),
-    );
-  });
 });
 
 describe('ImportExportControls — import dialog', () => {

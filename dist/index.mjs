@@ -3809,7 +3809,7 @@ const _hoisted_18$1 = {
 };
 const _hoisted_19$1 = { class: "vbwd-iep-block-title" };
 const _hoisted_20$1 = { class: "vbwd-iep-modes" };
-const _hoisted_21$1 = {
+const _hoisted_21 = {
   class: "vbwd-iep-mode",
   "data-test": "import-mode-upsert"
 };
@@ -4103,7 +4103,7 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
                 onChange: onFileChange
               }, null, 32),
               createElementVNode("fieldset", _hoisted_20$1, [
-                createElementVNode("label", _hoisted_21$1, [
+                createElementVNode("label", _hoisted_21, [
                   withDirectives(createElementVNode("input", {
                     "onUpdate:modelValue": _cache[3] || (_cache[3] = ($event) => importMode.value = $event),
                     type: "radio",
@@ -4193,44 +4193,43 @@ const _hoisted_2 = {
 };
 const _hoisted_3 = ["disabled"];
 const _hoisted_4 = ["disabled"];
-const _hoisted_5 = ["disabled"];
-const _hoisted_6 = ["value"];
-const _hoisted_7 = {
+const _hoisted_5 = ["value"];
+const _hoisted_6 = {
   key: 2,
   class: "vbwd-iec-dialog",
   "data-test": "import-dialog",
   role: "dialog",
   "aria-modal": "true"
 };
-const _hoisted_8 = { class: "vbwd-iec-dialog-body" };
-const _hoisted_9 = { class: "vbwd-iec-dialog-title" };
-const _hoisted_10 = { class: "vbwd-iec-modes" };
-const _hoisted_11 = {
+const _hoisted_7 = { class: "vbwd-iec-dialog-body" };
+const _hoisted_8 = { class: "vbwd-iec-dialog-title" };
+const _hoisted_9 = { class: "vbwd-iec-modes" };
+const _hoisted_10 = {
   class: "vbwd-iec-mode",
   "data-test": "mode-upsert"
 };
-const _hoisted_12 = {
+const _hoisted_11 = {
   key: 0,
   class: "vbwd-iec-mode vbwd-iec-mode-danger",
   "data-test": "mode-replace_all"
 };
-const _hoisted_13 = {
+const _hoisted_12 = {
   key: 0,
   class: "vbwd-iec-error",
   "data-test": "import-error"
 };
-const _hoisted_14 = {
+const _hoisted_13 = {
   key: 1,
   class: "vbwd-iec-preview",
   "data-test": "import-preview-result"
 };
-const _hoisted_15 = { "data-test": "preview-created" };
-const _hoisted_16 = { "data-test": "preview-updated" };
-const _hoisted_17 = { "data-test": "preview-skipped" };
-const _hoisted_18 = { "data-test": "preview-errors" };
-const _hoisted_19 = { class: "vbwd-iec-dialog-actions" };
+const _hoisted_14 = { "data-test": "preview-created" };
+const _hoisted_15 = { "data-test": "preview-updated" };
+const _hoisted_16 = { "data-test": "preview-skipped" };
+const _hoisted_17 = { "data-test": "preview-errors" };
+const _hoisted_18 = { class: "vbwd-iec-dialog-actions" };
+const _hoisted_19 = ["disabled"];
 const _hoisted_20 = ["disabled"];
-const _hoisted_21 = ["disabled"];
 const _sfc_main = /* @__PURE__ */ defineComponent({
   __name: "ImportExportControls",
   props: {
@@ -4246,7 +4245,6 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
     labels: { default: () => ({}) },
     allowExportAll: { type: Boolean, default: true },
     allowExportSelected: { type: Boolean, default: true },
-    allowExportFiltered: { type: Boolean, default: true },
     allowImport: { type: Boolean, default: true }
   },
   emits: ["refresh"],
@@ -4254,7 +4252,6 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
     const DEFAULT_LABELS = {
       exportSelected: "Export selected",
       exportAll: "Export all",
-      exportFilter: "Export current filter",
       import: "Import",
       importTitle: "Import",
       modeUpsert: "Upsert (add / update)",
@@ -4309,9 +4306,6 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
     }
     function exportAll() {
       void runExport({ all: true });
-    }
-    function exportFilter() {
-      void runExport({ filters: props.filterState });
     }
     function openImport() {
       importOpen.value = true;
@@ -4391,16 +4385,8 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
             disabled: busy.value,
             onClick: exportAll
           }, toDisplayString(labels.value.exportAll), 9, _hoisted_4)) : createCommentVNode("", true),
-          __props.allowExportFiltered ? (openBlock(), createElementBlock("button", {
-            key: 2,
-            type: "button",
-            class: "vbwd-iec-btn",
-            "data-test": "export-filter",
-            disabled: busy.value,
-            onClick: exportFilter
-          }, toDisplayString(labels.value.exportFilter), 9, _hoisted_5)) : createCommentVNode("", true),
           __props.supportedFormats.length > 1 ? withDirectives((openBlock(), createElementBlock("select", {
-            key: 3,
+            key: 2,
             "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => format.value = $event),
             class: "vbwd-iec-format",
             "data-test": "export-format"
@@ -4409,7 +4395,7 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
               return openBlock(), createElementBlock("option", {
                 key: fmt,
                 value: fmt
-              }, toDisplayString(fmt.toUpperCase()), 9, _hoisted_6);
+              }, toDisplayString(fmt.toUpperCase()), 9, _hoisted_5);
             }), 128))
           ], 512)), [
             [vModelSelect, format.value]
@@ -4422,9 +4408,9 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
           "data-test": "import-open",
           onClick: openImport
         }, toDisplayString(labels.value.import), 1)) : createCommentVNode("", true),
-        importOpen.value ? (openBlock(), createElementBlock("div", _hoisted_7, [
-          createElementVNode("div", _hoisted_8, [
-            createElementVNode("h4", _hoisted_9, toDisplayString(labels.value.importTitle), 1),
+        importOpen.value ? (openBlock(), createElementBlock("div", _hoisted_6, [
+          createElementVNode("div", _hoisted_7, [
+            createElementVNode("h4", _hoisted_8, toDisplayString(labels.value.importTitle), 1),
             createElementVNode("input", {
               type: "file",
               accept: ".json,.csv",
@@ -4432,8 +4418,8 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
               "data-test": "import-file",
               onChange: onFileChange
             }, null, 32),
-            createElementVNode("fieldset", _hoisted_10, [
-              createElementVNode("label", _hoisted_11, [
+            createElementVNode("fieldset", _hoisted_9, [
+              createElementVNode("label", _hoisted_10, [
                 withDirectives(createElementVNode("input", {
                   "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => mode.value = $event),
                   type: "radio",
@@ -4443,7 +4429,7 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
                 ]),
                 createTextVNode(" " + toDisplayString(labels.value.modeUpsert), 1)
               ]),
-              __props.isSuperadmin ? (openBlock(), createElementBlock("label", _hoisted_12, [
+              __props.isSuperadmin ? (openBlock(), createElementBlock("label", _hoisted_11, [
                 withDirectives(createElementVNode("input", {
                   "onUpdate:modelValue": _cache[2] || (_cache[2] = ($event) => mode.value = $event),
                   type: "radio",
@@ -4454,14 +4440,14 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
                 createTextVNode(" " + toDisplayString(labels.value.modeReplaceAll), 1)
               ])) : createCommentVNode("", true)
             ]),
-            error.value ? (openBlock(), createElementBlock("p", _hoisted_13, toDisplayString(error.value), 1)) : createCommentVNode("", true),
-            preview.value ? (openBlock(), createElementBlock("div", _hoisted_14, [
-              createElementVNode("span", _hoisted_15, toDisplayString(labels.value.created) + ": " + toDisplayString(preview.value.created), 1),
-              createElementVNode("span", _hoisted_16, toDisplayString(labels.value.updated) + ": " + toDisplayString(preview.value.updated), 1),
-              createElementVNode("span", _hoisted_17, toDisplayString(labels.value.skipped) + ": " + toDisplayString(preview.value.skipped), 1),
-              createElementVNode("span", _hoisted_18, toDisplayString(labels.value.errors) + ": " + toDisplayString(preview.value.errors.length), 1)
+            error.value ? (openBlock(), createElementBlock("p", _hoisted_12, toDisplayString(error.value), 1)) : createCommentVNode("", true),
+            preview.value ? (openBlock(), createElementBlock("div", _hoisted_13, [
+              createElementVNode("span", _hoisted_14, toDisplayString(labels.value.created) + ": " + toDisplayString(preview.value.created), 1),
+              createElementVNode("span", _hoisted_15, toDisplayString(labels.value.updated) + ": " + toDisplayString(preview.value.updated), 1),
+              createElementVNode("span", _hoisted_16, toDisplayString(labels.value.skipped) + ": " + toDisplayString(preview.value.skipped), 1),
+              createElementVNode("span", _hoisted_17, toDisplayString(labels.value.errors) + ": " + toDisplayString(preview.value.errors.length), 1)
             ])) : createCommentVNode("", true),
-            createElementVNode("div", _hoisted_19, [
+            createElementVNode("div", _hoisted_18, [
               createElementVNode("button", {
                 type: "button",
                 class: "vbwd-iec-btn",
@@ -4474,14 +4460,14 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
                 "data-test": "import-preview",
                 disabled: !file.value || busy.value,
                 onClick: runPreview
-              }, toDisplayString(labels.value.preview), 9, _hoisted_20),
+              }, toDisplayString(labels.value.preview), 9, _hoisted_19),
               createElementVNode("button", {
                 type: "button",
                 class: "vbwd-iec-btn vbwd-iec-btn-primary",
                 "data-test": "import-confirm",
                 disabled: !file.value || busy.value,
                 onClick: runConfirm
-              }, toDisplayString(labels.value.confirm), 9, _hoisted_21)
+              }, toDisplayString(labels.value.confirm), 9, _hoisted_20)
             ])
           ])
         ])) : createCommentVNode("", true)
@@ -4489,7 +4475,7 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const ImportExportControls = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-60311b35"]]);
+const ImportExportControls = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-e6a1efa9"]]);
 const version = "0.1.0";
 const name = "@vbwd/view-component";
 export {

@@ -21,16 +21,6 @@
       >
         {{ labels.exportAll }}
       </button>
-      <button
-        v-if="allowExportFiltered"
-        type="button"
-        class="vbwd-iec-btn"
-        data-test="export-filter"
-        :disabled="busy"
-        @click="exportFilter"
-      >
-        {{ labels.exportFilter }}
-      </button>
       <select
         v-if="supportedFormats.length > 1"
         v-model="format"
@@ -155,7 +145,6 @@ import type {
 interface ControlLabels {
   exportSelected: string;
   exportAll: string;
-  exportFilter: string;
   import: string;
   importTitle: string;
   modeUpsert: string;
@@ -173,7 +162,6 @@ interface ControlLabels {
 const DEFAULT_LABELS: ControlLabels = {
   exportSelected: 'Export selected',
   exportAll: 'Export all',
-  exportFilter: 'Export current filter',
   import: 'Import',
   importTitle: 'Import',
   modeUpsert: 'Upsert (add / update)',
@@ -203,7 +191,6 @@ const props = withDefaults(
     labels?: Partial<ControlLabels>;
     allowExportAll?: boolean;
     allowExportSelected?: boolean;
-    allowExportFiltered?: boolean;
     allowImport?: boolean;
   }>(),
   {
@@ -217,7 +204,6 @@ const props = withDefaults(
     labels: () => ({}),
     allowExportAll: true,
     allowExportSelected: true,
-    allowExportFiltered: true,
     allowImport: true,
   },
 );
@@ -273,10 +259,6 @@ function exportSelected(): void {
 
 function exportAll(): void {
   void runExport({ all: true });
-}
-
-function exportFilter(): void {
-  void runExport({ filters: props.filterState });
 }
 
 function openImport(): void {
