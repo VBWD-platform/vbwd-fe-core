@@ -3,7 +3,7 @@ var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { en
 var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
 var _a;
 import axios from "axios";
-import { defineComponent, ref, computed, openBlock, createElementBlock, normalizeClass, createElementVNode, renderSlot, createBlock, resolveDynamicComponent, toDisplayString, createCommentVNode, createTextVNode, h, withDirectives, withKeys, vModelText, withCtx, normalizeStyle, onMounted, onUnmounted, createVNode, Transition, Fragment, renderList, watch, Teleport, withModifiers, unref, reactive, vModelCheckbox, vModelSelect, vModelRadio, mergeProps, vShow } from "vue";
+import { defineComponent, ref, computed, openBlock, createElementBlock, normalizeClass, createElementVNode, renderSlot, createBlock, resolveDynamicComponent, toDisplayString, createCommentVNode, createTextVNode, h, Fragment, renderList, withModifiers, withDirectives, vModelText, withKeys, withCtx, normalizeStyle, onMounted, onUnmounted, createVNode, Transition, watch, Teleport, unref, reactive, vModelCheckbox, vModelSelect, vModelRadio, mergeProps, vShow } from "vue";
 import { defineStore, storeToRefs } from "pinia";
 import * as fs from "fs";
 import * as path from "path";
@@ -1015,14 +1015,14 @@ const AppEvents = {
   PLUGIN_ERROR: "plugin:error",
   PLUGIN_STOPPED: "plugin:stopped"
 };
-const _hoisted_1$k = { class: "vbwd-alert-icon" };
-const _hoisted_2$j = { class: "vbwd-alert-content" };
-const _hoisted_3$f = {
+const _hoisted_1$l = { class: "vbwd-alert-icon" };
+const _hoisted_2$k = { class: "vbwd-alert-content" };
+const _hoisted_3$g = {
   key: 0,
   class: "vbwd-alert-title"
 };
-const _hoisted_4$e = { class: "vbwd-alert-message" };
-const _sfc_main$q = /* @__PURE__ */ defineComponent({
+const _hoisted_4$f = { class: "vbwd-alert-message" };
+const _sfc_main$r = /* @__PURE__ */ defineComponent({
   __name: "Alert",
   props: {
     variant: { default: "info" },
@@ -1060,14 +1060,14 @@ const _sfc_main$q = /* @__PURE__ */ defineComponent({
         class: normalizeClass(["vbwd-alert", `vbwd-alert-${__props.variant}`]),
         role: "alert"
       }, [
-        createElementVNode("div", _hoisted_1$k, [
+        createElementVNode("div", _hoisted_1$l, [
           renderSlot(_ctx.$slots, "icon", {}, () => [
             (openBlock(), createBlock(resolveDynamicComponent(iconComponent.value)))
           ], true)
         ]),
-        createElementVNode("div", _hoisted_2$j, [
-          __props.title ? (openBlock(), createElementBlock("h4", _hoisted_3$f, toDisplayString(__props.title), 1)) : createCommentVNode("", true),
-          createElementVNode("p", _hoisted_4$e, [
+        createElementVNode("div", _hoisted_2$k, [
+          __props.title ? (openBlock(), createElementBlock("h4", _hoisted_3$g, toDisplayString(__props.title), 1)) : createCommentVNode("", true),
+          createElementVNode("p", _hoisted_4$f, [
             renderSlot(_ctx.$slots, "default", {}, () => [
               createTextVNode(toDisplayString(__props.message), 1)
             ], true)
@@ -1103,7 +1103,250 @@ const _export_sfc = (sfc, props) => {
   }
   return target;
 };
-const Alert = /* @__PURE__ */ _export_sfc(_sfc_main$q, [["__scopeId", "data-v-64c3ffe7"]]);
+const Alert = /* @__PURE__ */ _export_sfc(_sfc_main$r, [["__scopeId", "data-v-64c3ffe7"]]);
+const _hoisted_1$k = { class: "vbwd-api-keys" };
+const _hoisted_2$j = {
+  key: 0,
+  class: "vbwd-api-keys__plaintext",
+  "data-testid": "api-key-plaintext"
+};
+const _hoisted_3$f = { class: "vbwd-api-keys__plaintext-note" };
+const _hoisted_4$e = { class: "vbwd-api-keys__plaintext-row" };
+const _hoisted_5$b = { class: "vbwd-api-keys__plaintext-value" };
+const _hoisted_6$9 = {
+  key: 1,
+  class: "vbwd-api-keys__error",
+  "data-testid": "api-key-error"
+};
+const _hoisted_7$8 = { class: "vbwd-api-keys__table" };
+const _hoisted_8$5 = { class: "vbwd-api-keys__actions" };
+const _hoisted_9$4 = ["disabled", "onClick"];
+const _hoisted_10$3 = ["disabled", "onClick"];
+const _hoisted_11$3 = { key: 0 };
+const _hoisted_12$3 = {
+  colspan: "7",
+  class: "vbwd-api-keys__empty"
+};
+const _hoisted_13$3 = { class: "vbwd-api-keys__form-title" };
+const _hoisted_14$2 = { class: "vbwd-api-keys__field" };
+const _hoisted_15$2 = ["placeholder"];
+const _hoisted_16$2 = { class: "vbwd-api-keys__scopes" };
+const _hoisted_17$2 = ["value", "checked", "onChange"];
+const _hoisted_18$2 = {
+  key: 0,
+  class: "vbwd-api-keys__empty"
+};
+const _hoisted_19$2 = { class: "vbwd-api-keys__field" };
+const _hoisted_20$2 = ["placeholder"];
+const _hoisted_21$1 = ["disabled"];
+const _sfc_main$q = /* @__PURE__ */ defineComponent({
+  __name: "ApiKeysManager",
+  props: {
+    keys: {},
+    availableScopes: {},
+    canDelete: { type: Boolean, default: false },
+    loading: { type: Boolean, default: false },
+    error: { default: null },
+    createdPlaintext: { default: null },
+    prefixHeader: { default: "Prefix" },
+    labelHeader: { default: "Label" },
+    scopesHeader: { default: "Scopes" },
+    ipHeader: { default: "IP whitelist" },
+    activeHeader: { default: "Active" },
+    lastUsedHeader: { default: "Last used" },
+    activeYes: { default: "Yes" },
+    activeNo: { default: "No" },
+    anyIpLabel: { default: "Any" },
+    neverLabel: { default: "Never" },
+    emptyLabel: { default: "No API keys yet." },
+    createTitle: { default: "Create API key" },
+    createLabel: { default: "Create key" },
+    revokeLabel: { default: "Revoke" },
+    deleteLabel: { default: "Delete" },
+    copyLabel: { default: "Copy" },
+    dismissLabel: { default: "Done" },
+    plaintextNote: { default: "Copy this key now — it will not be shown again." },
+    labelPlaceholder: { default: "e.g. CI pipeline" },
+    ipPlaceholder: { default: "One IP or CIDR per line (empty = any)" },
+    noScopesLabel: { default: "No scopes available." }
+  },
+  emits: ["create", "revoke", "delete", "dismiss-plaintext"],
+  setup(__props, { emit: __emit }) {
+    const props = __props;
+    const emit = __emit;
+    const newLabel = ref("");
+    const selectedScopes = ref([]);
+    const ipWhitelistText = ref("");
+    function toggleScope(scopeKey) {
+      const index = selectedScopes.value.indexOf(scopeKey);
+      if (index === -1) {
+        selectedScopes.value.push(scopeKey);
+      } else {
+        selectedScopes.value.splice(index, 1);
+      }
+    }
+    function parseIpWhitelist() {
+      return ipWhitelistText.value.split(/[\n,]/).map((entry) => entry.trim()).filter((entry) => entry.length > 0);
+    }
+    function onCreate() {
+      const label = newLabel.value.trim();
+      if (!label || props.loading) {
+        return;
+      }
+      emit("create", {
+        label,
+        scopes: [...selectedScopes.value],
+        ipWhitelist: parseIpWhitelist()
+      });
+      newLabel.value = "";
+      selectedScopes.value = [];
+      ipWhitelistText.value = "";
+    }
+    async function copyPlaintext() {
+      var _a2;
+      if (props.createdPlaintext && ((_a2 = navigator == null ? void 0 : navigator.clipboard) == null ? void 0 : _a2.writeText)) {
+        try {
+          await navigator.clipboard.writeText(props.createdPlaintext);
+        } catch {
+        }
+      }
+    }
+    return (_ctx, _cache) => {
+      return openBlock(), createElementBlock("div", _hoisted_1$k, [
+        __props.createdPlaintext ? (openBlock(), createElementBlock("div", _hoisted_2$j, [
+          createElementVNode("p", _hoisted_3$f, toDisplayString(__props.plaintextNote), 1),
+          createElementVNode("div", _hoisted_4$e, [
+            createElementVNode("code", _hoisted_5$b, toDisplayString(__props.createdPlaintext), 1),
+            createElementVNode("button", {
+              type: "button",
+              class: "vbwd-api-keys__btn",
+              "data-testid": "api-key-plaintext-copy",
+              onClick: copyPlaintext
+            }, toDisplayString(__props.copyLabel), 1),
+            createElementVNode("button", {
+              type: "button",
+              class: "vbwd-api-keys__btn vbwd-api-keys__btn--ghost",
+              "data-testid": "api-key-plaintext-dismiss",
+              onClick: _cache[0] || (_cache[0] = ($event) => _ctx.$emit("dismiss-plaintext"))
+            }, toDisplayString(__props.dismissLabel), 1)
+          ])
+        ])) : createCommentVNode("", true),
+        __props.error ? (openBlock(), createElementBlock("p", _hoisted_6$9, toDisplayString(__props.error), 1)) : createCommentVNode("", true),
+        createElementVNode("table", _hoisted_7$8, [
+          createElementVNode("thead", null, [
+            createElementVNode("tr", null, [
+              createElementVNode("th", null, toDisplayString(__props.prefixHeader), 1),
+              createElementVNode("th", null, toDisplayString(__props.labelHeader), 1),
+              createElementVNode("th", null, toDisplayString(__props.scopesHeader), 1),
+              createElementVNode("th", null, toDisplayString(__props.ipHeader), 1),
+              createElementVNode("th", null, toDisplayString(__props.activeHeader), 1),
+              createElementVNode("th", null, toDisplayString(__props.lastUsedHeader), 1),
+              _cache[3] || (_cache[3] = createElementVNode("th", null, null, -1))
+            ])
+          ]),
+          createElementVNode("tbody", null, [
+            (openBlock(true), createElementBlock(Fragment, null, renderList(__props.keys, (apiKey) => {
+              return openBlock(), createElementBlock("tr", {
+                key: apiKey.id,
+                "data-testid": "api-key-row"
+              }, [
+                createElementVNode("td", null, [
+                  createElementVNode("code", null, toDisplayString(apiKey.key_prefix), 1)
+                ]),
+                createElementVNode("td", null, toDisplayString(apiKey.label), 1),
+                createElementVNode("td", null, toDisplayString((apiKey.scopes || []).join(", ") || "—"), 1),
+                createElementVNode("td", null, toDisplayString((apiKey.ip_whitelist || []).join(", ") || __props.anyIpLabel), 1),
+                createElementVNode("td", null, toDisplayString(apiKey.is_active ? __props.activeYes : __props.activeNo), 1),
+                createElementVNode("td", null, toDisplayString(apiKey.last_used_at || __props.neverLabel), 1),
+                createElementVNode("td", _hoisted_8$5, [
+                  apiKey.is_active ? (openBlock(), createElementBlock("button", {
+                    key: 0,
+                    type: "button",
+                    class: "vbwd-api-keys__btn vbwd-api-keys__btn--ghost",
+                    "data-testid": "api-key-revoke-btn",
+                    disabled: __props.loading,
+                    onClick: ($event) => _ctx.$emit("revoke", apiKey.id)
+                  }, toDisplayString(__props.revokeLabel), 9, _hoisted_9$4)) : createCommentVNode("", true),
+                  __props.canDelete ? (openBlock(), createElementBlock("button", {
+                    key: 1,
+                    type: "button",
+                    class: "vbwd-api-keys__btn vbwd-api-keys__btn--danger",
+                    "data-testid": "api-key-delete-btn",
+                    disabled: __props.loading,
+                    onClick: ($event) => _ctx.$emit("delete", apiKey.id)
+                  }, toDisplayString(__props.deleteLabel), 9, _hoisted_10$3)) : createCommentVNode("", true)
+                ])
+              ]);
+            }), 128)),
+            __props.keys.length === 0 ? (openBlock(), createElementBlock("tr", _hoisted_11$3, [
+              createElementVNode("td", _hoisted_12$3, toDisplayString(__props.emptyLabel), 1)
+            ])) : createCommentVNode("", true)
+          ])
+        ]),
+        createElementVNode("form", {
+          class: "vbwd-api-keys__form",
+          onSubmit: withModifiers(onCreate, ["prevent"])
+        }, [
+          createElementVNode("h4", _hoisted_13$3, toDisplayString(__props.createTitle), 1),
+          createElementVNode("label", _hoisted_14$2, [
+            createElementVNode("span", null, toDisplayString(__props.labelHeader), 1),
+            withDirectives(createElementVNode("input", {
+              "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => newLabel.value = $event),
+              type: "text",
+              class: "vbwd-api-keys__input",
+              "data-testid": "api-key-label-input",
+              placeholder: __props.labelPlaceholder
+            }, null, 8, _hoisted_15$2), [
+              [vModelText, newLabel.value]
+            ])
+          ]),
+          createElementVNode("fieldset", _hoisted_16$2, [
+            createElementVNode("legend", null, toDisplayString(__props.scopesHeader), 1),
+            (openBlock(true), createElementBlock(Fragment, null, renderList(__props.availableScopes, (scope) => {
+              return openBlock(), createElementBlock("label", {
+                key: scope.key,
+                class: "vbwd-api-keys__scope",
+                "data-testid": "api-key-scope-option"
+              }, [
+                createElementVNode("input", {
+                  type: "checkbox",
+                  value: scope.key,
+                  checked: selectedScopes.value.includes(scope.key),
+                  onChange: ($event) => toggleScope(scope.key)
+                }, null, 40, _hoisted_17$2),
+                createElementVNode("span", null, [
+                  createTextVNode(toDisplayString(scope.label) + " ", 1),
+                  createElementVNode("code", null, toDisplayString(scope.key), 1)
+                ])
+              ]);
+            }), 128)),
+            __props.availableScopes.length === 0 ? (openBlock(), createElementBlock("p", _hoisted_18$2, toDisplayString(__props.noScopesLabel), 1)) : createCommentVNode("", true)
+          ]),
+          createElementVNode("label", _hoisted_19$2, [
+            createElementVNode("span", null, toDisplayString(__props.ipHeader), 1),
+            withDirectives(createElementVNode("textarea", {
+              "onUpdate:modelValue": _cache[2] || (_cache[2] = ($event) => ipWhitelistText.value = $event),
+              class: "vbwd-api-keys__input",
+              "data-testid": "api-key-ip-input",
+              rows: "3",
+              placeholder: __props.ipPlaceholder
+            }, null, 8, _hoisted_20$2), [
+              [vModelText, ipWhitelistText.value]
+            ])
+          ]),
+          createElementVNode("button", {
+            type: "submit",
+            class: "vbwd-api-keys__btn",
+            "data-testid": "api-key-create-btn",
+            disabled: __props.loading,
+            onClick: withModifiers(onCreate, ["prevent"])
+          }, toDisplayString(__props.createLabel), 9, _hoisted_21$1)
+        ], 32)
+      ]);
+    };
+  }
+});
+const ApiKeysManager = /* @__PURE__ */ _export_sfc(_sfc_main$q, [["__scopeId", "data-v-5cdc822b"]]);
 const _sfc_main$p = /* @__PURE__ */ defineComponent({
   __name: "Badge",
   props: {
@@ -4482,6 +4725,7 @@ export {
   Alert,
   ApiClient,
   ApiError,
+  ApiKeysManager,
   AppEvents,
   Badge,
   Button,
