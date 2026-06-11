@@ -1034,14 +1034,14 @@ const AppEvents = {
   PLUGIN_ERROR: "plugin:error",
   PLUGIN_STOPPED: "plugin:stopped"
 };
-const _hoisted_1$i = { class: "vbwd-alert-icon" };
-const _hoisted_2$h = { class: "vbwd-alert-content" };
-const _hoisted_3$d = {
+const _hoisted_1$j = { class: "vbwd-alert-icon" };
+const _hoisted_2$i = { class: "vbwd-alert-content" };
+const _hoisted_3$e = {
   key: 0,
   class: "vbwd-alert-title"
 };
-const _hoisted_4$c = { class: "vbwd-alert-message" };
-const _sfc_main$o = /* @__PURE__ */ vue.defineComponent({
+const _hoisted_4$d = { class: "vbwd-alert-message" };
+const _sfc_main$p = /* @__PURE__ */ vue.defineComponent({
   __name: "Alert",
   props: {
     variant: { default: "info" },
@@ -1079,14 +1079,14 @@ const _sfc_main$o = /* @__PURE__ */ vue.defineComponent({
         class: vue.normalizeClass(["vbwd-alert", `vbwd-alert-${__props.variant}`]),
         role: "alert"
       }, [
-        vue.createElementVNode("div", _hoisted_1$i, [
+        vue.createElementVNode("div", _hoisted_1$j, [
           vue.renderSlot(_ctx.$slots, "icon", {}, () => [
             (vue.openBlock(), vue.createBlock(vue.resolveDynamicComponent(iconComponent.value)))
           ], true)
         ]),
-        vue.createElementVNode("div", _hoisted_2$h, [
-          __props.title ? (vue.openBlock(), vue.createElementBlock("h4", _hoisted_3$d, vue.toDisplayString(__props.title), 1)) : vue.createCommentVNode("", true),
-          vue.createElementVNode("p", _hoisted_4$c, [
+        vue.createElementVNode("div", _hoisted_2$i, [
+          __props.title ? (vue.openBlock(), vue.createElementBlock("h4", _hoisted_3$e, vue.toDisplayString(__props.title), 1)) : vue.createCommentVNode("", true),
+          vue.createElementVNode("p", _hoisted_4$d, [
             vue.renderSlot(_ctx.$slots, "default", {}, () => [
               vue.createTextVNode(vue.toDisplayString(__props.message), 1)
             ], true)
@@ -1122,7 +1122,250 @@ const _export_sfc = (sfc, props) => {
   }
   return target;
 };
-const Alert = /* @__PURE__ */ _export_sfc(_sfc_main$o, [["__scopeId", "data-v-64c3ffe7"]]);
+const Alert = /* @__PURE__ */ _export_sfc(_sfc_main$p, [["__scopeId", "data-v-64c3ffe7"]]);
+const _hoisted_1$i = { class: "vbwd-api-keys" };
+const _hoisted_2$h = {
+  key: 0,
+  class: "vbwd-api-keys__plaintext",
+  "data-testid": "api-key-plaintext"
+};
+const _hoisted_3$d = { class: "vbwd-api-keys__plaintext-note" };
+const _hoisted_4$c = { class: "vbwd-api-keys__plaintext-row" };
+const _hoisted_5$9 = { class: "vbwd-api-keys__plaintext-value" };
+const _hoisted_6$7 = {
+  key: 1,
+  class: "vbwd-api-keys__error",
+  "data-testid": "api-key-error"
+};
+const _hoisted_7$6 = { class: "vbwd-api-keys__table" };
+const _hoisted_8$3 = { class: "vbwd-api-keys__actions" };
+const _hoisted_9$2 = ["disabled", "onClick"];
+const _hoisted_10$1 = ["disabled", "onClick"];
+const _hoisted_11$1 = { key: 0 };
+const _hoisted_12$1 = {
+  colspan: "7",
+  class: "vbwd-api-keys__empty"
+};
+const _hoisted_13$1 = { class: "vbwd-api-keys__form-title" };
+const _hoisted_14 = { class: "vbwd-api-keys__field" };
+const _hoisted_15 = ["placeholder"];
+const _hoisted_16 = { class: "vbwd-api-keys__scopes" };
+const _hoisted_17 = ["value", "checked", "onChange"];
+const _hoisted_18 = {
+  key: 0,
+  class: "vbwd-api-keys__empty"
+};
+const _hoisted_19 = { class: "vbwd-api-keys__field" };
+const _hoisted_20 = ["placeholder"];
+const _hoisted_21 = ["disabled"];
+const _sfc_main$o = /* @__PURE__ */ vue.defineComponent({
+  __name: "ApiKeysManager",
+  props: {
+    keys: {},
+    availableScopes: {},
+    canDelete: { type: Boolean, default: false },
+    loading: { type: Boolean, default: false },
+    error: { default: null },
+    createdPlaintext: { default: null },
+    prefixHeader: { default: "Prefix" },
+    labelHeader: { default: "Label" },
+    scopesHeader: { default: "Scopes" },
+    ipHeader: { default: "IP whitelist" },
+    activeHeader: { default: "Active" },
+    lastUsedHeader: { default: "Last used" },
+    activeYes: { default: "Yes" },
+    activeNo: { default: "No" },
+    anyIpLabel: { default: "Any" },
+    neverLabel: { default: "Never" },
+    emptyLabel: { default: "No API keys yet." },
+    createTitle: { default: "Create API key" },
+    createLabel: { default: "Create key" },
+    revokeLabel: { default: "Revoke" },
+    deleteLabel: { default: "Delete" },
+    copyLabel: { default: "Copy" },
+    dismissLabel: { default: "Done" },
+    plaintextNote: { default: "Copy this key now — it will not be shown again." },
+    labelPlaceholder: { default: "e.g. CI pipeline" },
+    ipPlaceholder: { default: "One IP or CIDR per line (empty = any)" },
+    noScopesLabel: { default: "No scopes available." }
+  },
+  emits: ["create", "revoke", "delete", "dismiss-plaintext"],
+  setup(__props, { emit: __emit }) {
+    const props = __props;
+    const emit = __emit;
+    const newLabel = vue.ref("");
+    const selectedScopes = vue.ref([]);
+    const ipWhitelistText = vue.ref("");
+    function toggleScope(scopeKey) {
+      const index = selectedScopes.value.indexOf(scopeKey);
+      if (index === -1) {
+        selectedScopes.value.push(scopeKey);
+      } else {
+        selectedScopes.value.splice(index, 1);
+      }
+    }
+    function parseIpWhitelist() {
+      return ipWhitelistText.value.split(/[\n,]/).map((entry) => entry.trim()).filter((entry) => entry.length > 0);
+    }
+    function onCreate() {
+      const label = newLabel.value.trim();
+      if (!label || props.loading) {
+        return;
+      }
+      emit("create", {
+        label,
+        scopes: [...selectedScopes.value],
+        ipWhitelist: parseIpWhitelist()
+      });
+      newLabel.value = "";
+      selectedScopes.value = [];
+      ipWhitelistText.value = "";
+    }
+    async function copyPlaintext() {
+      var _a2;
+      if (props.createdPlaintext && ((_a2 = navigator == null ? void 0 : navigator.clipboard) == null ? void 0 : _a2.writeText)) {
+        try {
+          await navigator.clipboard.writeText(props.createdPlaintext);
+        } catch {
+        }
+      }
+    }
+    return (_ctx, _cache) => {
+      return vue.openBlock(), vue.createElementBlock("div", _hoisted_1$i, [
+        __props.createdPlaintext ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_2$h, [
+          vue.createElementVNode("p", _hoisted_3$d, vue.toDisplayString(__props.plaintextNote), 1),
+          vue.createElementVNode("div", _hoisted_4$c, [
+            vue.createElementVNode("code", _hoisted_5$9, vue.toDisplayString(__props.createdPlaintext), 1),
+            vue.createElementVNode("button", {
+              type: "button",
+              class: "vbwd-api-keys__btn",
+              "data-testid": "api-key-plaintext-copy",
+              onClick: copyPlaintext
+            }, vue.toDisplayString(__props.copyLabel), 1),
+            vue.createElementVNode("button", {
+              type: "button",
+              class: "vbwd-api-keys__btn vbwd-api-keys__btn--ghost",
+              "data-testid": "api-key-plaintext-dismiss",
+              onClick: _cache[0] || (_cache[0] = ($event) => _ctx.$emit("dismiss-plaintext"))
+            }, vue.toDisplayString(__props.dismissLabel), 1)
+          ])
+        ])) : vue.createCommentVNode("", true),
+        __props.error ? (vue.openBlock(), vue.createElementBlock("p", _hoisted_6$7, vue.toDisplayString(__props.error), 1)) : vue.createCommentVNode("", true),
+        vue.createElementVNode("table", _hoisted_7$6, [
+          vue.createElementVNode("thead", null, [
+            vue.createElementVNode("tr", null, [
+              vue.createElementVNode("th", null, vue.toDisplayString(__props.prefixHeader), 1),
+              vue.createElementVNode("th", null, vue.toDisplayString(__props.labelHeader), 1),
+              vue.createElementVNode("th", null, vue.toDisplayString(__props.scopesHeader), 1),
+              vue.createElementVNode("th", null, vue.toDisplayString(__props.ipHeader), 1),
+              vue.createElementVNode("th", null, vue.toDisplayString(__props.activeHeader), 1),
+              vue.createElementVNode("th", null, vue.toDisplayString(__props.lastUsedHeader), 1),
+              _cache[3] || (_cache[3] = vue.createElementVNode("th", null, null, -1))
+            ])
+          ]),
+          vue.createElementVNode("tbody", null, [
+            (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(__props.keys, (apiKey) => {
+              return vue.openBlock(), vue.createElementBlock("tr", {
+                key: apiKey.id,
+                "data-testid": "api-key-row"
+              }, [
+                vue.createElementVNode("td", null, [
+                  vue.createElementVNode("code", null, vue.toDisplayString(apiKey.key_prefix), 1)
+                ]),
+                vue.createElementVNode("td", null, vue.toDisplayString(apiKey.label), 1),
+                vue.createElementVNode("td", null, vue.toDisplayString((apiKey.scopes || []).join(", ") || "—"), 1),
+                vue.createElementVNode("td", null, vue.toDisplayString((apiKey.ip_whitelist || []).join(", ") || __props.anyIpLabel), 1),
+                vue.createElementVNode("td", null, vue.toDisplayString(apiKey.is_active ? __props.activeYes : __props.activeNo), 1),
+                vue.createElementVNode("td", null, vue.toDisplayString(apiKey.last_used_at || __props.neverLabel), 1),
+                vue.createElementVNode("td", _hoisted_8$3, [
+                  apiKey.is_active ? (vue.openBlock(), vue.createElementBlock("button", {
+                    key: 0,
+                    type: "button",
+                    class: "vbwd-api-keys__btn vbwd-api-keys__btn--ghost",
+                    "data-testid": "api-key-revoke-btn",
+                    disabled: __props.loading,
+                    onClick: ($event) => _ctx.$emit("revoke", apiKey.id)
+                  }, vue.toDisplayString(__props.revokeLabel), 9, _hoisted_9$2)) : vue.createCommentVNode("", true),
+                  __props.canDelete ? (vue.openBlock(), vue.createElementBlock("button", {
+                    key: 1,
+                    type: "button",
+                    class: "vbwd-api-keys__btn vbwd-api-keys__btn--danger",
+                    "data-testid": "api-key-delete-btn",
+                    disabled: __props.loading,
+                    onClick: ($event) => _ctx.$emit("delete", apiKey.id)
+                  }, vue.toDisplayString(__props.deleteLabel), 9, _hoisted_10$1)) : vue.createCommentVNode("", true)
+                ])
+              ]);
+            }), 128)),
+            __props.keys.length === 0 ? (vue.openBlock(), vue.createElementBlock("tr", _hoisted_11$1, [
+              vue.createElementVNode("td", _hoisted_12$1, vue.toDisplayString(__props.emptyLabel), 1)
+            ])) : vue.createCommentVNode("", true)
+          ])
+        ]),
+        vue.createElementVNode("form", {
+          class: "vbwd-api-keys__form",
+          onSubmit: vue.withModifiers(onCreate, ["prevent"])
+        }, [
+          vue.createElementVNode("h4", _hoisted_13$1, vue.toDisplayString(__props.createTitle), 1),
+          vue.createElementVNode("label", _hoisted_14, [
+            vue.createElementVNode("span", null, vue.toDisplayString(__props.labelHeader), 1),
+            vue.withDirectives(vue.createElementVNode("input", {
+              "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => newLabel.value = $event),
+              type: "text",
+              class: "vbwd-api-keys__input",
+              "data-testid": "api-key-label-input",
+              placeholder: __props.labelPlaceholder
+            }, null, 8, _hoisted_15), [
+              [vue.vModelText, newLabel.value]
+            ])
+          ]),
+          vue.createElementVNode("fieldset", _hoisted_16, [
+            vue.createElementVNode("legend", null, vue.toDisplayString(__props.scopesHeader), 1),
+            (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(__props.availableScopes, (scope) => {
+              return vue.openBlock(), vue.createElementBlock("label", {
+                key: scope.key,
+                class: "vbwd-api-keys__scope",
+                "data-testid": "api-key-scope-option"
+              }, [
+                vue.createElementVNode("input", {
+                  type: "checkbox",
+                  value: scope.key,
+                  checked: selectedScopes.value.includes(scope.key),
+                  onChange: ($event) => toggleScope(scope.key)
+                }, null, 40, _hoisted_17),
+                vue.createElementVNode("span", null, [
+                  vue.createTextVNode(vue.toDisplayString(scope.label) + " ", 1),
+                  vue.createElementVNode("code", null, vue.toDisplayString(scope.key), 1)
+                ])
+              ]);
+            }), 128)),
+            __props.availableScopes.length === 0 ? (vue.openBlock(), vue.createElementBlock("p", _hoisted_18, vue.toDisplayString(__props.noScopesLabel), 1)) : vue.createCommentVNode("", true)
+          ]),
+          vue.createElementVNode("label", _hoisted_19, [
+            vue.createElementVNode("span", null, vue.toDisplayString(__props.ipHeader), 1),
+            vue.withDirectives(vue.createElementVNode("textarea", {
+              "onUpdate:modelValue": _cache[2] || (_cache[2] = ($event) => ipWhitelistText.value = $event),
+              class: "vbwd-api-keys__input",
+              "data-testid": "api-key-ip-input",
+              rows: "3",
+              placeholder: __props.ipPlaceholder
+            }, null, 8, _hoisted_20), [
+              [vue.vModelText, ipWhitelistText.value]
+            ])
+          ]),
+          vue.createElementVNode("button", {
+            type: "submit",
+            class: "vbwd-api-keys__btn",
+            "data-testid": "api-key-create-btn",
+            disabled: __props.loading,
+            onClick: vue.withModifiers(onCreate, ["prevent"])
+          }, vue.toDisplayString(__props.createLabel), 9, _hoisted_21)
+        ], 32)
+      ]);
+    };
+  }
+});
+const ApiKeysManager = /* @__PURE__ */ _export_sfc(_sfc_main$o, [["__scopeId", "data-v-5cdc822b"]]);
 const _sfc_main$n = /* @__PURE__ */ vue.defineComponent({
   __name: "Badge",
   props: {
@@ -3703,6 +3946,7 @@ const name = "@vbwd/view-component";
 exports.Alert = Alert;
 exports.ApiClient = ApiClient;
 exports.ApiError = ApiError;
+exports.ApiKeysManager = ApiKeysManager;
 exports.AppEvents = AppEvents;
 exports.Badge = Badge;
 exports.Button = Button;
