@@ -192,6 +192,7 @@
 <script setup lang="ts">
 import { computed, onMounted, reactive, ref } from 'vue';
 import { useDataExchange } from './useDataExchange';
+import { readImportFile } from './helpers';
 import type {
   DataExchangeApi,
   DataExchangeCluster,
@@ -398,6 +399,26 @@ function isZip(file: File): boolean {
   return file.name.toLowerCase().endsWith('.zip');
 }
 
+// A single-entity import targets one entity_key endpoint, so derive it from the
+// uploaded envelope (the top-level key whose value is the rows array — the
+// reliable source regardless of the file name); fall back to the file name
+// (exports are named ``<entity_key>.<format>``) for CSV / unparsable files.
+async function deriveEntityKey(file: File): Promise<string> {
+  const fromName = file.name.replace(/\.[^.]+$/, '');
+  if (file.name.toLowerCase().endsWith('.json')) {
+    try {
+      const parsed = JSON.parse(await readImportFile(file)) as Record<string, unknown>;
+      const key = Object.keys(parsed).find((k) => Array.isArray(parsed[k]));
+      if (key) {
+        return key;
+      }
+    } catch {
+      // fall through to the file-name heuristic
+    }
+  }
+  return fromName;
+}
+
 async function runImport(dryRun: boolean): Promise<void> {
   const file = importFile.value;
   if (!file) {
@@ -421,10 +442,12 @@ async function runImport(dryRun: boolean): Promise<void> {
         dryRun,
       });
     } else {
-      const result = await exchange.importEntity(file, {
-        mode: importMode.value,
-        dryRun,
-      });
+      const entityKey = await deriveEntityKey(file);
+      const result = await exchange.importEntity(
+        file,
+        { mode: importMode.value, dryRun },
+        entityKey,
+      );
       importResults.value = [result];
     }
   } catch (caught) {

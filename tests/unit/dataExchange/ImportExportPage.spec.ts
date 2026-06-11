@@ -246,3 +246,82 @@ describe('ImportExportPage — replace_all gating', () => {
     );
   });
 });
+
+describe('ImportExportPage — single-entity import key derivation', () => {
+  beforeEach(() => vi.clearAllMocks());
+
+  function apiWithImport(): DataExchangeApi {
+    const api = makeApi();
+    (api.postFormForJson as ReturnType<typeof vi.fn>).mockResolvedValue({
+      entity: 'booking_resources',
+      created: 1,
+      updated: 0,
+      skipped: 0,
+      errors: [],
+    });
+    return api;
+  }
+
+  async function uploadAndPreview(
+    wrapper: ReturnType<typeof mount>,
+    file: File,
+  ): Promise<void> {
+    const input = wrapper.find('[data-test="import-file"]');
+    Object.defineProperty(input.element, 'files', {
+      value: [file],
+      configurable: true,
+    });
+    await input.trigger('change');
+    await wrapper.find('[data-test="import-preview-run"]').trigger('click');
+    await flushPromises();
+    // readImportFile resolves via FileReader.onload (a macrotask) — let it fire,
+    // then drain the follow-up microtasks (the import call).
+    await new Promise((resolve) => setTimeout(resolve, 20));
+    await flushPromises();
+  }
+
+  it('derives the entity_key from the envelope rows-array key, not the file name', async () => {
+    const api = apiWithImport();
+    const wrapper = mount(ImportExportPage, {
+      props: { api, isSuperadmin: false },
+    });
+    await flushPromises();
+    await nextTick();
+    // File deliberately NOT named after the entity — proves the key is read
+    // from the envelope content (the rows-array key), fixing the prior
+    // "entityKey is required" failure for single-entity JSON uploads.
+    const envelope = JSON.stringify({
+      vbwd_export: true,
+      version: 1,
+      exported_at: '2026-06-11',
+      booking_resources: [{ slug: 'r1', name: 'R1' }],
+    });
+    await uploadAndPreview(
+      wrapper,
+      new File([envelope], 'my-catalog-dump.json', {
+        type: 'application/json',
+      }),
+    );
+    expect(api.postFormForJson).toHaveBeenCalledWith(
+      '/api/v1/admin/data-exchange/booking_resources/import',
+      expect.anything(),
+    );
+  });
+
+  it('falls back to the file name (without extension) for a CSV import', async () => {
+    const api = apiWithImport();
+    const wrapper = mount(ImportExportPage, {
+      props: { api, isSuperadmin: false },
+    });
+    await flushPromises();
+    await nextTick();
+    await uploadAndPreview(
+      wrapper,
+      new File(['slug,name\nc1,C1\n'], 'countries.csv', { type: 'text/csv' }),
+    );
+    expect(api.postFormForJson).toHaveBeenCalledWith(
+      '/api/v1/admin/data-exchange/countries/import',
+      expect.anything(),
+    );
+  });
+});

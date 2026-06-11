@@ -4233,6 +4233,20 @@ const _sfc_main$1 = /* @__PURE__ */ vue.defineComponent({
     function isZip(file) {
       return file.name.toLowerCase().endsWith(".zip");
     }
+    async function deriveEntityKey(file) {
+      const fromName = file.name.replace(/\.[^.]+$/, "");
+      if (file.name.toLowerCase().endsWith(".json")) {
+        try {
+          const parsed = JSON.parse(await readImportFile(file));
+          const key = Object.keys(parsed).find((k) => Array.isArray(parsed[k]));
+          if (key) {
+            return key;
+          }
+        } catch {
+        }
+      }
+      return fromName;
+    }
     async function runImport(dryRun) {
       const file = importFile.value;
       if (!file) {
@@ -4253,10 +4267,12 @@ const _sfc_main$1 = /* @__PURE__ */ vue.defineComponent({
             dryRun
           });
         } else {
-          const result = await exchange.importEntity(file, {
-            mode: importMode.value,
-            dryRun
-          });
+          const entityKey = await deriveEntityKey(file);
+          const result = await exchange.importEntity(
+            file,
+            { mode: importMode.value, dryRun },
+            entityKey
+          );
           importResults.value = [result];
         }
       } catch (caught) {
@@ -4448,7 +4464,7 @@ const _sfc_main$1 = /* @__PURE__ */ vue.defineComponent({
     };
   }
 });
-const ImportExportPage = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["__scopeId", "data-v-d2a75732"]]);
+const ImportExportPage = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["__scopeId", "data-v-fa76a9e7"]]);
 const _hoisted_1 = { class: "vbwd-iec" };
 const _hoisted_2 = {
   key: 0,
