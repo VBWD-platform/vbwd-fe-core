@@ -26,7 +26,7 @@
         </button>
       </div>
       <span class="vbwd-cart-item-price" data-testid="cart-item-price">
-        {{ formatPrice(item.price * item.quantity) }}
+        {{ formatPrice(lineUnitAmount * item.quantity) }}
       </span>
       <button
         type="button"
@@ -44,10 +44,19 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue';
 import type { ICartItem } from '../../stores/cart';
 
-defineProps<{
+const props = defineProps<{
   item: ICartItem;
+  /**
+   * Optional per-unit amount to display, already resolved by the parent for
+   * the current viewer (e.g. the net side for a business viewer). The shared
+   * library never knows net/gross or tax rules — the consuming app resolves the
+   * side and passes the chosen amount down. Falls back to the item's own
+   * ``price`` when omitted (backward compatible).
+   */
+  displayUnitAmount?: number;
 }>();
 
 const emit = defineEmits<{
@@ -55,6 +64,10 @@ const emit = defineEmits<{
   decrease: [];
   remove: [];
 }>();
+
+const lineUnitAmount = computed(() =>
+  props.displayUnitAmount ?? props.item.price
+);
 
 function formatType(type: string): string {
   const labels: Record<string, string> = {

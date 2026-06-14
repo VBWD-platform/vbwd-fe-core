@@ -19,6 +19,9 @@ export interface UserAccessLevel {
   name: string;
 }
 
+/** Billing-identity type of the account (S74). */
+export type AccountType = 'private' | 'business';
+
 export interface AuthUser {
   id: string;
   email: string;
@@ -29,6 +32,12 @@ export interface AuthUser {
   permissions?: string[];
   user_access_levels?: UserAccessLevel[];
   user_permissions?: string[];
+  /**
+   * Billing-identity type, surfaced from the backend (S74) so price surfaces
+   * can apply the business-viewer netto overlay (S85.4 / D9). Absent for
+   * anonymous viewers; defaults to "private" server-side when unknown.
+   */
+  account_type?: AccountType;
 }
 
 export interface AuthState {

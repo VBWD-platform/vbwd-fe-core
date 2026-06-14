@@ -59,6 +59,32 @@ describe('Auth Store - Login', () => {
     expect(response.token).toBe('jwt_token_here');
   });
 
+  it('should carry account_type on the user (S85.4 / D9)', async () => {
+    const mockResponse = {
+      success: true,
+      token: 'jwt_token_here',
+      user: {
+        id: '789',
+        email: 'biz@example.com',
+        name: 'biz',
+        roles: ['USER'],
+        account_type: 'business',
+      },
+      user_id: '789',
+    };
+
+    vi.mocked(mockApiClient.post).mockResolvedValue(mockResponse);
+
+    const authStore = useAuthStore();
+
+    await authStore.login({
+      email: 'biz@example.com',
+      password: 'Password123@',
+    });
+
+    expect(authStore.user?.account_type).toBe('business');
+  });
+
   it('should handle login response without roles', async () => {
     const mockResponse = {
       success: true,
