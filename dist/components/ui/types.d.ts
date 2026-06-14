@@ -25,4 +25,16 @@ export interface ApiScope {
     description?: string;
     user_grantable?: boolean;
 }
+export interface TagChip {
+    slug: string;
+    name?: string;
+    color?: string | null;
+}
+export interface CustomFieldDef {
+    key: string;
+    label: string;
+    type: string;
+    options?: unknown;
+    sort_order?: number;
+}
 //# sourceMappingURL=types.d.ts.map

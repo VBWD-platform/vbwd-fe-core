@@ -32,3 +32,20 @@ export interface ApiScope {
   description?: string;
   user_grantable?: boolean;
 }
+
+// Tags & custom fields read-only display (S77) — shared by fe-user cards and
+// fe-admin detail pages. Cards read the `tags` / `custom_fields` keys already on
+// the serialized payload; `CustomFieldDef` supplies labels + types for display.
+export interface TagChip {
+  slug: string;
+  name?: string;
+  color?: string | null;
+}
+
+export interface CustomFieldDef {
+  key: string;
+  label: string;
+  type: string;
+  options?: unknown;
+  sort_order?: number;
+}

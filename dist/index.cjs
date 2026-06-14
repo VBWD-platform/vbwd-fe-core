@@ -1035,14 +1035,14 @@ const AppEvents = {
   PLUGIN_ERROR: "plugin:error",
   PLUGIN_STOPPED: "plugin:stopped"
 };
-const _hoisted_1$l = { class: "vbwd-alert-icon" };
-const _hoisted_2$k = { class: "vbwd-alert-content" };
-const _hoisted_3$g = {
+const _hoisted_1$n = { class: "vbwd-alert-icon" };
+const _hoisted_2$l = { class: "vbwd-alert-content" };
+const _hoisted_3$h = {
   key: 0,
   class: "vbwd-alert-title"
 };
 const _hoisted_4$f = { class: "vbwd-alert-message" };
-const _sfc_main$r = /* @__PURE__ */ vue.defineComponent({
+const _sfc_main$t = /* @__PURE__ */ vue.defineComponent({
   __name: "Alert",
   props: {
     variant: { default: "info" },
@@ -1080,13 +1080,13 @@ const _sfc_main$r = /* @__PURE__ */ vue.defineComponent({
         class: vue.normalizeClass(["vbwd-alert", `vbwd-alert-${__props.variant}`]),
         role: "alert"
       }, [
-        vue.createElementVNode("div", _hoisted_1$l, [
+        vue.createElementVNode("div", _hoisted_1$n, [
           vue.renderSlot(_ctx.$slots, "icon", {}, () => [
             (vue.openBlock(), vue.createBlock(vue.resolveDynamicComponent(iconComponent.value)))
           ], true)
         ]),
-        vue.createElementVNode("div", _hoisted_2$k, [
-          __props.title ? (vue.openBlock(), vue.createElementBlock("h4", _hoisted_3$g, vue.toDisplayString(__props.title), 1)) : vue.createCommentVNode("", true),
+        vue.createElementVNode("div", _hoisted_2$l, [
+          __props.title ? (vue.openBlock(), vue.createElementBlock("h4", _hoisted_3$h, vue.toDisplayString(__props.title), 1)) : vue.createCommentVNode("", true),
           vue.createElementVNode("p", _hoisted_4$f, [
             vue.renderSlot(_ctx.$slots, "default", {}, () => [
               vue.createTextVNode(vue.toDisplayString(__props.message), 1)
@@ -1123,14 +1123,14 @@ const _export_sfc = (sfc, props) => {
   }
   return target;
 };
-const Alert = /* @__PURE__ */ _export_sfc(_sfc_main$r, [["__scopeId", "data-v-64c3ffe7"]]);
-const _hoisted_1$k = { class: "vbwd-api-keys" };
-const _hoisted_2$j = {
+const Alert = /* @__PURE__ */ _export_sfc(_sfc_main$t, [["__scopeId", "data-v-64c3ffe7"]]);
+const _hoisted_1$m = { class: "vbwd-api-keys" };
+const _hoisted_2$k = {
   key: 0,
   class: "vbwd-api-keys__plaintext",
   "data-testid": "api-key-plaintext"
 };
-const _hoisted_3$f = { class: "vbwd-api-keys__plaintext-note" };
+const _hoisted_3$g = { class: "vbwd-api-keys__plaintext-note" };
 const _hoisted_4$e = { class: "vbwd-api-keys__plaintext-row" };
 const _hoisted_5$b = { class: "vbwd-api-keys__plaintext-value" };
 const _hoisted_6$9 = {
@@ -1159,7 +1159,7 @@ const _hoisted_18$2 = {
 const _hoisted_19$2 = { class: "vbwd-api-keys__field" };
 const _hoisted_20$2 = ["placeholder"];
 const _hoisted_21$1 = ["disabled"];
-const _sfc_main$q = /* @__PURE__ */ vue.defineComponent({
+const _sfc_main$s = /* @__PURE__ */ vue.defineComponent({
   __name: "ApiKeysManager",
   props: {
     keys: {},
@@ -1232,9 +1232,9 @@ const _sfc_main$q = /* @__PURE__ */ vue.defineComponent({
       }
     }
     return (_ctx, _cache) => {
-      return vue.openBlock(), vue.createElementBlock("div", _hoisted_1$k, [
-        __props.createdPlaintext ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_2$j, [
-          vue.createElementVNode("p", _hoisted_3$f, vue.toDisplayString(__props.plaintextNote), 1),
+      return vue.openBlock(), vue.createElementBlock("div", _hoisted_1$m, [
+        __props.createdPlaintext ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_2$k, [
+          vue.createElementVNode("p", _hoisted_3$g, vue.toDisplayString(__props.plaintextNote), 1),
           vue.createElementVNode("div", _hoisted_4$e, [
             vue.createElementVNode("code", _hoisted_5$b, vue.toDisplayString(__props.createdPlaintext), 1),
             vue.createElementVNode("button", {
@@ -1366,8 +1366,8 @@ const _sfc_main$q = /* @__PURE__ */ vue.defineComponent({
     };
   }
 });
-const ApiKeysManager = /* @__PURE__ */ _export_sfc(_sfc_main$q, [["__scopeId", "data-v-5cdc822b"]]);
-const _sfc_main$p = /* @__PURE__ */ vue.defineComponent({
+const ApiKeysManager = /* @__PURE__ */ _export_sfc(_sfc_main$s, [["__scopeId", "data-v-5cdc822b"]]);
+const _sfc_main$r = /* @__PURE__ */ vue.defineComponent({
   __name: "Badge",
   props: {
     label: {},
@@ -1386,8 +1386,8 @@ const _sfc_main$p = /* @__PURE__ */ vue.defineComponent({
     };
   }
 });
-const Badge = /* @__PURE__ */ _export_sfc(_sfc_main$p, [["__scopeId", "data-v-4df2bf4f"]]);
-const _sfc_main$o = /* @__PURE__ */ vue.defineComponent({
+const Badge = /* @__PURE__ */ _export_sfc(_sfc_main$r, [["__scopeId", "data-v-4df2bf4f"]]);
+const _sfc_main$q = /* @__PURE__ */ vue.defineComponent({
   __name: "Spinner",
   props: {
     size: { default: "md" }
@@ -1417,9 +1417,9 @@ const _sfc_main$o = /* @__PURE__ */ vue.defineComponent({
     };
   }
 });
-const Spinner = /* @__PURE__ */ _export_sfc(_sfc_main$o, [["__scopeId", "data-v-3dad9f75"]]);
-const _hoisted_1$j = ["type", "disabled"];
-const _sfc_main$n = /* @__PURE__ */ vue.defineComponent({
+const Spinner = /* @__PURE__ */ _export_sfc(_sfc_main$q, [["__scopeId", "data-v-3dad9f75"]]);
+const _hoisted_1$l = ["type", "disabled"];
+const _sfc_main$p = /* @__PURE__ */ vue.defineComponent({
   __name: "Button",
   props: {
     type: { default: "button" },
@@ -1454,17 +1454,17 @@ const _sfc_main$n = /* @__PURE__ */ vue.defineComponent({
           class: "vbwd-btn-spinner"
         })) : vue.createCommentVNode("", true),
         vue.renderSlot(_ctx.$slots, "default", {}, void 0, true)
-      ], 10, _hoisted_1$j);
+      ], 10, _hoisted_1$l);
     };
   }
 });
-const Button = /* @__PURE__ */ _export_sfc(_sfc_main$n, [["__scopeId", "data-v-496cc81d"]]);
-const _hoisted_1$i = {
+const Button = /* @__PURE__ */ _export_sfc(_sfc_main$p, [["__scopeId", "data-v-496cc81d"]]);
+const _hoisted_1$k = {
   key: 0,
   class: "vbwd-card-header"
 };
-const _hoisted_2$i = { class: "vbwd-card-title" };
-const _hoisted_3$e = {
+const _hoisted_2$j = { class: "vbwd-card-title" };
+const _hoisted_3$f = {
   key: 0,
   class: "vbwd-card-subtitle"
 };
@@ -1477,7 +1477,7 @@ const _hoisted_6$8 = {
   key: 1,
   class: "vbwd-card-footer"
 };
-const _sfc_main$m = /* @__PURE__ */ vue.defineComponent({
+const _sfc_main$o = /* @__PURE__ */ vue.defineComponent({
   __name: "Card",
   props: {
     title: {},
@@ -1489,10 +1489,10 @@ const _sfc_main$m = /* @__PURE__ */ vue.defineComponent({
       return vue.openBlock(), vue.createElementBlock("div", {
         class: vue.normalizeClass(["vbwd-card", { "vbwd-card-hoverable": __props.hoverable }])
       }, [
-        __props.title || _ctx.$slots.header ? (vue.openBlock(), vue.createElementBlock("header", _hoisted_1$i, [
+        __props.title || _ctx.$slots.header ? (vue.openBlock(), vue.createElementBlock("header", _hoisted_1$k, [
           vue.renderSlot(_ctx.$slots, "header", {}, () => [
-            vue.createElementVNode("h3", _hoisted_2$i, vue.toDisplayString(__props.title), 1),
-            __props.subtitle ? (vue.openBlock(), vue.createElementBlock("p", _hoisted_3$e, vue.toDisplayString(__props.subtitle), 1)) : vue.createCommentVNode("", true)
+            vue.createElementVNode("h3", _hoisted_2$j, vue.toDisplayString(__props.title), 1),
+            __props.subtitle ? (vue.openBlock(), vue.createElementBlock("p", _hoisted_3$f, vue.toDisplayString(__props.subtitle), 1)) : vue.createCommentVNode("", true)
           ], true),
           _ctx.$slots.actions ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_4$d, [
             vue.renderSlot(_ctx.$slots, "actions", {}, void 0, true)
@@ -1508,14 +1508,14 @@ const _sfc_main$m = /* @__PURE__ */ vue.defineComponent({
     };
   }
 });
-const Card = /* @__PURE__ */ _export_sfc(_sfc_main$m, [["__scopeId", "data-v-3c45206a"]]);
-const _hoisted_1$h = { class: "vbwd-coupon" };
-const _hoisted_2$h = {
+const Card = /* @__PURE__ */ _export_sfc(_sfc_main$o, [["__scopeId", "data-v-3c45206a"]]);
+const _hoisted_1$j = { class: "vbwd-coupon" };
+const _hoisted_2$i = {
   key: 0,
   class: "vbwd-coupon__applied",
   "data-testid": "coupon-applied"
 };
-const _hoisted_3$d = { class: "vbwd-coupon__applied-label" };
+const _hoisted_3$e = { class: "vbwd-coupon__applied-label" };
 const _hoisted_4$c = ["disabled"];
 const _hoisted_5$9 = {
   key: 1,
@@ -1528,7 +1528,7 @@ const _hoisted_8$4 = {
   class: "vbwd-coupon__error",
   "data-testid": "coupon-error"
 };
-const _sfc_main$l = /* @__PURE__ */ vue.defineComponent({
+const _sfc_main$n = /* @__PURE__ */ vue.defineComponent({
   __name: "CouponInput",
   props: {
     appliedCode: { default: null },
@@ -1552,9 +1552,9 @@ const _sfc_main$l = /* @__PURE__ */ vue.defineComponent({
       emit("apply", trimmed);
     }
     return (_ctx, _cache) => {
-      return vue.openBlock(), vue.createElementBlock("div", _hoisted_1$h, [
-        __props.appliedCode ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_2$h, [
-          vue.createElementVNode("span", _hoisted_3$d, vue.toDisplayString(__props.appliedLabel) + " " + vue.toDisplayString(__props.appliedCode), 1),
+      return vue.openBlock(), vue.createElementBlock("div", _hoisted_1$j, [
+        __props.appliedCode ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_2$i, [
+          vue.createElementVNode("span", _hoisted_3$e, vue.toDisplayString(__props.appliedLabel) + " " + vue.toDisplayString(__props.appliedCode), 1),
           vue.createElementVNode("button", {
             type: "button",
             class: "vbwd-coupon__clear",
@@ -1588,14 +1588,84 @@ const _sfc_main$l = /* @__PURE__ */ vue.defineComponent({
     };
   }
 });
-const CouponInput = /* @__PURE__ */ _export_sfc(_sfc_main$l, [["__scopeId", "data-v-dc293241"]]);
-const _hoisted_1$g = { class: "vbwd-detail-field" };
+const CouponInput = /* @__PURE__ */ _export_sfc(_sfc_main$n, [["__scopeId", "data-v-dc293241"]]);
+const _hoisted_1$i = {
+  key: 0,
+  class: "vbwd-custom-fields-display",
+  "data-testid": "custom-fields-display"
+};
+const _hoisted_2$h = { class: "vbwd-custom-field-label" };
+const _hoisted_3$d = { class: "vbwd-custom-field-value" };
+const BOOLEAN_YES = "Yes";
+const BOOLEAN_NO = "No";
+const EMPTY_PLACEHOLDER = "-";
+const _sfc_main$m = /* @__PURE__ */ vue.defineComponent({
+  __name: "CustomFieldsDisplay",
+  props: {
+    customFields: { default: () => ({}) },
+    fieldDefs: { default: () => [] }
+  },
+  setup(__props) {
+    const props = __props;
+    function formatValue(type, value) {
+      if (value === null || value === void 0 || value === "") {
+        return EMPTY_PLACEHOLDER;
+      }
+      switch (type) {
+        case "bool":
+          return value ? BOOLEAN_YES : BOOLEAN_NO;
+        case "date":
+          return formatDate(value);
+        case "multiselect":
+          return Array.isArray(value) ? value.join(", ") : String(value);
+        default:
+          return String(value);
+      }
+    }
+    function formatDate(value) {
+      const parsed = new Date(value);
+      return Number.isNaN(parsed.getTime()) ? String(value) : parsed.toLocaleDateString();
+    }
+    const rows = vue.computed(() => {
+      const values = props.customFields ?? {};
+      const defs = props.fieldDefs ?? [];
+      if (defs.length) {
+        return [...defs].sort((left, right) => (left.sort_order ?? 0) - (right.sort_order ?? 0)).filter((def) => def.key in values).map((def) => ({
+          key: def.key,
+          label: def.label,
+          display: formatValue(def.type, values[def.key])
+        }));
+      }
+      return Object.entries(values).map(([key, value]) => ({
+        key,
+        label: key,
+        display: formatValue("text", value)
+      }));
+    });
+    return (_ctx, _cache) => {
+      return rows.value.length ? (vue.openBlock(), vue.createElementBlock("dl", _hoisted_1$i, [
+        (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(rows.value, (row) => {
+          return vue.openBlock(), vue.createElementBlock("div", {
+            key: row.key,
+            class: "vbwd-custom-field-row",
+            "data-testid": "custom-field-row"
+          }, [
+            vue.createElementVNode("dt", _hoisted_2$h, vue.toDisplayString(row.label), 1),
+            vue.createElementVNode("dd", _hoisted_3$d, vue.toDisplayString(row.display), 1)
+          ]);
+        }), 128))
+      ])) : vue.createCommentVNode("", true);
+    };
+  }
+});
+const CustomFieldsDisplay = /* @__PURE__ */ _export_sfc(_sfc_main$m, [["__scopeId", "data-v-95e21041"]]);
+const _hoisted_1$h = { class: "vbwd-detail-field" };
 const _hoisted_2$g = { class: "vbwd-detail-field-label" };
 const _hoisted_3$c = {
   key: 1,
   class: "vbwd-detail-field-value"
 };
-const _sfc_main$k = /* @__PURE__ */ vue.defineComponent({
+const _sfc_main$l = /* @__PURE__ */ vue.defineComponent({
   __name: "DetailField",
   props: {
     label: {},
@@ -1612,7 +1682,7 @@ const _sfc_main$k = /* @__PURE__ */ vue.defineComponent({
       return String(props.value);
     });
     return (_ctx, _cache) => {
-      return vue.openBlock(), vue.createElementBlock("div", _hoisted_1$g, [
+      return vue.openBlock(), vue.createElementBlock("div", _hoisted_1$h, [
         vue.createElementVNode("span", _hoisted_2$g, vue.toDisplayString(__props.label), 1),
         __props.badge ? (vue.openBlock(), vue.createBlock(Badge, {
           key: 0,
@@ -1628,8 +1698,8 @@ const _sfc_main$k = /* @__PURE__ */ vue.defineComponent({
     };
   }
 });
-const DetailField = /* @__PURE__ */ _export_sfc(_sfc_main$k, [["__scopeId", "data-v-aae1356f"]]);
-const _sfc_main$j = /* @__PURE__ */ vue.defineComponent({
+const DetailField = /* @__PURE__ */ _export_sfc(_sfc_main$l, [["__scopeId", "data-v-aae1356f"]]);
+const _sfc_main$k = /* @__PURE__ */ vue.defineComponent({
   __name: "DetailGrid",
   props: {
     columns: { default: 2 }
@@ -1649,13 +1719,13 @@ const _sfc_main$j = /* @__PURE__ */ vue.defineComponent({
     };
   }
 });
-const DetailGrid = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["__scopeId", "data-v-d3e81837"]]);
-const _hoisted_1$f = {
+const DetailGrid = /* @__PURE__ */ _export_sfc(_sfc_main$k, [["__scopeId", "data-v-d3e81837"]]);
+const _hoisted_1$g = {
   type: "button",
   class: "vbwd-dropdown-btn"
 };
 const _hoisted_2$f = ["onClick"];
-const _sfc_main$i = /* @__PURE__ */ vue.defineComponent({
+const _sfc_main$j = /* @__PURE__ */ vue.defineComponent({
   __name: "Dropdown",
   props: {
     label: { default: "Select" },
@@ -1706,7 +1776,7 @@ const _sfc_main$i = /* @__PURE__ */ vue.defineComponent({
           onClick: toggle
         }, [
           vue.renderSlot(_ctx.$slots, "trigger", {}, () => [
-            vue.createElementVNode("button", _hoisted_1$f, [
+            vue.createElementVNode("button", _hoisted_1$g, [
               vue.createTextVNode(vue.toDisplayString(__props.label) + " ", 1),
               (vue.openBlock(), vue.createElementBlock("svg", {
                 class: vue.normalizeClass(["vbwd-dropdown-arrow", { "vbwd-dropdown-arrow-open": isOpen.value }]),
@@ -1750,8 +1820,8 @@ const _sfc_main$i = /* @__PURE__ */ vue.defineComponent({
     };
   }
 });
-const Dropdown = /* @__PURE__ */ _export_sfc(_sfc_main$i, [["__scopeId", "data-v-ab6a622e"]]);
-const _hoisted_1$e = {
+const Dropdown = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["__scopeId", "data-v-ab6a622e"]]);
+const _hoisted_1$f = {
   key: 0,
   class: "vbwd-input-required"
 };
@@ -1773,7 +1843,7 @@ const _hoisted_7$6 = {
   key: 2,
   class: "vbwd-input-hint"
 };
-const _sfc_main$h = /* @__PURE__ */ vue.defineComponent({
+const _sfc_main$i = /* @__PURE__ */ vue.defineComponent({
   __name: "Input",
   props: {
     modelValue: { default: "" },
@@ -1810,7 +1880,7 @@ const _sfc_main$h = /* @__PURE__ */ vue.defineComponent({
           class: "vbwd-input-label"
         }, [
           vue.createTextVNode(vue.toDisplayString(__props.label) + " ", 1),
-          __props.required ? (vue.openBlock(), vue.createElementBlock("span", _hoisted_1$e, "*")) : vue.createCommentVNode("", true)
+          __props.required ? (vue.openBlock(), vue.createElementBlock("span", _hoisted_1$f, "*")) : vue.createCommentVNode("", true)
         ])) : vue.createCommentVNode("", true),
         vue.createElementVNode("div", _hoisted_2$e, [
           _ctx.$slots.prefix ? (vue.openBlock(), vue.createElementBlock("span", _hoisted_3$b, [
@@ -1837,8 +1907,8 @@ const _sfc_main$h = /* @__PURE__ */ vue.defineComponent({
     };
   }
 });
-const Input = /* @__PURE__ */ _export_sfc(_sfc_main$h, [["__scopeId", "data-v-bf22b843"]]);
-const _hoisted_1$d = ["aria-labelledby"];
+const Input = /* @__PURE__ */ _export_sfc(_sfc_main$i, [["__scopeId", "data-v-bf22b843"]]);
+const _hoisted_1$e = ["aria-labelledby"];
 const _hoisted_2$d = {
   key: 0,
   class: "vbwd-modal-header"
@@ -1848,7 +1918,7 @@ const _hoisted_4$a = {
   key: 1,
   class: "vbwd-modal-footer"
 };
-const _sfc_main$g = /* @__PURE__ */ vue.defineComponent({
+const _sfc_main$h = /* @__PURE__ */ vue.defineComponent({
   __name: "Modal",
   props: {
     modelValue: { type: Boolean },
@@ -1935,7 +2005,7 @@ const _sfc_main$g = /* @__PURE__ */ vue.defineComponent({
                 _ctx.$slots.footer ? (vue.openBlock(), vue.createElementBlock("footer", _hoisted_4$a, [
                   vue.renderSlot(_ctx.$slots, "footer", {}, void 0, true)
                 ])) : vue.createCommentVNode("", true)
-              ], 10, _hoisted_1$d)
+              ], 10, _hoisted_1$e)
             ])) : vue.createCommentVNode("", true)
           ]),
           _: 3
@@ -1944,8 +2014,8 @@ const _sfc_main$g = /* @__PURE__ */ vue.defineComponent({
     };
   }
 });
-const Modal = /* @__PURE__ */ _export_sfc(_sfc_main$g, [["__scopeId", "data-v-a9346ee5"]]);
-const _hoisted_1$c = {
+const Modal = /* @__PURE__ */ _export_sfc(_sfc_main$h, [["__scopeId", "data-v-a9346ee5"]]);
+const _hoisted_1$d = {
   class: "vbwd-pagination",
   role: "navigation",
   "aria-label": "Pagination"
@@ -1957,7 +2027,7 @@ const _hoisted_3$9 = {
 };
 const _hoisted_4$9 = ["aria-current", "onClick"];
 const _hoisted_5$7 = ["disabled"];
-const _sfc_main$f = /* @__PURE__ */ vue.defineComponent({
+const _sfc_main$g = /* @__PURE__ */ vue.defineComponent({
   __name: "Pagination",
   props: {
     currentPage: {},
@@ -1998,7 +2068,7 @@ const _sfc_main$f = /* @__PURE__ */ vue.defineComponent({
       }
     };
     return (_ctx, _cache) => {
-      return vue.openBlock(), vue.createElementBlock("nav", _hoisted_1$c, [
+      return vue.openBlock(), vue.createElementBlock("nav", _hoisted_1$d, [
         vue.createElementVNode("button", {
           class: "vbwd-pagination-btn vbwd-pagination-prev",
           disabled: __props.currentPage <= 1,
@@ -2051,8 +2121,8 @@ const _sfc_main$f = /* @__PURE__ */ vue.defineComponent({
     };
   }
 });
-const Pagination = /* @__PURE__ */ _export_sfc(_sfc_main$f, [["__scopeId", "data-v-939ce8f2"]]);
-const _hoisted_1$b = { class: "vbwd-table-wrapper" };
+const Pagination = /* @__PURE__ */ _export_sfc(_sfc_main$g, [["__scopeId", "data-v-939ce8f2"]]);
+const _hoisted_1$c = { class: "vbwd-table-wrapper" };
 const _hoisted_2$b = { key: 0 };
 const _hoisted_3$8 = ["onClick"];
 const _hoisted_4$8 = { class: "vbwd-table-th-content" };
@@ -2087,7 +2157,7 @@ const _hoisted_10$2 = { key: 0 };
 const _hoisted_11$2 = ["colspan"];
 const _hoisted_12$2 = { key: 1 };
 const _hoisted_13$2 = ["colspan"];
-const _sfc_main$e = /* @__PURE__ */ vue.defineComponent({
+const _sfc_main$f = /* @__PURE__ */ vue.defineComponent({
   __name: "Table",
   props: {
     columns: { default: () => [] },
@@ -2112,7 +2182,7 @@ const _sfc_main$e = /* @__PURE__ */ vue.defineComponent({
       emit("sort", key, sortOrder.value);
     };
     return (_ctx, _cache) => {
-      return vue.openBlock(), vue.createElementBlock("div", _hoisted_1$b, [
+      return vue.openBlock(), vue.createElementBlock("div", _hoisted_1$c, [
         vue.createElementVNode("table", {
           class: vue.normalizeClass(["vbwd-table", { "vbwd-table-striped": __props.striped, "vbwd-table-hoverable": __props.hoverable }])
         }, [
@@ -2188,7 +2258,39 @@ const _sfc_main$e = /* @__PURE__ */ vue.defineComponent({
     };
   }
 });
-const Table = /* @__PURE__ */ _export_sfc(_sfc_main$e, [["__scopeId", "data-v-aa02112d"]]);
+const Table = /* @__PURE__ */ _export_sfc(_sfc_main$f, [["__scopeId", "data-v-aa02112d"]]);
+const _hoisted_1$b = {
+  key: 0,
+  class: "vbwd-tag-chips",
+  "data-testid": "tag-chips"
+};
+const _sfc_main$e = /* @__PURE__ */ vue.defineComponent({
+  __name: "TagChips",
+  props: {
+    tags: { default: () => [] }
+  },
+  setup(__props) {
+    const props = __props;
+    const chips = vue.computed(
+      () => (props.tags ?? []).map(
+        (tag) => typeof tag === "string" ? { slug: tag, name: tag, color: null } : { slug: tag.slug, name: tag.name ?? tag.slug, color: tag.color ?? null }
+      )
+    );
+    return (_ctx, _cache) => {
+      return chips.value.length ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_1$b, [
+        (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(chips.value, (chip) => {
+          return vue.openBlock(), vue.createElementBlock("span", {
+            key: chip.slug,
+            class: "vbwd-tag-chip",
+            style: vue.normalizeStyle(chip.color ? { backgroundColor: chip.color } : void 0),
+            "data-testid": "tag-chip"
+          }, vue.toDisplayString(chip.name), 5);
+        }), 128))
+      ])) : vue.createCommentVNode("", true);
+    };
+  }
+});
+const TagChips = /* @__PURE__ */ _export_sfc(_sfc_main$e, [["__scopeId", "data-v-a1b4612d"]]);
 const _hoisted_1$a = {
   key: 0,
   class: "vbwd-form-field-asterisk"
@@ -4772,6 +4874,7 @@ exports.CartItem = CartItem;
 exports.Col = Col;
 exports.Container = Container;
 exports.CouponInput = CouponInput;
+exports.CustomFieldsDisplay = CustomFieldsDisplay;
 exports.DetailField = DetailField;
 exports.DetailGrid = DetailGrid;
 exports.Dropdown = Dropdown;
@@ -4794,6 +4897,7 @@ exports.PluginStatus = PluginStatus;
 exports.Row = Row;
 exports.Spinner = Spinner;
 exports.Table = Table;
+exports.TagChips = TagChips;
 exports.ValidationError = ValidationError;
 exports._resetPaymentDataContributors = _resetPaymentDataContributors;
 exports._resetPaymentInformationContributors = _resetPaymentInformationContributors;
