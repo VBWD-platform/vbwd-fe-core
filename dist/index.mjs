@@ -1780,7 +1780,7 @@ const _sfc_main$j = /* @__PURE__ */ defineComponent({
               key: 0,
               class: normalizeClass(["vbwd-dropdown-menu", `vbwd-dropdown-${__props.placement}`])
             }, [
-              renderSlot(_ctx.$slots, "default", {}, () => [
+              renderSlot(_ctx.$slots, "default", { close }, () => [
                 (openBlock(true), createElementBlock(Fragment, null, renderList(__props.items, (item, index) => {
                   return openBlock(), createElementBlock("div", {
                     key: index,
@@ -1800,7 +1800,7 @@ const _sfc_main$j = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const Dropdown = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["__scopeId", "data-v-ab6a622e"]]);
+const Dropdown = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["__scopeId", "data-v-596c5c13"]]);
 const _hoisted_1$f = {
   key: 0,
   class: "vbwd-input-required"
@@ -2569,11 +2569,16 @@ const _hoisted_9$2 = {
 const _sfc_main$6 = /* @__PURE__ */ defineComponent({
   __name: "CartItem",
   props: {
-    item: {}
+    item: {},
+    displayUnitAmount: {}
   },
   emits: ["increase", "decrease", "remove"],
   setup(__props, { emit: __emit }) {
+    const props = __props;
     const emit = __emit;
+    const lineUnitAmount = computed(
+      () => props.displayUnitAmount ?? props.item.price
+    );
     function formatType(type) {
       const labels = {
         plan: "Plan",
@@ -2611,7 +2616,7 @@ const _sfc_main$6 = /* @__PURE__ */ defineComponent({
               onClick: _cache[1] || (_cache[1] = ($event) => emit("increase"))
             }, " + ")
           ]),
-          createElementVNode("span", _hoisted_9$2, toDisplayString(formatPrice(__props.item.price * __props.item.quantity)), 1),
+          createElementVNode("span", _hoisted_9$2, toDisplayString(formatPrice(lineUnitAmount.value * __props.item.quantity)), 1),
           createElementVNode("button", {
             type: "button",
             class: "vbwd-cart-item-remove",
@@ -2637,7 +2642,7 @@ const _sfc_main$6 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const CartItem = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["__scopeId", "data-v-8dc99341"]]);
+const CartItem = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["__scopeId", "data-v-6f978377"]]);
 const _hoisted_1$5 = {
   class: "vbwd-cart-empty",
   "data-testid": "cart-empty"
