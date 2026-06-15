@@ -1800,7 +1800,7 @@ const _sfc_main$j = /* @__PURE__ */ vue.defineComponent({
               key: 0,
               class: vue.normalizeClass(["vbwd-dropdown-menu", `vbwd-dropdown-${__props.placement}`])
             }, [
-              vue.renderSlot(_ctx.$slots, "default", {}, () => [
+              vue.renderSlot(_ctx.$slots, "default", { close }, () => [
                 (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(__props.items, (item, index) => {
                   return vue.openBlock(), vue.createElementBlock("div", {
                     key: index,
@@ -1820,7 +1820,7 @@ const _sfc_main$j = /* @__PURE__ */ vue.defineComponent({
     };
   }
 });
-const Dropdown = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["__scopeId", "data-v-ab6a622e"]]);
+const Dropdown = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["__scopeId", "data-v-596c5c13"]]);
 const _hoisted_1$f = {
   key: 0,
   class: "vbwd-input-required"

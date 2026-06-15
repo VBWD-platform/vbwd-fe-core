@@ -16,7 +16,7 @@
         v-if="isOpen"
         :class="['vbwd-dropdown-menu', `vbwd-dropdown-${placement}`]"
       >
-        <slot>
+        <slot :close="close">
           <div
             v-for="(item, index) in items"
             :key="index"
