@@ -17,6 +17,17 @@
  * the user expects.
  */
 export declare function roundToCents(value: number): number;
+export declare function getOperatingCurrency(): string;
+export declare function setOperatingCurrency(code: string | null | undefined): void;
+/**
+ * Scale an amount by a currency cross-rate for **display only** (the fe-user
+ * display-currency switch). This is NOT a tax computation — it multiplies an
+ * already-computed amount by a published rate; the caller formats the result
+ * through {@link formatMoney}, which is the single rounding boundary, so this
+ * returns the raw (unrounded) scaled value. The underlying billing amount, the
+ * checkout payload, and the invoice are never touched.
+ */
+export declare function convertForDisplay(amount: number | null | undefined, rate: number): number;
 /**
  * Whether a checkout total represents "nothing to pay" — the **Pay Zero** case.
  *
@@ -32,15 +43,17 @@ export declare function roundToCents(value: number): number;
  */
 export declare function isZeroTotal(value: number | null | undefined): boolean;
 export interface FormatMoneyOptions {
-    /** ISO-4217 currency code. Defaults to ``USD``. */
+    /** ISO-4217 currency code. Defaults to the operating currency (S99). */
     currency?: string;
     /** Locale override; defaults to the user agent's locale via ``undefined``. */
     locale?: string;
 }
 /**
- * Format ``value`` as a currency string with cents rounded half-up.
- * Falls back to ``"$X.YY"`` if Intl currency formatting throws (very old
- * runtimes / unknown currency code).
+ * Format ``value`` as a currency string with cents rounded half-up. When no
+ * currency is given it uses the operating currency (S99) — never a hard-coded
+ * literal. Falls back to ``"X.YY CCC"`` (amount + ISO code) if Intl currency
+ * formatting throws (very old runtimes / unknown currency code) — the code is
+ * always carried, so a non-USD currency is never rendered as a bare number.
  */
 export declare function formatMoney(value: number | null | undefined, options?: FormatMoneyOptions): string;
 //# sourceMappingURL=money.d.ts.map

@@ -4026,13 +4026,24 @@ function roundToCents(value) {
   if (value == null || Number.isNaN(value)) return 0;
   return Math.round((value + CENTS_EPSILON) * 100) / 100;
 }
+let operatingCurrency = "EUR";
+function getOperatingCurrency() {
+  return operatingCurrency;
+}
+function setOperatingCurrency(code) {
+  if (code) operatingCurrency = code.toUpperCase();
+}
+function convertForDisplay(amount, rate) {
+  if (amount == null || Number.isNaN(amount)) return 0;
+  return Number(amount) * rate;
+}
 function isZeroTotal(value) {
   return roundToCents(Number(value)) <= 0;
 }
 function formatMoney(value, options = {}) {
   const numericValue = value == null || Number.isNaN(value) ? 0 : Number(value);
   const rounded = roundToCents(numericValue);
-  const currency = (options.currency || "USD").toUpperCase();
+  const currency = (options.currency || getOperatingCurrency()).toUpperCase();
   try {
     return new Intl.NumberFormat(options.locale, {
       style: "currency",
@@ -4041,7 +4052,7 @@ function formatMoney(value, options = {}) {
       maximumFractionDigits: 2
     }).format(rounded);
   } catch {
-    return `${currency === "USD" ? "$" : ""}${rounded.toFixed(2)}`;
+    return `${rounded.toFixed(2)} ${currency}`;
   }
 }
 function downloadBlob(blob, filename) {
@@ -4904,6 +4915,7 @@ exports._resetPaymentInformationContributors = _resetPaymentInformationContribut
 exports.authGuard = authGuard;
 exports.configureAuthStore = configureAuthStore;
 exports.configureEventBus = configureEventBus;
+exports.convertForDisplay = convertForDisplay;
 exports.createAuthGuard = createAuthGuard;
 exports.createCartStore = createCartStore;
 exports.createRoleGuard = createRoleGuard;
@@ -4912,6 +4924,7 @@ exports.eventBus = eventBus;
 exports.fetchPluginConfigs = fetchPluginConfigs;
 exports.fetchPluginManifest = fetchPluginManifest;
 exports.formatMoney = formatMoney;
+exports.getOperatingCurrency = getOperatingCurrency;
 exports.getPaymentDataContributor = getPaymentDataContributor;
 exports.getPaymentDataContributors = getPaymentDataContributors;
 exports.getPaymentInformationContributor = getPaymentInformationContributor;
@@ -4928,6 +4941,7 @@ exports.roleGuard = roleGuard;
 exports.roundToCents = roundToCents;
 exports.satisfiesVersion = satisfiesVersion;
 exports.savePluginConfig = savePluginConfig;
+exports.setOperatingCurrency = setOperatingCurrency;
 exports.setPayButtonLabelOverride = setPayButtonLabelOverride;
 exports.useAuthStore = useAuthStore;
 exports.useCartStore = useCartStore;
