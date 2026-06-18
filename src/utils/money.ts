@@ -25,6 +25,46 @@ export function roundToCents(value: number): number {
 }
 
 /**
+ * The single operating (= billing) currency — the backend ``default_currency``
+ * setting (S84/S99). It is what money is denominated in, what invoices are
+ * created in, and what checkout charges. Set ONCE at app boot from
+ * ``GET /api/v1/config`` (fe-user via its app-config store, fe-admin likewise).
+ *
+ * This is process-global by design, so it is a plain module-level accessor — no
+ * Pinia store, no DI container (fe-core is framework-light). The fallback is
+ * ``EUR`` to match ``core_settings_store``'s default, eliminating the historical
+ * ``USD`` / ``EUR`` split that made the SAME price render with different symbols
+ * depending on which file formatted it.
+ *
+ * NOTE: this is the BILLING currency. A storefront "display currency" switch
+ * (fe-user, view-only) is a separate, higher layer that scales amounts for
+ * display via ``convertForDisplay`` — it never changes this value or what is
+ * charged.
+ */
+let operatingCurrency = 'EUR';
+
+export function getOperatingCurrency(): string {
+  return operatingCurrency;
+}
+
+export function setOperatingCurrency(code: string | null | undefined): void {
+  if (code) operatingCurrency = code.toUpperCase();
+}
+
+/**
+ * Scale an amount by a currency cross-rate for **display only** (the fe-user
+ * display-currency switch). This is NOT a tax computation — it multiplies an
+ * already-computed amount by a published rate; the caller formats the result
+ * through {@link formatMoney}, which is the single rounding boundary, so this
+ * returns the raw (unrounded) scaled value. The underlying billing amount, the
+ * checkout payload, and the invoice are never touched.
+ */
+export function convertForDisplay(amount: number | null | undefined, rate: number): number {
+  if (amount == null || Number.isNaN(amount as number)) return 0;
+  return Number(amount) * rate;
+}
+
+/**
  * Whether a checkout total represents "nothing to pay" — the **Pay Zero** case.
  *
  * The value is rounded to cents first, so both binary-fraction noise
@@ -42,21 +82,23 @@ export function isZeroTotal(value: number | null | undefined): boolean {
 }
 
 export interface FormatMoneyOptions {
-  /** ISO-4217 currency code. Defaults to ``USD``. */
+  /** ISO-4217 currency code. Defaults to the operating currency (S99). */
   currency?: string;
   /** Locale override; defaults to the user agent's locale via ``undefined``. */
   locale?: string;
 }
 
 /**
- * Format ``value`` as a currency string with cents rounded half-up.
- * Falls back to ``"$X.YY"`` if Intl currency formatting throws (very old
- * runtimes / unknown currency code).
+ * Format ``value`` as a currency string with cents rounded half-up. When no
+ * currency is given it uses the operating currency (S99) — never a hard-coded
+ * literal. Falls back to ``"X.YY CCC"`` (amount + ISO code) if Intl currency
+ * formatting throws (very old runtimes / unknown currency code) — the code is
+ * always carried, so a non-USD currency is never rendered as a bare number.
  */
 export function formatMoney(value: number | null | undefined, options: FormatMoneyOptions = {}): string {
   const numericValue = value == null || Number.isNaN(value as number) ? 0 : Number(value);
   const rounded = roundToCents(numericValue);
-  const currency = (options.currency || 'USD').toUpperCase();
+  const currency = (options.currency || getOperatingCurrency()).toUpperCase();
   try {
     return new Intl.NumberFormat(options.locale, {
       style: 'currency',
@@ -65,6 +107,6 @@ export function formatMoney(value: number | null | undefined, options: FormatMon
       maximumFractionDigits: 2,
     }).format(rounded);
   } catch {
-    return `${currency === 'USD' ? '$' : ''}${rounded.toFixed(2)}`;
+    return `${rounded.toFixed(2)} ${currency}`;
   }
 }

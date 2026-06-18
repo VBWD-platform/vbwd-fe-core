@@ -46,6 +46,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import type { ICartItem } from '../../stores/cart';
+import { formatMoney, getOperatingCurrency } from '../../utils/money';
 
 const props = defineProps<{
   item: ICartItem;
@@ -79,10 +80,8 @@ function formatType(type: string): string {
 }
 
 function formatPrice(price: number): string {
-  return new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-  }).format(price);
+  const currency = (props.item.metadata?.currency as string) || getOperatingCurrency();
+  return formatMoney(price, { currency });
 }
 </script>
 

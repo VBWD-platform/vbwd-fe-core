@@ -2562,6 +2562,40 @@ const _sfc_main$7 = /* @__PURE__ */ vue.defineComponent({
   }
 });
 const CartIcon = /* @__PURE__ */ _export_sfc(_sfc_main$7, [["__scopeId", "data-v-9bcdbe98"]]);
+const CENTS_EPSILON = 1e-9;
+function roundToCents(value) {
+  if (value == null || Number.isNaN(value)) return 0;
+  return Math.round((value + CENTS_EPSILON) * 100) / 100;
+}
+let operatingCurrency = "EUR";
+function getOperatingCurrency() {
+  return operatingCurrency;
+}
+function setOperatingCurrency(code) {
+  if (code) operatingCurrency = code.toUpperCase();
+}
+function convertForDisplay(amount, rate) {
+  if (amount == null || Number.isNaN(amount)) return 0;
+  return Number(amount) * rate;
+}
+function isZeroTotal(value) {
+  return roundToCents(Number(value)) <= 0;
+}
+function formatMoney(value, options = {}) {
+  const numericValue = value == null || Number.isNaN(value) ? 0 : Number(value);
+  const rounded = roundToCents(numericValue);
+  const currency = (options.currency || getOperatingCurrency()).toUpperCase();
+  try {
+    return new Intl.NumberFormat(options.locale, {
+      style: "currency",
+      currency,
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    }).format(rounded);
+  } catch {
+    return `${rounded.toFixed(2)} ${currency}`;
+  }
+}
 const _hoisted_1$6 = {
   class: "vbwd-cart-item",
   "data-testid": "cart-item"
@@ -2608,10 +2642,9 @@ const _sfc_main$6 = /* @__PURE__ */ vue.defineComponent({
       return labels[type] || type;
     }
     function formatPrice(price) {
-      return new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD"
-      }).format(price);
+      var _a2;
+      const currency = ((_a2 = props.item.metadata) == null ? void 0 : _a2.currency) || getOperatingCurrency();
+      return formatMoney(price, { currency });
     }
     return (_ctx, _cache) => {
       return vue.openBlock(), vue.createElementBlock("div", _hoisted_1$6, [
@@ -2662,7 +2695,7 @@ const _sfc_main$6 = /* @__PURE__ */ vue.defineComponent({
     };
   }
 });
-const CartItem = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["__scopeId", "data-v-6f978377"]]);
+const CartItem = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["__scopeId", "data-v-181861fc"]]);
 const _hoisted_1$5 = {
   class: "vbwd-cart-empty",
   "data-testid": "cart-empty"
@@ -2916,10 +2949,9 @@ const _sfc_main$4 = /* @__PURE__ */ vue.defineComponent({
       emit("clear");
     };
     function formatPrice(price) {
-      return new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD"
-      }).format(price);
+      var _a2, _b;
+      const currency = ((_b = (_a2 = items.value[0]) == null ? void 0 : _a2.metadata) == null ? void 0 : _b.currency) || getOperatingCurrency();
+      return formatMoney(price, { currency });
     }
     const handleClickOutside = (event) => {
       if (dropdownRef.value && !dropdownRef.value.contains(event.target)) {
@@ -3014,7 +3046,7 @@ const _sfc_main$4 = /* @__PURE__ */ vue.defineComponent({
     };
   }
 });
-const CartDropdown = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["__scopeId", "data-v-5b63da9d"]]);
+const CartDropdown = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["__scopeId", "data-v-7c9a08a4"]]);
 const registry$1 = {};
 function registerPaymentDataContributor(key, contributor) {
   registry$1[key] = contributor;
@@ -4026,29 +4058,6 @@ const payButtonLabelOverride = override;
 function setPayButtonLabelOverride(label) {
   override.value = label;
 }
-const CENTS_EPSILON = 1e-9;
-function roundToCents(value) {
-  if (value == null || Number.isNaN(value)) return 0;
-  return Math.round((value + CENTS_EPSILON) * 100) / 100;
-}
-function isZeroTotal(value) {
-  return roundToCents(Number(value)) <= 0;
-}
-function formatMoney(value, options = {}) {
-  const numericValue = value == null || Number.isNaN(value) ? 0 : Number(value);
-  const rounded = roundToCents(numericValue);
-  const currency = (options.currency || "USD").toUpperCase();
-  try {
-    return new Intl.NumberFormat(options.locale, {
-      style: "currency",
-      currency,
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2
-    }).format(rounded);
-  } catch {
-    return `${currency === "USD" ? "$" : ""}${rounded.toFixed(2)}`;
-  }
-}
 function downloadBlob(blob, filename) {
   const objectUrl = URL.createObjectURL(blob);
   const anchor = document.createElement("a");
@@ -4909,6 +4918,7 @@ exports._resetPaymentInformationContributors = _resetPaymentInformationContribut
 exports.authGuard = authGuard;
 exports.configureAuthStore = configureAuthStore;
 exports.configureEventBus = configureEventBus;
+exports.convertForDisplay = convertForDisplay;
 exports.createAuthGuard = createAuthGuard;
 exports.createCartStore = createCartStore;
 exports.createRoleGuard = createRoleGuard;
@@ -4917,6 +4927,7 @@ exports.eventBus = eventBus;
 exports.fetchPluginConfigs = fetchPluginConfigs;
 exports.fetchPluginManifest = fetchPluginManifest;
 exports.formatMoney = formatMoney;
+exports.getOperatingCurrency = getOperatingCurrency;
 exports.getPaymentDataContributor = getPaymentDataContributor;
 exports.getPaymentDataContributors = getPaymentDataContributors;
 exports.getPaymentInformationContributor = getPaymentInformationContributor;
@@ -4933,6 +4944,7 @@ exports.roleGuard = roleGuard;
 exports.roundToCents = roundToCents;
 exports.satisfiesVersion = satisfiesVersion;
 exports.savePluginConfig = savePluginConfig;
+exports.setOperatingCurrency = setOperatingCurrency;
 exports.setPayButtonLabelOverride = setPayButtonLabelOverride;
 exports.useAuthStore = useAuthStore;
 exports.useCartStore = useCartStore;

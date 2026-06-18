@@ -1,5 +1,12 @@
-import { describe, it, expect } from 'vitest';
-import { roundToCents, formatMoney, isZeroTotal } from '@/utils/money';
+import { describe, it, expect, afterEach } from 'vitest';
+import {
+  roundToCents,
+  formatMoney,
+  isZeroTotal,
+  getOperatingCurrency,
+  setOperatingCurrency,
+  convertForDisplay,
+} from '@/utils/money';
 
 describe('roundToCents', () => {
   it('rounds the third decimal half-up (user spec)', () => {
@@ -79,5 +86,63 @@ describe('formatMoney', () => {
     expect(formatMoney(null, { currency: 'USD', locale: 'en-US' })).toBe('$0.00');
     expect(formatMoney(undefined, { currency: 'USD', locale: 'en-US' })).toBe('$0.00');
     expect(formatMoney(Number.NaN, { currency: 'USD', locale: 'en-US' })).toBe('$0.00');
+  });
+});
+
+describe('operating currency (S99 — the single billing-currency accessor)', () => {
+  afterEach(() => {
+    // Module-level state — reset to the default so tests don't leak into each other.
+    setOperatingCurrency('EUR');
+  });
+
+  it('defaults to EUR (matches the backend default_currency)', () => {
+    expect(getOperatingCurrency()).toBe('EUR');
+  });
+
+  it('is settable (fed once at app boot from /config) and normalises to upper-case', () => {
+    setOperatingCurrency('usd');
+    expect(getOperatingCurrency()).toBe('USD');
+  });
+
+  it('ignores an empty/blank code (keeps the last good value)', () => {
+    setOperatingCurrency('USD');
+    setOperatingCurrency('');
+    expect(getOperatingCurrency()).toBe('USD');
+  });
+
+  it('formatMoney with no explicit currency uses the operating currency', () => {
+    setOperatingCurrency('EUR');
+    expect(formatMoney(1.99, { locale: 'en-US' })).toBe('€1.99');
+    setOperatingCurrency('USD');
+    expect(formatMoney(1.99, { locale: 'en-US' })).toBe('$1.99');
+  });
+});
+
+describe('formatMoney (S99 — symbol-correct for every currency, no USD special-case)', () => {
+  it('carries the currency code + amount for a non-symbol currency (never a bare $ number)', () => {
+    // Whether modern Intl prefixes the code ("XXZ 12.50") or the old-runtime
+    // fallback path runs ("12.50 XXZ"), the output must carry the code + amount
+    // and must NOT special-case a "$" (the pre-S99 fallback only symbolised USD).
+    const out = formatMoney(12.5, { currency: 'XXZ', locale: 'en-US' });
+    expect(out).toContain('XXZ');
+    expect(out).toContain('12.50');
+    expect(out).not.toContain('$');
+  });
+});
+
+describe('convertForDisplay (S99 — view-only FX scaling, never persisted)', () => {
+  it('scales an amount by a cross-rate (rounding happens later, at formatMoney)', () => {
+    expect(convertForDisplay(10, 1.1)).toBe(11);
+    // No premature rounding — the raw scaled value is returned.
+    expect(convertForDisplay(9.99, 1.1)).toBeCloseTo(10.989, 6);
+  });
+
+  it('a rate of 1 is identity', () => {
+    expect(convertForDisplay(42.42, 1)).toBe(42.42);
+  });
+
+  it('coerces null / NaN amount to 0 (defensive)', () => {
+    expect(convertForDisplay(null as unknown as number, 1.2)).toBe(0);
+    expect(convertForDisplay(Number.NaN, 1.2)).toBe(0);
   });
 });

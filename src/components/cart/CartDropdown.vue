@@ -73,6 +73,7 @@
 import { ref, onMounted, onUnmounted } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useCartStore } from '../../stores/cart';
+import { formatMoney, getOperatingCurrency } from '../../utils/money';
 import CartIcon from './CartIcon.vue';
 import CartItem from './CartItem.vue';
 import CartEmpty from './CartEmpty.vue';
@@ -116,10 +117,10 @@ const handleClear = () => {
 };
 
 function formatPrice(price: number): string {
-  return new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-  }).format(price);
+  // Cart items are denominated in one operating currency; prefer an item's own
+  // currency, else the operating currency (never a hard-coded literal).
+  const currency = (items.value[0]?.metadata?.currency as string) || getOperatingCurrency();
+  return formatMoney(price, { currency });
 }
 
 const handleClickOutside = (event: MouseEvent) => {
