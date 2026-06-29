@@ -1,6 +1,6 @@
 {
   "name": "vbwd-view-component",
-  "version": "26.6.0",
+  "version": "26.6.1",
   "description": "Shared Vue 3 component library and SDK for VBWD applications",
   "type": "module",
   "main": "./dist/index.cjs",
