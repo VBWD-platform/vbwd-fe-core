@@ -577,6 +577,14 @@ to {
   transform: translateY(-0.25rem);
 }
 
+.vbwd-icon[data-v-3cf50022] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  line-height: 0;
+}
+
 .vbwd-input-wrapper[data-v-bf22b843] {
   display: flex;
   flex-direction: column;

@@ -8,11 +8,13 @@ export { default as CustomFieldsDisplay } from './CustomFieldsDisplay.vue';
 export { default as DetailField } from './DetailField.vue';
 export { default as DetailGrid } from './DetailGrid.vue';
 export { default as Dropdown } from './Dropdown.vue';
+export { default as Icon } from './Icon.vue';
 export { default as Input } from './Input.vue';
 export { default as Modal } from './Modal.vue';
 export { default as Pagination } from './Pagination.vue';
 export { default as Spinner } from './Spinner.vue';
 export { default as Table } from './Table.vue';
 export { default as TagChips } from './TagChips.vue';
+export { ICON_PATHS, resolveIconPath, hasIcon } from './icons';
 export type { TableColumn, DropdownItem, ApiKey, ApiScope, TagChip, CustomFieldDef, } from './types';
 //# sourceMappingURL=index.d.ts.map
